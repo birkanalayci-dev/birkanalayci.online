@@ -330,6 +330,20 @@ main { flex: 1 0 auto; }
 }
 .linklist a:hover { border-color: var(--accent); color: var(--accent-deep); }
 
+/* Etiket sırası (tıklanamaz rozetler) — ör. çalışma alanları */
+.tag-row { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; padding: 0; margin: 0; }
+.tag-chip {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--accent-deep);
+  background: var(--accent-soft);
+  border: 1px solid #cfe3e4;
+  border-radius: 999px;
+  padding: 0.3rem 0.8rem;
+}
+
 /* Timeline (eğitim/kariyer) */
 .timeline { list-style: none; padding: 0; border-left: 2px solid var(--border); margin-left: 0.5rem; }
 .timeline li { position: relative; padding: 0 0 1.25rem 1.5rem; }

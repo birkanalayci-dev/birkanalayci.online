@@ -23,7 +23,7 @@ const livHref = PLACEHOLDER_LINKS.livAppointment !== '#' ? PLACEHOLDER_LINKS.liv
 
       <div class="grid grid-2 mt-4">
         <div class="card">
-          <h2 style="font-size:1.25rem;">Randevu</h2>
+          <h2 style="font-size:1.25rem;">Randevu ve muayene</h2>
           <p class="mt-1">
             Randevu için Liv Hospital çağrı merkezini arayabilir ya da hastanenin
             resmi sayfasını kullanabilirsiniz.
@@ -41,18 +41,28 @@ const livHref = PLACEHOLDER_LINKS.livAppointment !== '#' ? PLACEHOLDER_LINKS.liv
         </div>
 
         <div class="card">
-          <h2 style="font-size:1.25rem;">İletişim</h2>
+          <h2 style="font-size:1.25rem;">Akademik &amp; profesyonel iletişim</h2>
           <ul class="mt-1" style="list-style:none;padding:0;">
             <li class="mt-1"><strong>E-posta:</strong> <a href={LINKS.email}>birkan.alayci@livhospital.com.tr</a></li>
-            <li class="mt-1"><strong>Hastane:</strong> <a href={LINKS.liv} target="_blank" rel="noopener">Liv Hospital Vadistanbul</a></li>
             <li class="mt-1"><strong>LinkedIn:</strong> <a href={LINKS.linkedin} target="_blank" rel="noopener">Profil</a></li>
-            <li class="mt-1"><strong>Adres:</strong> {CLINIC.addressTr}</li>
+            <li class="mt-1"><strong>Hastane:</strong> <a href={LINKS.liv} target="_blank" rel="noopener">Liv Hospital Vadistanbul</a></li>
           </ul>
+          <p class="small muted mt-2">
+            E-posta tıbbi acil durumlar için uygun değildir; akademik ve kurumsal
+            yazışmalar içindir. Randevu için yukarıdaki kanalları kullanınız.
+          </p>
         </div>
+      </div>
+
+      <div class="note mt-4">
+        <strong>Muayeneye gelirken:</strong> Daha önce yapılmış tahlilleriniz,
+        kullandığınız ilaçların listesi, varsa görüntüleme sonuçları ve kronik
+        hastalık geçmişinizle gelmeniz değerlendirmeyi kolaylaştırır.
       </div>
 
       <div class="mt-4">
         <h2>Konum</h2>
+        <p class="muted mt-1">{CLINIC.addressTr}</p>
         <div class="mt-2" style="border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);">
           <iframe
             src={CLINIC.mapEmbed}

@@ -23,7 +23,7 @@ const livHref = PLACEHOLDER_LINKS.livAppointment !== '#' ? PLACEHOLDER_LINKS.liv
 
       <div class="grid grid-2 mt-4">
         <div class="card">
-          <h2 style="font-size:1.25rem;">Appointments</h2>
+          <h2 style="font-size:1.25rem;">Appointments &amp; visits</h2>
           <p class="mt-1">Call the Liv Hospital call center or use the hospital’s official page.</p>
           <p class="mt-2" style="font-size:1.15rem;">
             <strong>Call center:</strong>
@@ -35,18 +35,28 @@ const livHref = PLACEHOLDER_LINKS.livAppointment !== '#' ? PLACEHOLDER_LINKS.liv
           </p>
         </div>
         <div class="card">
-          <h2 style="font-size:1.25rem;">Contact</h2>
+          <h2 style="font-size:1.25rem;">Academic &amp; professional contact</h2>
           <ul class="mt-1" style="list-style:none;padding:0;">
             <li class="mt-1"><strong>Email:</strong> <a href={LINKS.email}>birkan.alayci@livhospital.com.tr</a></li>
-            <li class="mt-1"><strong>Hospital:</strong> <a href={LINKS.liv} target="_blank" rel="noopener">Liv Hospital Vadistanbul</a></li>
             <li class="mt-1"><strong>LinkedIn:</strong> <a href={LINKS.linkedin} target="_blank" rel="noopener">Profile</a></li>
-            <li class="mt-1"><strong>Address:</strong> {CLINIC.addressEn}</li>
+            <li class="mt-1"><strong>Hospital:</strong> <a href={LINKS.liv} target="_blank" rel="noopener">Liv Hospital Vadistanbul</a></li>
           </ul>
+          <p class="small muted mt-2">
+            Email is not for medical emergencies; it is for academic and
+            institutional correspondence. For appointments, use the channels above.
+          </p>
         </div>
+      </div>
+
+      <div class="note mt-4">
+        <strong>Before your visit:</strong> Bringing your previous test results, a
+        list of your current medications, any imaging reports and your chronic
+        disease history makes the assessment easier.
       </div>
 
       <div class="mt-4">
         <h2>Location</h2>
+        <p class="muted mt-1">{CLINIC.addressEn}</p>
         <div class="mt-2" style="border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);">
           <iframe
             src={CLINIC.mapEmbed}
