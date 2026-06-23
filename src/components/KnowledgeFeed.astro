@@ -1,5 +1,5 @@
 ---
-import { HEALTH_CARDS, VIDEOS } from '../data/notes';
+import { HEALTH_CARDS, FAQ_CARDS, VIDEOS } from '../data/notes';
 
 interface Props {
   lang: 'tr' | 'en';
@@ -30,14 +30,36 @@ const t = {
   },
 }[lang];
 
-// İstemciye verilecek yerelleştirilmiş kart listesi.
-const cards = HEALTH_CARDS.map((c) => ({
-  tag: c.tag[lang],
-  title: c.title[lang],
-  body: c.body[lang],
-}));
+// İstemciye verilecek kart listesi. TR'de zengin SSS havuzu (kaynaklı),
+// EN'de mevcut iki dilli kısa kartlar.
+const sourceLabel = lang === 'tr' ? 'Kaynak: ' : 'Source: ';
+const cards =
+  lang === 'tr'
+    ? FAQ_CARDS.map((c) => ({
+        tag: c.kategori,
+        title: c.soru,
+        body: c.cevap,
+        source: c.kaynaklar.join(' · '),
+      }))
+    : HEALTH_CARDS.map((c) => ({
+        tag: c.tag.en,
+        title: c.title.en,
+        body: c.body.en,
+        source: '',
+      }));
 const total = cards.length;
 const first = cards[0];
+
+// FAQPage yapısal verisi — tüm soru/cevaplar Google'a (zengin sonuç şansı).
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: cards.map((c) => ({
+    '@type': 'Question',
+    name: c.title,
+    acceptedAnswer: { '@type': 'Answer', text: c.body },
+  })),
+};
 ---
 
 <h2>{t.cardsTitle}</h2>
@@ -54,12 +76,17 @@ const first = cards[0];
     <span class="ktag" id="fc-tag">{first.tag}</span>
     <h3 id="fc-title">{first.title}</h3>
     <p id="fc-body" aria-live="polite">{first.body}</p>
+    <p class="fc-source small muted" id="fc-source" hidden={!first.source}>
+      {first.source ? sourceLabel + first.source : ''}
+    </p>
     <span class="flashcard-hint">{t.hint}</span>
   </div>
   <p class="flashcard-count small muted">
     <span id="fc-index">1</span> / {total}
   </p>
 </div>
+
+<script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
 
 <h2 class="mt-4">{t.videosTitle}</h2>
 {
@@ -90,12 +117,13 @@ const first = cards[0];
 
 <p class="small muted mt-4">{t.disclaimer}</p>
 
-<script define:vars={{ cards }}>
+<script define:vars={{ cards, sourceLabel }}>
   const el = document.getElementById('flashcard');
   if (el && cards.length > 1) {
     const tagEl = document.getElementById('fc-tag');
     const titleEl = document.getElementById('fc-title');
     const bodyEl = document.getElementById('fc-body');
+    const sourceEl = document.getElementById('fc-source');
     const idxEl = document.getElementById('fc-index');
     let current = -1;
 
@@ -104,6 +132,15 @@ const first = cards[0];
       tagEl.textContent = c.tag;
       titleEl.textContent = c.title;
       bodyEl.textContent = c.body;
+      if (sourceEl) {
+        if (c.source) {
+          sourceEl.textContent = sourceLabel + c.source;
+          sourceEl.hidden = false;
+        } else {
+          sourceEl.textContent = '';
+          sourceEl.hidden = true;
+        }
+      }
       if (idxEl) idxEl.textContent = String(i + 1);
       current = i;
     };
@@ -167,9 +204,14 @@ const first = cards[0];
     margin: 0;
     color: var(--text-soft);
   }
+  .fc-source {
+    margin-top: 0.9rem;
+    font-style: italic;
+    line-height: 1.4;
+  }
   .flashcard-hint {
-    display: inline-block;
-    margin-top: 1.1rem;
+    display: block;
+    margin-top: 0.6rem;
     font-size: 0.8rem;
     color: var(--text-muted);
   }
