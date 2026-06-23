@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import AppointmentBanner from '../../components/AppointmentBanner.astro';
 import { FOCUS_AREAS } from '../../data/focus';
+import { HAS_PORTRAIT } from '../../data/site';
 
 const title = 'Dr. Birkan Alaycı — Internal Medicine Specialist, Istanbul';
 const description =
@@ -28,11 +29,27 @@ const preview = FOCUS_AREAS.slice(0, 6);
         </div>
       </div>
       <div class="portrait-wrap">
-        <!-- [BİRKAN DOLDURACAK] portrait → public/portrait.jpg -->
-        <div class="portrait portrait-placeholder" role="img"
-             aria-label="Portrait of Birkan Alaycı, MD (coming soon)">
-          Portrait image<br />[BİRKAN DOLDURACAK]
-        </div>
+        {
+          HAS_PORTRAIT ? (
+            <img
+              class="portrait"
+              src="/portrait.jpg"
+              width="640"
+              height="800"
+              alt="Birkan Alaycı, MD, Internal Medicine Specialist"
+            />
+          ) : (
+            <aside class="profile-card" aria-label="At a glance">
+              <span class="profile-mono" aria-hidden="true">BA</span>
+              <dl>
+                <div><dt>Specialty</dt><dd>Internal Medicine</dd></div>
+                <div><dt>Affiliation</dt><dd>Liv Hospital Vadistanbul</dd></div>
+                <div><dt>Location</dt><dd>Sarıyer, Istanbul</dd></div>
+                <div><dt>Focus</dt><dd>Metabolic health · Evidence synthesis</dd></div>
+              </dl>
+            </aside>
+          )
+        }
       </div>
     </div>
   </section>

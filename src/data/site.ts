@@ -24,27 +24,39 @@ export const LINKS = {
   orcid: 'https://orcid.org/0000-0002-8244-0987',
   researchgate: 'https://www.researchgate.net/profile/Birkan-Alayci',
   github: 'https://github.com/birkanalayci-dev',
-  // Kişisel / klinik dışı (footer'da diskret, varsayılan KAPALI):
+  // Kişisel / klinik dışı (ayrı "Kişisel" sayfasında toplanır):
   instagram: 'https://instagram.com/birkanalayci',
   soundcloud: 'https://soundcloud.com/birkanalayci',
 };
 
-// Henüz doğrulanmamış / Birkan'ın vereceği placeholder linkler.
-// JSON-LD sameAs ve ilgili butonlar bunlar doldurulunca aktif olacak.
-export const PLACEHOLDER_LINKS = {
-  linkedin: '#', // [BİRKAN DOLDURACAK] LinkedIn profil URL'si
-  pubmed: '#', // [BİRKAN DOLDURACAK] PubMed yazar/koleksiyon URL'si
-  doktorsitesi: '#', // [BİRKAN DOLDURACAK] doktorsitesi.com profil URL'si
-  livAppointment: '#', // [ONAY BEKLİYOR] Liv online randevu sayfası URL'si
-  kvkk: '#', // [BİRKAN DOLDURACAK] KVKK aydınlatma metni linki
-  mapEmbed: '', // [BİRKAN DOLDURACAK] Google Maps embed URL'si (opsiyonel)
+// Liv Hospital Vadistanbul iletişim — kamuya açık, doğrulanmış bilgiler.
+export const CLINIC = {
+  callCenter: '444 45 48', // Liv Hospital çağrı merkezi
+  callCenterTel: 'tel:+908502220548',
+  phone: '+90 212 919 60 00', // Liv Vadistanbul santral
+  phoneTel: 'tel:+902129196000',
+  addressTr:
+    'Ayazağa Mah., Kemerburgaz Cad., Vadistanbul Park Etabı, 7F Blok, 34396 Sarıyer / İstanbul',
+  addressEn:
+    'Ayazağa Mah., Kemerburgaz Cad., Vadistanbul Park Etabı, 7F Blok, 34396 Sarıyer / Istanbul',
+  // API anahtarı gerektirmeyen Google Maps embed.
+  mapEmbed: 'https://maps.google.com/maps?q=Liv%20Hospital%20Vadistanbul&output=embed',
 };
 
-// Footer'daki kişisel/diğer linkleri göster/gizle. Brief gereği KAPALI başlar.
-export const SHOW_PERSONAL_LINKS = false;
+// Birkan'ın doldurması/onaylaması gereken kalan placeholder linkler.
+export const PLACEHOLDER_LINKS = {
+  livAppointment: '#', // [ONAY BEKLİYOR] Liv online randevu sayfası URL'si (boşsa Liv profili kullanılır)
+  kvkk: '#', // [BİRKAN DOLDURACAK] KVKK aydınlatma metni linki
+};
+
+// Hero'da profesyonel portre gösterilsin mi?
+// public/portrait.jpg eklenince true yapın.
+export const HAS_PORTRAIT = false;
+
+// Ayrı "Kişisel / Diğer" sayfası (Instagram, SoundCloud) — footer'dan diskret link.
+export const SHOW_PERSONAL_PAGE = true;
 
 // JSON-LD sameAs — yalnızca doğrulanmış gerçek URL'ler.
-// [BİRKAN DOLDURACAK]: linkedin, pubmed, doktorsitesi doldurulunca buraya eklenecek.
 export const SAME_AS = [
   LINKS.liv,
   LINKS.scholar,

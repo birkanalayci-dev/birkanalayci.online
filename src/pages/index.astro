@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import AppointmentBanner from '../components/AppointmentBanner.astro';
 import { FOCUS_AREAS } from '../data/focus';
+import { HAS_PORTRAIT } from '../data/site';
 
 const title = 'Uzm. Dr. Birkan Alaycı — İç Hastalıkları Uzmanı, İstanbul';
 const description =
@@ -30,17 +31,27 @@ const preview = FOCUS_AREAS.slice(0, 6);
       </div>
 
       <div class="portrait-wrap">
-        <!--
-          [BİRKAN DOLDURACAK] Profesyonel portre.
-          Dosyayı public/portrait.jpg olarak ekleyin ve aşağıdaki placeholder
-          bloğunu şu satırla değiştirin:
-          <img class="portrait" src="/portrait.jpg" width="640" height="800"
-               alt="Uzm. Dr. Birkan Alaycı, İç Hastalıkları Uzmanı" />
-        -->
-        <div class="portrait portrait-placeholder" role="img"
-             aria-label="Uzm. Dr. Birkan Alaycı portresi (yakında eklenecek)">
-          Portre görseli<br />[BİRKAN DOLDURACAK]
-        </div>
+        {
+          HAS_PORTRAIT ? (
+            <img
+              class="portrait"
+              src="/portrait.jpg"
+              width="640"
+              height="800"
+              alt="Uzm. Dr. Birkan Alaycı, İç Hastalıkları Uzmanı"
+            />
+          ) : (
+            <aside class="profile-card" aria-label="Özet bilgiler">
+              <span class="profile-mono" aria-hidden="true">BA</span>
+              <dl>
+                <div><dt>Uzmanlık</dt><dd>İç Hastalıkları</dd></div>
+                <div><dt>Kurum</dt><dd>Liv Hospital Vadistanbul</dd></div>
+                <div><dt>Konum</dt><dd>Sarıyer, İstanbul</dd></div>
+                <div><dt>Odak</dt><dd>Metabolik sağlık · Kanıt sentezi</dd></div>
+              </dl>
+            </aside>
+          )
+        }
       </div>
     </div>
   </section>

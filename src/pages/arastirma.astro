@@ -1,11 +1,12 @@
 ---
 import Base from '../layouts/Base.astro';
 import AppointmentBanner from '../components/AppointmentBanner.astro';
-import { LINKS, PLACEHOLDER_LINKS } from '../data/site';
+import PublicationList from '../components/PublicationList.astro';
+import { LINKS } from '../data/site';
 
 const title = 'Araştırma & Yayınlar — Uzm. Dr. Birkan Alaycı';
 const description =
-  'Uzm. Dr. Birkan Alaycı’nın akademik profili: evidence synthesis (sistematik derleme ve meta-analiz) metodolojisi, ORCID, Google Scholar, ResearchGate ve yayınlar.';
+  'Uzm. Dr. Birkan Alaycı’nın yayınları ve akademik profili: evidence synthesis (sistematik derleme ve meta-analiz) metodolojisi, GLP-1 ve vücut kompozisyonu, ORCID, Google Scholar, ResearchGate.';
 ---
 
 <Base {title} {description} lang="tr" trHref="/arastirma/" enHref="/en/research/">
@@ -30,42 +31,22 @@ const description =
 
   <section class="section" style="padding-top:0;">
     <div class="container">
+      <h2>Yayınlar</h2>
+      <p class="muted mt-1">En güncel liste için ORCID ve Google Scholar profillerine bakınız.</p>
+      <div class="mt-3">
+        <PublicationList lang="tr" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="container">
       <h2>Akademik profiller</h2>
       <ul class="linklist mt-2">
         <li><a href={LINKS.orcid} target="_blank" rel="noopener">ORCID</a></li>
         <li><a href={LINKS.scholar} target="_blank" rel="noopener">Google Scholar</a></li>
         <li><a href={LINKS.researchgate} target="_blank" rel="noopener">ResearchGate</a></li>
         <li><a href={LINKS.github} target="_blank" rel="noopener">GitHub</a></li>
-        {/* [BİRKAN DOLDURACAK] PubMed yazar/koleksiyon URL'si */}
-        <li>
-          <a href={PLACEHOLDER_LINKS.pubmed}>PubMed</a>
-          <span class="pending" style="margin-left:.4rem;">Bağlantı Bekliyor</span>
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="section" style="padding-top:0;">
-    <div class="container">
-      <h2>Seçilmiş yayınlar</h2>
-      <div class="note mt-2 prose">
-        <p>
-          <strong>[BİRKAN DOLDURACAK]</strong> — Yayın listesi buraya eklenecektir.
-          Liste uydurulmamıştır; doğru künyeler (başlık, dergi, yıl, DOI) Birkan
-          tarafından sağlanacak ya da ORCID profilinden otomatik çekilecek biçimde
-          kurulabilir.
-        </p>
-        <p class="small muted mt-1">
-          Not (geliştiriciye): ORCID Public API ile
-          <code>{LINKS.orcid}</code> üzerinden yayınların otomatik listelenmesi
-          opsiyonel olarak eklenebilir.
-        </p>
-      </div>
-
-      <ul class="mt-3">
-        <li>[BİRKAN DOLDURACAK: Yayın 1 — başlık, dergi, yıl, DOI] <span class="pending">Onay Bekliyor</span></li>
-        <li>[BİRKAN DOLDURACAK: Yayın 2 — başlık, dergi, yıl, DOI] <span class="pending">Onay Bekliyor</span></li>
-        <li>[BİRKAN DOLDURACAK: Yayın 3 — başlık, dergi, yıl, DOI] <span class="pending">Onay Bekliyor</span></li>
       </ul>
     </div>
   </section>

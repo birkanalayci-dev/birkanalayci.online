@@ -1,5 +1,5 @@
 ---
-import { NAV, LINKS, PLACEHOLDER_LINKS, SHOW_PERSONAL_LINKS, SITE } from '../data/site';
+import { NAV, PLACEHOLDER_LINKS, SHOW_PERSONAL_PAGE, SITE } from '../data/site';
 
 interface Props {
   lang: 'tr' | 'en';
@@ -7,9 +7,11 @@ interface Props {
 const { lang } = Astro.props;
 const items = NAV.map((n) => n[lang]);
 const year = new Date().getFullYear();
-const cityLine = lang === 'tr' ? 'İstanbul, Türkiye' : 'Istanbul, Türkiye';
+const cityLine = lang === 'tr' ? 'Sarıyer, İstanbul' : 'Sarıyer, Istanbul';
 const kvkkLabel = lang === 'tr' ? 'KVKK Aydınlatma Metni' : 'Privacy (KVKK)';
 const rights = lang === 'tr' ? 'Tüm hakları saklıdır.' : 'All rights reserved.';
+const personalHref = lang === 'tr' ? '/kisisel/' : '/en/personal/';
+const personalLabel = lang === 'tr' ? 'Kişisel' : 'Personal';
 ---
 
 <footer class="site-footer">
@@ -22,22 +24,14 @@ const rights = lang === 'tr' ? 'Tüm hakları saklıdır.' : 'All rights reserve
         <a href={PLACEHOLDER_LINKS.kvkk}>{kvkkLabel}</a>
         <span class="muted"> · [BİRKAN DOLDURACAK]</span>
       </p>
-
-      {
-        /* Kişisel / klinik dışı linkler — brief gereği varsayılan KAPALI.
-           Açmak için src/data/site.ts → SHOW_PERSONAL_LINKS = true */
-        SHOW_PERSONAL_LINKS && (
-          <div class="footer-personal small">
-            <a href={LINKS.instagram} target="_blank" rel="noopener">Instagram</a>
-            <a href={LINKS.soundcloud} target="_blank" rel="noopener">SoundCloud</a>
-          </div>
-        )
-      }
     </div>
 
     <nav aria-label={lang === 'tr' ? 'Alt menü' : 'Footer menu'}>
       <ul class="footer-links">
         {items.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+        {SHOW_PERSONAL_PAGE && (
+          <li><a href={personalHref} class="muted">{personalLabel}</a></li>
+        )}
       </ul>
     </nav>
   </div>

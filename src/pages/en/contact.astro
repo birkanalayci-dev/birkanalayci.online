@@ -1,10 +1,10 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { LINKS, PLACEHOLDER_LINKS } from '../../data/site';
+import { LINKS, PLACEHOLDER_LINKS, CLINIC } from '../../data/site';
 
 const title = 'Contact & Appointments — Birkan Alaycı, MD, Liv Vadistanbul';
 const description =
-  'Contact and appointments for Birkan Alaycı, MD. Liv Hospital Vadistanbul, Istanbul. Appointments are handled through official Liv channels.';
+  'Contact and appointments for Birkan Alaycı, MD. Liv Hospital Vadistanbul, Sarıyer / Istanbul. Call center 444 45 48.';
 
 const livHref = PLACEHOLDER_LINKS.livAppointment !== '#' ? PLACEHOLDER_LINKS.livAppointment : LINKS.liv;
 ---
@@ -24,19 +24,38 @@ const livHref = PLACEHOLDER_LINKS.livAppointment !== '#' ? PLACEHOLDER_LINKS.liv
       <div class="grid grid-2 mt-4">
         <div class="card">
           <h2 style="font-size:1.25rem;">Appointments</h2>
-          <p class="mt-1">Please use Liv Hospital’s official channel to book.</p>
-          <p class="mt-2">
-            <a class="btn btn-primary" href={livHref} target="_blank" rel="noopener">Book via Liv</a>
+          <p class="mt-1">Call the Liv Hospital call center or use the hospital’s official page.</p>
+          <p class="mt-2" style="font-size:1.15rem;">
+            <strong>Call center:</strong>
+            <a href={CLINIC.callCenterTel}>{CLINIC.callCenter}</a>
           </p>
-          <p class="small muted mt-2">Call center number: [ONAY BEKLİYOR]</p>
+          <p class="small muted">Switchboard: <a href={CLINIC.phoneTel}>{CLINIC.phone}</a></p>
+          <p class="mt-2">
+            <a class="btn btn-primary" href={livHref} target="_blank" rel="noopener">Liv hospital profile</a>
+          </p>
         </div>
         <div class="card">
           <h2 style="font-size:1.25rem;">Contact</h2>
           <ul class="mt-1" style="list-style:none;padding:0;">
             <li class="mt-1"><strong>Email:</strong> <a href={LINKS.email}>birkanalayci@gmail.com</a></li>
-            <li class="mt-1"><strong>Hospital profile:</strong> <a href={LINKS.liv} target="_blank" rel="noopener">Liv Hospital Vadistanbul</a></li>
-            <li class="mt-1"><strong>Location:</strong> Liv Hospital Vadistanbul, Istanbul</li>
+            <li class="mt-1"><strong>Hospital:</strong> <a href={LINKS.liv} target="_blank" rel="noopener">Liv Hospital Vadistanbul</a></li>
+            <li class="mt-1"><strong>Address:</strong> {CLINIC.addressEn}</li>
           </ul>
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <h2>Location</h2>
+        <div class="mt-2" style="border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);">
+          <iframe
+            src={CLINIC.mapEmbed}
+            title="Liv Hospital Vadistanbul map location"
+            width="100%"
+            height="360"
+            style="border:0;display:block;"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
         </div>
       </div>
 
