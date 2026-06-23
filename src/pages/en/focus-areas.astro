@@ -19,9 +19,8 @@ const description =
           daily practice, explained from the patient’s perspective.
         </p>
         <div class="note mt-3">
-          Headings are being finalized (<span class="pending">Pending</span>).
-          This content is not a substitute for medical advice; diagnosis and
-          treatment are decided individually after examination.
+          This content is for information only and is not a substitute for medical
+          advice; diagnosis and treatment are decided individually after examination.
         </div>
       </div>
 
@@ -29,10 +28,7 @@ const description =
         {
           FOCUS_AREAS.map((area) => (
             <article class="card" id={area.id}>
-              <h2 style="font-size:1.2rem;">
-                {area.titleEn}
-                <span class="pending">Pending</span>
-              </h2>
+              <h2 style="font-size:1.2rem;">{area.titleEn}</h2>
               <p class="mt-1">{area.descEn}</p>
             </article>
           ))

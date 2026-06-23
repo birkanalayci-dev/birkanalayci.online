@@ -1,0 +1,81 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE, LINKS, CLINIC } from '../data/site';
+
+const title = 'KVKK Aydınlatma Metni — Uzm. Dr. Birkan Alaycı';
+const description =
+  '6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında aydınlatma metni — birkanalayci.online.';
+---
+
+<Base {title} {description} lang="tr" trHref="/kvkk/" enHref="/en/privacy/">
+  <section class="section">
+    <div class="container prose">
+      <p class="eyebrow">Yasal</p>
+      <h1>KVKK Aydınlatma Metni</h1>
+      <p class="muted small mt-1">Son güncelleme: 2026</p>
+
+      <p class="mt-3">
+        6698 sayılı Kişisel Verilerin Korunması Kanunu (“KVKK”) uyarınca, kişisel
+        verilerinizin işlenmesine ilişkin olarak sizi bilgilendirmek isteriz.
+      </p>
+
+      <h2 class="mt-4">1. Veri Sorumlusu</h2>
+      <p>
+        Bu internet sitesi (<strong>{SITE.domain.replace('https://', '')}</strong>)
+        Uzm. Dr. Birkan Alaycı tarafından bilgilendirme amacıyla yayımlanmaktadır.
+        İletişim: <a href={LINKS.email}>birkanalayci@gmail.com</a>.
+      </p>
+
+      <h2 class="mt-4">2. İşlenen Kişisel Veriler</h2>
+      <p>
+        Bu site üzerinden form yoluyla kişisel veri toplanmamaktadır. Yalnızca
+        sizin tarafınızdan e-posta ile iletişime geçilmesi hâlinde paylaştığınız
+        kimlik ve iletişim bilgileri (ad-soyad, e-posta adresi ve mesajınızın
+        içeriği) işlenir. Site, temel işlevsellik için zorunlu çerezler dışında
+        kişisel veri toplamayı amaçlamaz.
+      </p>
+
+      <h2 class="mt-4">3. İşleme Amaçları</h2>
+      <ul>
+        <li>İletişim taleplerinizin yanıtlanması,</li>
+        <li>Randevu yönlendirmesi ve bilgilendirme,</li>
+        <li>Yasal yükümlülüklerin yerine getirilmesi.</li>
+      </ul>
+
+      <h2 class="mt-4">4. Hukuki Sebep</h2>
+      <p>
+        Kişisel verileriniz; KVKK m.5/2 kapsamında bir hakkın tesisi/korunması ve
+        ilgili kişinin temel hak ve özgürlüklerine zarar vermemek kaydıyla meşru
+        menfaat, gerektiğinde açık rızanız ve ilgili mevzuattaki yükümlülükler
+        çerçevesinde işlenir.
+      </p>
+
+      <h2 class="mt-4">5. Aktarım</h2>
+      <p>
+        Randevu ve klinik hizmetler Liv Hospital Vadistanbul’un resmi kanalları
+        üzerinden yürütülür; bu kapsamdaki sağlık verisi işleme faaliyetleri ilgili
+        sağlık kuruluşunun kendi aydınlatma metinlerine tabidir. Verileriniz, yasal
+        zorunluluklar dışında üçüncü kişilerle paylaşılmaz.
+      </p>
+
+      <h2 class="mt-4">6. Toplama Yöntemi</h2>
+      <p>
+        Veriler, yalnızca sizin e-posta yoluyla ilettiğiniz bilgiler üzerinden
+        elektronik ortamda toplanır.
+      </p>
+
+      <h2 class="mt-4">7. Haklarınız (KVKK m.11)</h2>
+      <p>
+        Kişisel verilerinizin işlenip işlenmediğini öğrenme, bilgi talep etme,
+        düzeltilmesini/silinmesini isteme ve kanunda sayılan diğer haklarınızı
+        kullanmak için <a href={LINKS.email}>birkanalayci@gmail.com</a> adresine
+        başvurabilirsiniz.
+      </p>
+
+      <div class="note mt-4">
+        <strong>Not:</strong> Bu metin genel bir örnektir; nihai hukuki uygunluk
+        için bir hukuk danışmanı tarafından gözden geçirilmesi önerilir.
+      </div>
+    </div>
+  </section>
+</Base>

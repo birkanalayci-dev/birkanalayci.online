@@ -20,9 +20,9 @@ const description =
           biçimde açıklanmıştır.
         </p>
         <div class="note mt-3">
-          Başlıklar kesinleştirme aşamasındadır (<span class="pending">Onay Bekliyor</span>).
-          Bu sayfadaki içerik tıbbi tavsiye yerine geçmez; tanı ve tedavi kararları
-          muayene sonrası bireysel olarak değerlendirilir.
+          Bu sayfadaki içerik bilgilendirme amaçlıdır ve tıbbi tavsiye yerine
+          geçmez; tanı ve tedavi kararları muayene sonrası bireysel olarak
+          değerlendirilir.
         </div>
       </div>
 
@@ -30,10 +30,7 @@ const description =
         {
           FOCUS_AREAS.map((area) => (
             <article class="card" id={area.id}>
-              <h2 style="font-size:1.2rem;">
-                {area.titleTr}
-                <span class="pending">Onay Bekliyor</span>
-              </h2>
+              <h2 style="font-size:1.2rem;">{area.titleTr}</h2>
               <p class="mt-1">{area.descTr}</p>
             </article>
           ))

@@ -58,15 +58,11 @@ const preview = FOCUS_AREAS.slice(0, 6);
     <div class="container">
       <p class="eyebrow">Focus & services</p>
       <h2>Main areas</h2>
-      <p class="muted mt-1">Headings are being finalized.</p>
       <div class="grid grid-3 mt-3">
         {
           preview.map((area) => (
             <div class="card">
-              <h3>
-                {area.titleEn}
-                <span class="pending">Pending</span>
-              </h3>
+              <h3>{area.titleEn}</h3>
               <p>{area.descEn}</p>
             </div>
           ))

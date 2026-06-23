@@ -43,10 +43,9 @@ export const CLINIC = {
   mapEmbed: 'https://maps.google.com/maps?q=Liv%20Hospital%20Vadistanbul&output=embed',
 };
 
-// Birkan'ın doldurması/onaylaması gereken kalan placeholder linkler.
+// Kalan opsiyonel link.
 export const PLACEHOLDER_LINKS = {
   livAppointment: '#', // [ONAY BEKLİYOR] Liv online randevu sayfası URL'si (boşsa Liv profili kullanılır)
-  kvkk: '#', // [BİRKAN DOLDURACAK] KVKK aydınlatma metni linki
 };
 
 // Hero'da profesyonel portre gösterilsin mi?
@@ -83,15 +82,15 @@ export const NAV: NavItem[] = [
     en: { label: 'About', href: '/en/about/' },
   },
   {
-    tr: { label: 'İlgi & Hizmet Alanları', href: '/ilgi-alanlari/' },
-    en: { label: 'Focus & Services', href: '/en/focus-areas/' },
+    tr: { label: 'İlgi Alanları', href: '/ilgi-alanlari/' },
+    en: { label: 'Focus Areas', href: '/en/focus-areas/' },
   },
   {
-    tr: { label: 'Araştırma & Yayınlar', href: '/arastirma/' },
+    tr: { label: 'Araştırma', href: '/arastirma/' },
     en: { label: 'Research', href: '/en/research/' },
   },
   {
-    tr: { label: 'İletişim & Randevu', href: '/iletisim/' },
+    tr: { label: 'İletişim', href: '/iletisim/' },
     en: { label: 'Contact', href: '/en/contact/' },
   },
   {

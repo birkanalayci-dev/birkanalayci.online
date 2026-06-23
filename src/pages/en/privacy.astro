@@ -1,0 +1,65 @@
+---
+import Base from '../../layouts/Base.astro';
+import { SITE, LINKS } from '../../data/site';
+
+const title = 'Privacy Notice (KVKK) — Birkan Alaycı, MD';
+const description =
+  'Privacy notice under Turkish Personal Data Protection Law (KVKK No. 6698) — birkanalayci.online.';
+---
+
+<Base {title} {description} lang="en" trHref="/kvkk/" enHref="/en/privacy/">
+  <section class="section">
+    <div class="container prose">
+      <p class="eyebrow">Legal</p>
+      <h1>Privacy Notice (KVKK)</h1>
+      <p class="muted small mt-1">Last updated: 2026</p>
+
+      <p class="mt-3">
+        This notice explains how personal data is processed under the Turkish
+        Personal Data Protection Law No. 6698 (“KVKK”).
+      </p>
+
+      <h2 class="mt-4">1. Data Controller</h2>
+      <p>
+        This website (<strong>{SITE.domain.replace('https://', '')}</strong>) is
+        published for informational purposes by Birkan Alaycı, MD. Contact:
+        <a href={LINKS.email}>birkanalayci@gmail.com</a>.
+      </p>
+
+      <h2 class="mt-4">2. Data Collected</h2>
+      <p>
+        No personal data is collected through forms on this site. Data is processed
+        only if you contact by email (name, email address and message content).
+        Apart from strictly necessary cookies, the site does not aim to collect
+        personal data.
+      </p>
+
+      <h2 class="mt-4">3. Purposes</h2>
+      <ul>
+        <li>Responding to your enquiries,</li>
+        <li>Appointment guidance and information,</li>
+        <li>Compliance with legal obligations.</li>
+      </ul>
+
+      <h2 class="mt-4">4. Transfers</h2>
+      <p>
+        Appointments and clinical services are handled through the official channels
+        of Liv Hospital Vadistanbul; any health-data processing in that context is
+        governed by that institution’s own notices. Your data is not shared with
+        third parties except where legally required.
+      </p>
+
+      <h2 class="mt-4">5. Your Rights (KVKK Art. 11)</h2>
+      <p>
+        To exercise your rights — including to learn whether your data is processed,
+        request information, correction or deletion — contact
+        <a href={LINKS.email}>birkanalayci@gmail.com</a>.
+      </p>
+
+      <div class="note mt-4">
+        <strong>Note:</strong> This is a general template and should be reviewed by
+        a legal advisor for final compliance.
+      </div>
+    </div>
+  </section>
+</Base>

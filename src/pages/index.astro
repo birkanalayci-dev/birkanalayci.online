@@ -81,15 +81,11 @@ const preview = FOCUS_AREAS.slice(0, 6);
     <div class="container">
       <p class="eyebrow">İlgi & hizmet alanları</p>
       <h2>Başlıca konular</h2>
-      <p class="muted mt-1">Başlıklar kesinleştirme aşamasındadır.</p>
       <div class="grid grid-3 mt-3">
         {
           preview.map((area) => (
             <div class="card">
-              <h3>
-                {area.titleTr}
-                <span class="pending">Onay Bekliyor</span>
-              </h3>
+              <h3>{area.titleTr}</h3>
               <p>{area.descTr}</p>
             </div>
           ))
