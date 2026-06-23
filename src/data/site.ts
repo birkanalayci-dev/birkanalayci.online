@@ -18,7 +18,7 @@ export const SITE = {
 
 // Doğrulanmış gerçek linkler (mevcut siteden taşındı).
 export const LINKS = {
-  email: 'mailto:birkanalayci@gmail.com',
+  email: 'mailto:birkan.alayci@livhospital.com.tr',
   liv: 'https://www.livhospital.com/uzm-dr-birkan-alayci',
   scholar: 'https://scholar.google.com/citations?user=vLrCaIsAAAAJ&hl=tr',
   orcid: 'https://orcid.org/0000-0002-8244-0987',
