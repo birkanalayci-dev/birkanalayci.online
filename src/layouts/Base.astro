@@ -1,0 +1,106 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE, SAME_AS } from '../data/site';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  lang?: 'tr' | 'en';
+  /** TR ve EN eşdeğer sayfa yolları (hreflang için) */
+  trHref: string;
+  enHref: string;
+  ogImage?: string;
+}
+
+const {
+  title,
+  description,
+  lang = 'tr',
+  trHref,
+  enHref,
+  ogImage = '/og-image.jpg',
+} = Astro.props;
+
+const base = SITE.domain;
+const canonical = new URL(Astro.url.pathname, base).href;
+const ogImageAbs = new URL(ogImage, base).href;
+const ogLocale = lang === 'tr' ? 'tr_TR' : 'en_US';
+
+// schema.org Physician — yalnızca doğrulanmış veriler.
+const physicianLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Physician',
+  name: SITE.name,
+  honorificPrefix: 'Uzm. Dr.',
+  description:
+    lang === 'tr'
+      ? 'İç hastalıkları uzmanı. İstanbul, Liv Hospital Vadistanbul.'
+      : 'Internal medicine specialist. Istanbul, Liv Hospital Vadistanbul.',
+  medicalSpecialty: 'InternalMedicine',
+  url: base,
+  image: ogImageAbs,
+  areaServed: { '@type': 'City', name: 'İstanbul' },
+  affiliation: {
+    '@type': 'Hospital',
+    name: 'Liv Hospital Vadistanbul',
+    url: 'https://www.livhospital.com/',
+  },
+  worksFor: {
+    '@type': 'Hospital',
+    name: 'Liv Hospital Vadistanbul',
+  },
+  alumniOf: {
+    '@type': 'CollegeOrUniversity',
+    name: 'Dokuz Eylül Üniversitesi Tıp Fakültesi',
+  },
+  sameAs: SAME_AS,
+};
+---
+
+<!DOCTYPE html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="tr" href={new URL(trHref, base).href} />
+    <link rel="alternate" hreflang="en" href={new URL(enHref, base).href} />
+    <link rel="alternate" hreflang="x-default" href={new URL(trHref, base).href} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:image" content={ogImageAbs} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageAbs} />
+
+    <meta name="theme-color" content="#1f6f78" />
+    <meta name="robots" content="index, follow" />
+    <!-- Mevcut Yandex doğrulaması korunuyor (mevcut siteden taşındı) -->
+    <meta name="yandex-verification" content="2d34b6832a906a4b" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(physicianLd)} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">İçeriğe geç</a>
+    <Header lang={lang} trHref={trHref} enHref={enHref} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer lang={lang} />
+  </body>
+</html>

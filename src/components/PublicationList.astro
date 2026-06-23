@@ -1,0 +1,73 @@
+---
+import { PUBLICATIONS } from '../data/publications';
+
+interface Props {
+  lang: 'tr' | 'en';
+}
+const { lang } = Astro.props;
+
+const typeLabel = (t: 'preprint' | 'article') =>
+  t === 'preprint'
+    ? lang === 'tr'
+      ? 'Ön baskı'
+      : 'Preprint'
+    : lang === 'tr'
+      ? 'Makale'
+      : 'Article';
+---
+
+<ol class="pub-list">
+  {
+    PUBLICATIONS.map((p) => (
+      <li class="pub-item">
+        <p class="pub-meta">
+          <span class="pub-type">{typeLabel(p.type)}</span>
+          <span class="pub-year">{p.year}</span>
+        </p>
+        <h3 class="pub-title">
+          <a href={p.url} target="_blank" rel="noopener">{p.title}</a>
+        </h3>
+        <p class="pub-authors">
+          {p.authors.map((a, i) => (
+            <>
+              {i > 0 ? ', ' : ''}
+              {a.self ? <strong>{a.name}</strong> : a.name}
+            </>
+          ))}
+        </p>
+        <p class="pub-venue">
+          {p.venue}
+          {p.doi && (
+            <>
+              {' · '}
+              <a href={p.url} target="_blank" rel="noopener">doi:{p.doi}</a>
+            </>
+          )}
+        </p>
+      </li>
+    ))
+  }
+</ol>
+
+<style>
+  .pub-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 1.25rem; }
+  .pub-item {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.4rem;
+    background: var(--bg-card);
+  }
+  .pub-meta { display: flex; gap: 0.6rem; align-items: center; margin-bottom: 0.4rem; }
+  .pub-type {
+    font-size: 0.68rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--accent-deep); background: var(--accent-soft);
+    border: 1px solid #cfe3e4; border-radius: 4px; padding: 0.1rem 0.5rem;
+  }
+  .pub-year { font-size: 0.85rem; color: var(--text-muted); }
+  .pub-title { font-size: 1.08rem; line-height: 1.35; margin-bottom: 0.35rem; }
+  .pub-title a { color: var(--text); text-decoration: none; }
+  .pub-title a:hover { color: var(--accent-deep); text-decoration: underline; }
+  .pub-authors { font-size: 0.92rem; color: var(--text-soft); margin: 0; }
+  .pub-authors strong { color: var(--text); }
+  .pub-venue { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; }
+</style>

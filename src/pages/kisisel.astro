@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro';
+import { LINKS } from '../data/site';
+
+const title = 'Kişisel — Birkan Alaycı';
+const description =
+  'Birkan Alaycı — klinik dışı kişisel bağlantılar: müzik ve sosyal profiller.';
+---
+
+<Base {title} {description} lang="tr" trHref="/kisisel/" enHref="/en/personal/">
+  <section class="section">
+    <div class="container prose">
+      <p class="eyebrow">Kişisel</p>
+      <h1>Kişisel &amp; diğer</h1>
+      <p class="lead mt-2">
+        Mesleki kimliğimin dışında kalan kişisel bağlantılar — müzik ve sosyal
+        profiller burada.
+      </p>
+
+      <ul class="linklist mt-4">
+        <li><a href={LINKS.instagram} target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href={LINKS.soundcloud} target="_blank" rel="noopener">SoundCloud</a></li>
+      </ul>
+
+      <p class="small muted mt-4">
+        Bu sayfa klinik içerikten ayrıdır. Randevu ve tıbbi konular için
+        <a href="/iletisim/">iletişim sayfasına</a> bakınız.
+      </p>
+    </div>
+  </section>
+</Base>

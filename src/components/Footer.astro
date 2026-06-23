@@ -1,0 +1,42 @@
+---
+import { NAV, PLACEHOLDER_LINKS, SHOW_PERSONAL_PAGE, SITE } from '../data/site';
+
+interface Props {
+  lang: 'tr' | 'en';
+}
+const { lang } = Astro.props;
+const items = NAV.map((n) => n[lang]);
+const year = new Date().getFullYear();
+const cityLine = lang === 'tr' ? 'Sarıyer, İstanbul' : 'Sarıyer, Istanbul';
+const kvkkLabel = lang === 'tr' ? 'KVKK Aydınlatma Metni' : 'Privacy (KVKK)';
+const rights = lang === 'tr' ? 'Tüm hakları saklıdır.' : 'All rights reserved.';
+const personalHref = lang === 'tr' ? '/kisisel/' : '/en/personal/';
+const personalLabel = lang === 'tr' ? 'Kişisel' : 'Personal';
+---
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>
+      <p style="color:var(--text);font-weight:600;font-family:var(--serif);">{SITE.name}</p>
+      <p class="small">{lang === 'tr' ? SITE.specialtyTr : SITE.specialtyEn} · {cityLine}</p>
+      <p class="small mt-1">
+        {/* [BİRKAN DOLDURACAK] KVKK aydınlatma metni linki */}
+        <a href={PLACEHOLDER_LINKS.kvkk}>{kvkkLabel}</a>
+        <span class="muted"> · [BİRKAN DOLDURACAK]</span>
+      </p>
+    </div>
+
+    <nav aria-label={lang === 'tr' ? 'Alt menü' : 'Footer menu'}>
+      <ul class="footer-links">
+        {items.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+        {SHOW_PERSONAL_PAGE && (
+          <li><a href={personalHref} class="muted">{personalLabel}</a></li>
+        )}
+      </ul>
+    </nav>
+  </div>
+
+  <div class="container" style="margin-top:1.5rem;">
+    <p class="small muted">© {year} {SITE.name}. {rights}</p>
+  </div>
+</footer>

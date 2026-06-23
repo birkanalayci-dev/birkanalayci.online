@@ -1,0 +1,55 @@
+---
+import Base from '../layouts/Base.astro';
+import AppointmentBanner from '../components/AppointmentBanner.astro';
+import PublicationList from '../components/PublicationList.astro';
+import { LINKS } from '../data/site';
+
+const title = 'Araştırma & Yayınlar — Uzm. Dr. Birkan Alaycı';
+const description =
+  'Uzm. Dr. Birkan Alaycı’nın yayınları ve akademik profili: evidence synthesis (sistematik derleme ve meta-analiz) metodolojisi, GLP-1 ve vücut kompozisyonu, ORCID, Google Scholar, ResearchGate.';
+---
+
+<Base {title} {description} lang="tr" trHref="/arastirma/" enHref="/en/research/">
+  <section class="section">
+    <div class="container prose">
+      <p class="eyebrow">Araştırma</p>
+      <h1>Araştırma &amp; yayınlar</h1>
+
+      <p class="lead mt-2">
+        Klinik pratiğin yanında, tıbbi kanıtın nasıl sentezlendiğine odaklanan bir
+        metodoloji çalışması yürütüyorum.
+      </p>
+      <p class="mt-3">
+        Sistematik derleme ve meta-analiz süreçlerinde yeniden üretilebilir iş
+        akışları geliştiriyorum; amaç, literatürdeki mevcut verinin daha şeffaf,
+        izlenebilir ve hataya dayanıklı biçimde bir araya getirilmesi. Bu çalışma,
+        bilimsel sürece yapısal bir özen (due diligence) katmayı ve metabolik tıp
+        alanındaki kanıtı klinik için daha kullanışlı hâle getirmeyi hedefliyor.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <h2>Yayınlar</h2>
+      <p class="muted mt-1">En güncel liste için ORCID ve Google Scholar profillerine bakınız.</p>
+      <div class="mt-3">
+        <PublicationList lang="tr" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <h2>Akademik profiller</h2>
+      <ul class="linklist mt-2">
+        <li><a href={LINKS.orcid} target="_blank" rel="noopener">ORCID</a></li>
+        <li><a href={LINKS.scholar} target="_blank" rel="noopener">Google Scholar</a></li>
+        <li><a href={LINKS.researchgate} target="_blank" rel="noopener">ResearchGate</a></li>
+        <li><a href={LINKS.github} target="_blank" rel="noopener">GitHub</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <AppointmentBanner lang="tr" />
+</Base>

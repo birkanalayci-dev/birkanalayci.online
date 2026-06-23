@@ -1,0 +1,68 @@
+---
+import { NAV, PLACEHOLDER_LINKS } from '../data/site';
+
+interface Props {
+  lang: 'tr' | 'en';
+  trHref: string;
+  enHref: string;
+}
+const { lang, trHref, enHref } = Astro.props;
+
+const current = Astro.url.pathname;
+const items = NAV.map((n) => n[lang]);
+const contactHref = lang === 'tr' ? '/iletisim/' : '/en/contact/';
+const brandSpecialty = lang === 'tr' ? 'İç Hastalıkları' : 'Internal Medicine';
+const ctaLabel = lang === 'tr' ? 'Randevu Al' : 'Book Appointment';
+const menuLabel = lang === 'tr' ? 'Menü' : 'Menu';
+
+// Aktif sayfa kontrolü (trailing slash toleranslı)
+const norm = (p: string) => (p !== '/' ? p.replace(/\/$/, '') : '/');
+const isCurrent = (href: string) => norm(current) === norm(href);
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href={lang === 'tr' ? '/' : '/en/'}>
+      Uzm. Dr. Birkan Alaycı <span>· {brandSpecialty}</span>
+    </a>
+
+    <button
+      class="menu-toggle"
+      aria-expanded="false"
+      aria-controls="primary-nav"
+      aria-label={menuLabel}
+      id="menu-toggle"
+    >
+      ☰
+    </button>
+
+    <nav class="nav" id="primary-nav" aria-label={lang === 'tr' ? 'Ana menü' : 'Main menu'}>
+      {
+        items.map((item) => (
+          <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="header-actions">
+      <div class="lang-switch" aria-label={lang === 'tr' ? 'Dil seçimi' : 'Language'}>
+        <a href={trHref} aria-current={lang === 'tr' ? 'true' : undefined} hreflang="tr">TR</a>
+        <a href={enHref} aria-current={lang === 'en' ? 'true' : undefined} hreflang="en">EN</a>
+      </div>
+      <a class="btn btn-primary btn-sm" href={contactHref}>{ctaLabel}</a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const nav = document.getElementById('primary-nav');
+  if (toggle && nav) {
+    toggle.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(open));
+    });
+  }
+</script>

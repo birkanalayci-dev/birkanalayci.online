@@ -1,0 +1,53 @@
+---
+import Base from '../../layouts/Base.astro';
+import AppointmentBanner from '../../components/AppointmentBanner.astro';
+import PublicationList from '../../components/PublicationList.astro';
+import { LINKS } from '../../data/site';
+
+const title = 'Research & Publications — Birkan Alaycı, MD';
+const description =
+  'Publications and academic profile of Birkan Alaycı, MD: evidence synthesis methodology (systematic reviews & meta-analyses), GLP-1 and body composition, ORCID, Google Scholar, ResearchGate.';
+---
+
+<Base {title} {description} lang="en" trHref="/arastirma/" enHref="/en/research/">
+  <section class="section">
+    <div class="container prose">
+      <p class="eyebrow">Research</p>
+      <h1>Research &amp; publications</h1>
+      <p class="lead mt-2">
+        Alongside clinical practice, I work on the methodology of how medical
+        evidence is synthesized.
+      </p>
+      <p class="mt-3">
+        I develop reproducible workflows for systematic reviews and meta-analyses,
+        aiming to make existing literature aggregation more transparent, traceable
+        and resilient to error — adding structural due diligence to the scientific
+        process in metabolic medicine.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <h2>Publications</h2>
+      <p class="muted mt-1">For the most current list, see the ORCID and Google Scholar profiles.</p>
+      <div class="mt-3">
+        <PublicationList lang="en" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <h2>Academic profiles</h2>
+      <ul class="linklist mt-2">
+        <li><a href={LINKS.orcid} target="_blank" rel="noopener">ORCID</a></li>
+        <li><a href={LINKS.scholar} target="_blank" rel="noopener">Google Scholar</a></li>
+        <li><a href={LINKS.researchgate} target="_blank" rel="noopener">ResearchGate</a></li>
+        <li><a href={LINKS.github} target="_blank" rel="noopener">GitHub</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <AppointmentBanner lang="en" />
+</Base>

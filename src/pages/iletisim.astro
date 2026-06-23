@@ -1,0 +1,77 @@
+---
+import Base from '../layouts/Base.astro';
+import { LINKS, PLACEHOLDER_LINKS, CLINIC } from '../data/site';
+
+const title = 'İletişim & Randevu — Uzm. Dr. Birkan Alaycı, Liv Vadistanbul';
+const description =
+  'Uzm. Dr. Birkan Alaycı ile iletişim ve randevu. Liv Hospital Vadistanbul, Sarıyer / İstanbul. Çağrı merkezi 444 45 48.';
+
+const livHref = PLACEHOLDER_LINKS.livAppointment !== '#' ? PLACEHOLDER_LINKS.livAppointment : LINKS.liv;
+---
+
+<Base {title} {description} lang="tr" trHref="/iletisim/" enHref="/en/contact/">
+  <section class="section">
+    <div class="container">
+      <div class="prose">
+        <p class="eyebrow">İletişim & randevu</p>
+        <h1>Randevu ve iletişim</h1>
+        <p class="lead mt-2">
+          Muayene ve randevu talepleri Liv Hospital Vadistanbul’un resmi kanalları
+          üzerinden alınmaktadır.
+        </p>
+      </div>
+
+      <div class="grid grid-2 mt-4">
+        <div class="card">
+          <h2 style="font-size:1.25rem;">Randevu</h2>
+          <p class="mt-1">
+            Randevu için Liv Hospital çağrı merkezini arayabilir ya da hastanenin
+            resmi sayfasını kullanabilirsiniz.
+          </p>
+          <p class="mt-2" style="font-size:1.15rem;">
+            <strong>Çağrı merkezi:</strong>
+            <a href={CLINIC.callCenterTel}>{CLINIC.callCenter}</a>
+          </p>
+          <p class="small muted">Santral: <a href={CLINIC.phoneTel}>{CLINIC.phone}</a></p>
+          <p class="mt-2">
+            <a class="btn btn-primary" href={livHref} target="_blank" rel="noopener">
+              Liv hastane profili
+            </a>
+          </p>
+        </div>
+
+        <div class="card">
+          <h2 style="font-size:1.25rem;">İletişim</h2>
+          <ul class="mt-1" style="list-style:none;padding:0;">
+            <li class="mt-1"><strong>E-posta:</strong> <a href={LINKS.email}>birkanalayci@gmail.com</a></li>
+            <li class="mt-1"><strong>Hastane:</strong> <a href={LINKS.liv} target="_blank" rel="noopener">Liv Hospital Vadistanbul</a></li>
+            <li class="mt-1"><strong>Adres:</strong> {CLINIC.addressTr}</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <h2>Konum</h2>
+        <div class="mt-2" style="border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);">
+          <iframe
+            src={CLINIC.mapEmbed}
+            title="Liv Hospital Vadistanbul harita konumu"
+            width="100%"
+            height="360"
+            style="border:0;display:block;"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </div>
+
+      <div class="note mt-4">
+        <strong>KVKK:</strong> Kişisel verilerin korunmasına ilişkin aydınlatma
+        metni için bkz.
+        {/* [BİRKAN DOLDURACAK] KVKK aydınlatma metni linki */}
+        <a href={PLACEHOLDER_LINKS.kvkk}>KVKK Aydınlatma Metni</a>
+        <span class="pending">Bağlantı Bekliyor</span>
+      </div>
+    </div>
+  </section>
+</Base>
