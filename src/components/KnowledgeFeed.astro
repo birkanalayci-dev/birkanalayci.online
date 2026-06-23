@@ -88,30 +88,28 @@ const faqLd = {
 
 <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
 
-<h2 class="mt-4">{t.videosTitle}</h2>
 {
-  VIDEOS.length === 0 ? (
-    <div class="note mt-2">
-      {t.videosSoon}
-      <span class="pending">{t.soonBadge}</span>
-    </div>
-  ) : (
-    <div class="video-grid mt-3">
-      {VIDEOS.map((v) => (
-        <figure class="vthumb">
-          <div class="vframe">
-            <iframe
-              src={`https://www.youtube-nocookie.com/embed/${v.youtube}`}
-              title={v.title[lang]}
-              loading="lazy"
-              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            />
-          </div>
-          <figcaption>{v.title[lang]}</figcaption>
-        </figure>
-      ))}
-    </div>
+  /* Mini videolar — yalnızca video eklenince görünür (boşken bölüm gizli). */
+  VIDEOS.length > 0 && (
+    <>
+      <h2 class="mt-4">{t.videosTitle}</h2>
+      <div class="video-grid mt-3">
+        {VIDEOS.map((v) => (
+          <figure class="vthumb">
+            <div class="vframe">
+              <iframe
+                src={`https://www.youtube-nocookie.com/embed/${v.youtube}`}
+                title={v.title[lang]}
+                loading="lazy"
+                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              />
+            </div>
+            <figcaption>{v.title[lang]}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </>
   )
 }
 
