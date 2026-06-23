@@ -156,29 +156,29 @@ main { flex: 1 0 auto; }
 
 .header-actions { display: flex; align-items: center; gap: 0.75rem; }
 
-/* TR / EN / ... dil geçişi — temiz pill grubu */
-.lang-switch {
-  display: inline-flex;
-  align-items: center;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  padding: 2px;
+/* Dil seçici — kompakt açılır menü (8 dil) */
+.lang-select-wrap { display: inline-flex; align-items: center; }
+.lang-select {
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  color: var(--text-soft);
   background: var(--bg-soft);
-  font-size: 0.72rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.4rem 1.6rem 0.4rem 0.6rem;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%235a6973' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.55rem center;
+  max-width: 9.5rem;
 }
-.lang-switch a {
-  color: var(--text-muted);
-  text-decoration: none;
-  padding: 0.28rem 0.6rem;
-  border-radius: 999px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  font-weight: 600;
-  line-height: 1;
-  transition: background 0.18s ease, color 0.18s ease;
+.lang-select:hover { border-color: var(--accent); color: var(--text); }
+
+[dir='rtl'] .lang-select {
+  padding: 0.4rem 0.6rem 0.4rem 1.6rem;
+  background-position: left 0.55rem center;
 }
-.lang-switch a:hover { color: var(--text); }
-.lang-switch a[aria-current="true"] { color: #fff; background: var(--accent); }
 
 .site-header .btn { white-space: nowrap; }
 
@@ -419,3 +419,17 @@ main { flex: 1 0 auto; }
   html { scroll-behavior: auto; }
   * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
 }
+
+/* ---- Arapça / Farsça font ve RTL ---- */
+html[lang='ar'] {
+  --serif: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  --sans: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+}
+html[lang='fa'] {
+  --serif: 'Vazirmatn', system-ui, sans-serif;
+  --sans: 'Vazirmatn', system-ui, sans-serif;
+}
+[dir='rtl'] .note { border-left: 0; border-right: 3px solid var(--accent); }
+[dir='rtl'] .skip-link { left: auto; right: 0.5rem; }
+[dir='rtl'] .brand span { unicode-bidi: isolate; }
+[dir='rtl'] .pub-meta { direction: rtl; }

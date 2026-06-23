@@ -1,42 +1,44 @@
 ---
-import { NAV, PLACEHOLDER_LINKS } from '../data/site';
+import { NAV, NAV_MIN, LANGS, UI, type Lang } from '../data/site';
 
 interface Props {
-  lang: 'tr' | 'en';
-  trHref: string;
-  enHref: string;
+  lang: Lang;
+  alts: Record<Lang, string>;
 }
-const { lang, trHref, enHref } = Astro.props;
+const { lang, alts } = Astro.props;
 
 const current = Astro.url.pathname;
-const items = NAV.map((n) => n[lang]);
-const contactHref = lang === 'tr' ? '/iletisim/' : '/en/contact/';
-const brandSpecialty = lang === 'tr' ? 'İç Hastalıkları' : 'Internal Medicine';
-const ctaLabel = lang === 'tr' ? 'Randevu Al' : 'Book Appointment';
-const menuLabel = lang === 'tr' ? 'Menü' : 'Menu';
+const t = UI[lang];
 
-// Aktif sayfa kontrolü (trailing slash toleranslı)
+const items =
+  lang === 'tr' || lang === 'en'
+    ? NAV.map((n) => n[lang])
+    : NAV_MIN[lang];
+
+const homeHref = LANGS.find((l) => l.code === lang)!.home;
+
 const norm = (p: string) => (p !== '/' ? p.replace(/\/$/, '') : '/');
-const isCurrent = (href: string) => norm(current) === norm(href);
+const isCurrent = (href: string) =>
+  href.startsWith('#') ? false : norm(current) === norm(href);
 ---
 
 <header class="site-header">
   <div class="container header-inner">
-    <a class="brand" href={lang === 'tr' ? '/' : '/en/'}>
-      Uzm. Dr. Birkan Alaycı <span>· {brandSpecialty}</span>
+    <a class="brand" href={homeHref}>
+      Uzm. Dr. Birkan Alaycı <span>· {t.specialty}</span>
     </a>
 
     <button
       class="menu-toggle"
       aria-expanded="false"
       aria-controls="primary-nav"
-      aria-label={menuLabel}
+      aria-label={t.menu}
       id="menu-toggle"
     >
       ☰
     </button>
 
-    <nav class="nav" id="primary-nav" aria-label={lang === 'tr' ? 'Ana menü' : 'Main menu'}>
+    <nav class="nav" id="primary-nav" aria-label={t.mainMenu}>
       {
         items.map((item) => (
           <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>
@@ -47,11 +49,19 @@ const isCurrent = (href: string) => norm(current) === norm(href);
     </nav>
 
     <div class="header-actions">
-      <div class="lang-switch" aria-label={lang === 'tr' ? 'Dil seçimi' : 'Language'}>
-        <a href={trHref} aria-current={lang === 'tr' ? 'true' : undefined} hreflang="tr">TR</a>
-        <a href={enHref} aria-current={lang === 'en' ? 'true' : undefined} hreflang="en">EN</a>
-      </div>
-      <a class="btn btn-primary btn-sm" href={contactHref}>{ctaLabel}</a>
+      <label class="lang-select-wrap">
+        <span class="sr-only">{t.langAria}</span>
+        <select class="lang-select" id="lang-select" aria-label={t.langAria}>
+          {
+            LANGS.map((l) => (
+              <option value={alts[l.code]} selected={lang === l.code}>
+                {l.label} · {l.native}
+              </option>
+            ))
+          }
+        </select>
+      </label>
+      <a class="btn btn-primary btn-sm cta-book" href={t.contactHref}>{t.cta}</a>
     </div>
   </div>
 </header>
@@ -63,6 +73,13 @@ const isCurrent = (href: string) => norm(current) === norm(href);
     toggle.addEventListener('click', () => {
       const open = nav.classList.toggle('open');
       toggle.setAttribute('aria-expanded', String(open));
+    });
+  }
+  const sel = document.getElementById('lang-select');
+  if (sel) {
+    sel.addEventListener('change', (e) => {
+      const v = (e.target as HTMLSelectElement).value;
+      if (v) window.location.href = v;
     });
   }
 </script>

@@ -1,0 +1,92 @@
+---
+import Base from '../../layouts/Base.astro';
+import { FOCUS_AREAS } from '../../data/focus';
+import { LANDING } from '../../data/content';
+import { UI, CLINIC, LINKS, PLACEHOLDER_LINKS, EXTRA_LANGS, HAS_PORTRAIT, type Lang } from '../../data/site';
+
+export function getStaticPaths() {
+  return EXTRA_LANGS.map((lang) => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang as Exclude<Lang, 'tr' | 'en'>;
+const t = UI[lang];
+const c = LANDING[lang];
+const livHref = PLACEHOLDER_LINKS.livAppointment !== '#' ? PLACEHOLDER_LINKS.livAppointment : LINKS.liv;
+const altSelf = `/${lang}/`;
+---
+
+<Base
+  title={c.metaTitle}
+  description={c.metaDesc}
+  lang={lang}
+  trHref="/"
+  enHref="/en/"
+  alts={{ [lang]: altSelf }}
+>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <p class="eyebrow">{t.specialty} · {t.city}</p>
+        <h1>Uzm. Dr. Birkan Alaycı</h1>
+        <p class="affil">Liv Hospital Vadistanbul</p>
+        <p class="lead">{c.heroLead}</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#contact">{t.cta}</a>
+          <a class="btn btn-secondary" href="#focus">{c.focusHeading}</a>
+        </div>
+      </div>
+      <div class="portrait-wrap">
+        {
+          HAS_PORTRAIT ? (
+            <img class="portrait" src="/portrait.jpg" width="640" height="800" alt="Uzm. Dr. Birkan Alaycı" />
+          ) : (
+            <aside class="profile-card" aria-hidden="true">
+              <span class="profile-mono">BA</span>
+              <dl>
+                <div><dt>{t.specialty}</dt><dd>Liv Hospital Vadistanbul</dd></div>
+                <div><dt>İstanbul</dt><dd>Sarıyer</dd></div>
+              </dl>
+            </aside>
+          )
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- FOCUS -->
+  <section class="section" id="focus" style="padding-top:0;">
+    <div class="container">
+      <h2>{c.focusHeading}</h2>
+      <div class="grid grid-3 mt-3">
+        {FOCUS_AREAS.map((area) => (
+          <div class="card"><h3 style="font-size:1.05rem;">{area.title[lang]}</h3></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact" style="padding-top:0;">
+    <div class="container">
+      <h2>{c.contactHeading}</h2>
+      <div class="grid grid-2 mt-3">
+        <div class="card">
+          <p style="font-size:1.15rem;"><strong>{c.callLabel}:</strong> <a href={CLINIC.callCenterTel}>{CLINIC.callCenter}</a></p>
+          <p class="mt-2"><a class="btn btn-primary" href={livHref} target="_blank" rel="noopener">{t.bannerPrimary}</a></p>
+        </div>
+        <div class="card">
+          <ul style="list-style:none;padding:0;">
+            <li><strong>{c.emailLabel}:</strong> <a href={LINKS.email}>birkanalayci@gmail.com</a></li>
+            <li class="mt-1"><strong>{c.hospitalLabel}:</strong> <a href={LINKS.liv} target="_blank" rel="noopener">Liv Hospital Vadistanbul</a></li>
+            <li class="mt-1"><strong>{c.addressLabel}:</strong> {CLINIC.addressEn}</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="note mt-4">
+        {c.note} <a href="/en/">{c.moreCta} →</a>
+      </div>
+    </div>
+  </section>
+</Base>

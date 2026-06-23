@@ -1,16 +1,18 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { SITE, SAME_AS } from '../data/site';
+import { SITE, SAME_AS, LANGS, RTL_LANGS, type Lang } from '../data/site';
 import '../styles/global.css';
 
 interface Props {
   title: string;
   description: string;
-  lang?: 'tr' | 'en';
-  /** TR ve EN eşdeğer sayfa yolları (hreflang için) */
+  lang?: Lang;
+  /** TR ve EN eşdeğer yolları (zorunlu) */
   trHref: string;
   enHref: string;
+  /** Diğer dillerin eşdeğer yolları; verilmezse o dilin ana sayfası kullanılır */
+  alts?: Partial<Record<Lang, string>>;
   ogImage?: string;
 }
 
@@ -20,15 +22,26 @@ const {
   lang = 'tr',
   trHref,
   enHref,
+  alts = {},
   ogImage = '/og-image.jpg',
 } = Astro.props;
 
 const base = SITE.domain;
 const canonical = new URL(Astro.url.pathname, base).href;
 const ogImageAbs = new URL(ogImage, base).href;
-const ogLocale = lang === 'tr' ? 'tr_TR' : 'en_US';
+const ogLocaleMap: Record<Lang, string> = {
+  tr: 'tr_TR', en: 'en_US', ar: 'ar_AR', ru: 'ru_RU', fa: 'fa_IR', de: 'de_DE', fr: 'fr_FR', es: 'es_ES',
+};
+const dir = RTL_LANGS.includes(lang) ? 'rtl' : 'ltr';
 
-// schema.org Physician — yalnızca doğrulanmış veriler.
+// Dil → eşdeğer yol haritası (hreflang + dil değiştirici).
+const altMap: Record<Lang, string> = Object.fromEntries(
+  LANGS.map((l) => [l.code, l.home]),
+) as Record<Lang, string>;
+altMap.tr = trHref;
+altMap.en = enHref;
+for (const [k, v] of Object.entries(alts)) altMap[k as Lang] = v as string;
+
 const physicianLd = {
   '@context': 'https://schema.org',
   '@type': 'Physician',
@@ -42,25 +55,15 @@ const physicianLd = {
   url: base,
   image: ogImageAbs,
   areaServed: { '@type': 'City', name: 'İstanbul' },
-  affiliation: {
-    '@type': 'Hospital',
-    name: 'Liv Hospital Vadistanbul',
-    url: 'https://www.livhospital.com/',
-  },
-  worksFor: {
-    '@type': 'Hospital',
-    name: 'Liv Hospital Vadistanbul',
-  },
-  alumniOf: {
-    '@type': 'CollegeOrUniversity',
-    name: 'Dokuz Eylül Üniversitesi Tıp Fakültesi',
-  },
+  affiliation: { '@type': 'Hospital', name: 'Liv Hospital Vadistanbul', url: 'https://www.livhospital.com/' },
+  worksFor: { '@type': 'Hospital', name: 'Liv Hospital Vadistanbul' },
+  alumniOf: { '@type': 'CollegeOrUniversity', name: 'Dokuz Eylül Üniversitesi Tıp Fakültesi' },
   sameAs: SAME_AS,
 };
 ---
 
 <!DOCTYPE html>
-<html lang={lang}>
+<html lang={lang} dir={dir}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -70,24 +73,29 @@ const physicianLd = {
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:wght@500;600;700&display=swap"
     />
+    {lang === 'ar' && (
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" />
+    )}
+    {lang === 'fa' && (
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600&display=swap" />
+    )}
     <title>{title}</title>
     <meta name="description" content={description} />
 
     <link rel="canonical" href={canonical} />
-    <link rel="alternate" hreflang="tr" href={new URL(trHref, base).href} />
-    <link rel="alternate" hreflang="en" href={new URL(enHref, base).href} />
-    <link rel="alternate" hreflang="x-default" href={new URL(trHref, base).href} />
+    {LANGS.map((l) => (
+      <link rel="alternate" hreflang={l.code} href={new URL(altMap[l.code], base).href} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={new URL(altMap.tr, base).href} />
 
-    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={SITE.name} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:locale" content={ogLocaleMap[lang]} />
     <meta property="og:image" content={ogImageAbs} />
 
-    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
@@ -95,7 +103,6 @@ const physicianLd = {
 
     <meta name="theme-color" content="#1f6f78" />
     <meta name="robots" content="index, follow" />
-    <!-- Mevcut Yandex doğrulaması korunuyor (mevcut siteden taşındı) -->
     <meta name="yandex-verification" content="2d34b6832a906a4b" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 
@@ -103,7 +110,7 @@ const physicianLd = {
   </head>
   <body>
     <a class="skip-link" href="#main">İçeriğe geç</a>
-    <Header lang={lang} trHref={trHref} enHref={enHref} />
+    <Header lang={lang} alts={altMap} />
     <main id="main">
       <slot />
     </main>
