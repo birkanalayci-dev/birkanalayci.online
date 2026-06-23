@@ -24,6 +24,7 @@ export const LINKS = {
   orcid: 'https://orcid.org/0000-0002-8244-0987',
   researchgate: 'https://www.researchgate.net/profile/Birkan-Alayci',
   github: 'https://github.com/birkanalayci-dev',
+  linkedin: 'https://www.linkedin.com/in/birkan-alayc%C4%B1-0a165056/',
   // Kişisel / klinik dışı (ayrı "Kişisel" sayfasında toplanır):
   instagram: 'https://instagram.com/birkanalayci',
   soundcloud: 'https://soundcloud.com/birkanalayci',
@@ -63,6 +64,7 @@ export const SHOW_PERSONAL_PAGE = true;
 // JSON-LD sameAs — yalnızca doğrulanmış gerçek URL'ler.
 export const SAME_AS = [
   LINKS.liv,
+  LINKS.linkedin,
   LINKS.scholar,
   LINKS.orcid,
   LINKS.researchgate,
