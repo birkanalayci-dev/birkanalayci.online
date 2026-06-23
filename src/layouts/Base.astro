@@ -14,6 +14,8 @@ interface Props {
   /** Diğer dillerin eşdeğer yolları; verilmezse o dilin ana sayfası kullanılır */
   alts?: Partial<Record<Lang, string>>;
   ogImage?: string;
+  /** <body> üzerine eklenecek sınıf (ör. koyu "Velo" teması) */
+  bodyClass?: string;
 }
 
 const {
@@ -24,6 +26,7 @@ const {
   enHref,
   alts = {},
   ogImage = '/og-image.jpg',
+  bodyClass,
 } = Astro.props;
 
 const base = SITE.domain;
@@ -108,7 +111,7 @@ const physicianLd = {
 
     <script type="application/ld+json" set:html={JSON.stringify(physicianLd)} />
   </head>
-  <body>
+  <body class={bodyClass}>
     <a class="skip-link" href="#main">İçeriğe geç</a>
     <Header lang={lang} alts={altMap} />
     <main id="main">

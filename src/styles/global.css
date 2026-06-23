@@ -461,3 +461,48 @@ html[lang='fa'] {
 [dir='rtl'] .skip-link { left: auto; right: 0.5rem; }
 [dir='rtl'] .brand span { unicode-bidi: isolate; }
 [dir='rtl'] .pub-meta { direction: rtl; }
+
+/* ---- Velo / kişisel sayfa — koyu tema ----
+   <body class="theme-velo"> ile etkinleşir; değişkenleri koyulaştırır. */
+body.theme-velo {
+  --bg: #0c0e11;
+  --bg-soft: #14171c;
+  --bg-card: #15181d;
+  --border: #2a3038;
+  --text: #f1f3f5;
+  --text-soft: #c4cbd2;
+  --text-muted: #8a939d;
+  --accent: #4fc9d4;        /* koyu zeminde parlayan teal */
+  --accent-deep: #82dbe3;
+  --accent-soft: #102a2e;
+  --focus: #4fc9d4;
+  color-scheme: dark;
+  background: var(--bg);
+}
+body.theme-velo .site-header {
+  background: rgba(12, 14, 17, 0.85);
+  border-bottom-color: var(--border);
+}
+body.theme-velo .nav { background: var(--bg-card); }   /* mobil açılır menü */
+body.theme-velo .btn-primary { color: #062528; }       /* açık teal zemin → koyu metin */
+body.theme-velo .btn-primary:hover { color: #062528; }
+body.theme-velo .cta-banner { border-color: var(--border); }
+
+/* Velo girişi */
+.velo-tagline {
+  font-family: var(--serif);
+  font-size: clamp(1.15rem, 2.6vw, 1.5rem);
+  line-height: 1.5;
+  color: var(--text);
+  border-left: 3px solid var(--accent);
+  padding-left: 1.1rem;
+  margin-top: 1.25rem;
+}
+.velo-bio p { color: var(--text-soft); }
+.velo-bio .lede { color: var(--text); font-size: 1.1rem; }
+.velo-embed {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.velo-embed iframe { display: block; width: 100%; border: 0; }

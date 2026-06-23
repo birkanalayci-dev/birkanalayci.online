@@ -1,26 +1,112 @@
 ---
 import Base from '../layouts/Base.astro';
-import { LINKS } from '../data/site';
+import { LINKS, VELO_SPOTIFY_ARTIST_ID } from '../data/site';
 
-const title = 'Kişisel — Birkan Alaycı';
+const title = 'Velo — Birkan Alaycı’nın gece kimliği';
 const description =
-  'Birkan Alaycı — klinik dışı kişisel bağlantılar: müzik ve sosyal profiller.';
+  'Velo: Uzm. Dr. Birkan Alaycı’nın klinik dışı gece kimliği. Vanitas estetiğinden beslenen dark/melodik tekno ve psytrance. Spotify’da dinleyin.';
 ---
 
-<Base {title} {description} lang="tr" trHref="/kisisel/" enHref="/en/personal/">
+<Base
+  {title}
+  {description}
+  lang="tr"
+  trHref="/kisisel/"
+  enHref="/en/personal/"
+  bodyClass="theme-velo"
+>
   <section class="section">
     <div class="container prose">
-      <p class="eyebrow">Kişisel</p>
-      <h1>Kişisel &amp; diğer</h1>
-      <p class="lead mt-2">
-        Mesleki kimliğimin dışında kalan kişisel bağlantılar — müzik ve sosyal
-        profiller burada.
+      <p class="eyebrow">Kişisel · Gece</p>
+      <h1>Velo</h1>
+      <p class="velo-tagline">
+        Gündüz hekim, gece bir titreşim. <strong>Velo</strong> — peçe demek:
+        örten ama göstermekten vazgeçmeyen kumaş.
       </p>
+      <p class="lead mt-3">
+        Vanitas estetiğinden beslenen, dark/melodik tekno ile psytrance arasında
+        gerilmiş bir gece kimliği. Niyet dans ettirmek değil; bir titreşime davet
+        etmek, peçeyi göstermek ve kaldırmamak. Cihangir Casius’taki aylık setler
+        bu odanın açılışları.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="velo-embed" style="max-width:42rem;">
+        <iframe
+          src={`https://open.spotify.com/embed/artist/${VELO_SPOTIFY_ARTIST_ID}?utm_source=generator&theme=0`}
+          width="100%"
+          height="352"
+          loading="lazy"
+          title="Velo — Spotify"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
 
       <ul class="linklist mt-4">
-        <li><a href={LINKS.instagram} target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href={LINKS.spotifyArtist} target="_blank" rel="noopener">Velo · Spotify</a></li>
+        <li><a href={LINKS.spotifyUser} target="_blank" rel="noopener">Spotify · Çalma listeleri</a></li>
         <li><a href={LINKS.soundcloud} target="_blank" rel="noopener">SoundCloud</a></li>
+        <li><a href={LINKS.instagram} target="_blank" rel="noopener">Instagram</a></li>
       </ul>
+    </div>
+  </section>
+
+  <section class="section velo-bio" style="padding-top:0;">
+    <div class="container prose">
+      <p class="eyebrow">Peçe ve Tel — kısa hesap</p>
+      <h2>Çalışma başlığı: <em>İğne Deliğinden Geçenler</em></h2>
+
+      <p class="lede mt-3">
+        Bu bir kibir değil, bir sayım: bir çocukken müzik kanallarını hatmedişten
+        bugün bir kulübün booth’unda durmaya uzanan çizgiyi bir kez düzgün
+        cümlelerle önüne sermek.
+      </p>
+
+      <p class="mt-3">
+        Kırklareli’nde, isim sormayan bir müzik ekranının önünde büyüdüm. Flüt ilk
+        öğretmenim oldu; okulun bıraktığı bir gitar, yıllar sonra anlayacağım bir
+        yön levhası. Sanat bana istisna olarak değil, bir alışkanlık olarak
+        sunuldu — sonradan adını koyacaktım: cömertlik.
+      </p>
+
+      <p>
+        Lisede gotik metal, prog rock ve pop-teatrallik aynı şeyi öğretti: kostüm
+        meşrudur, sahne yalandan ibaret değildir. İlk grubumuz <em>Krizantem</em>
+        idi — natürmortların, ölümü çevreleyen çiçeğin adı. Henüz adlandıramadığımız
+        bir damarı çoktan dile getirmiştik.
+      </p>
+
+      <p>
+        Üniversitede kaos (mathcore) ile kontemplasyon (atmospheric prog) arasında
+        bir denge kurdum. Farsça bir vokalin deep house üzerinde kayışı, elektroniğin
+        bir tempoya değil mistik bir damara açıldığını gösterdi. İzmir bana tropical
+        house’un melankolisini, Christian Löffler’ın kış sound’unu verdi; Velo’nun
+        estetiğini parça parça orada toplamışım, sadece adını koymamıştım.
+      </p>
+
+      <p>
+        İstanbul bir hızlanma kararıydı. Dönüşüm bir kulüpte değil, koşu bandında
+        oldu: melodik tekno kulağıma çarptı, eve dönüp yeniden üretmeye başladım —
+        daha doğrusu, hep üretici olduğumu fark ettim. Psytrance’in triplet bass’ları
+        bedeni başka bir bilince taşıdı; bu da bir tür ibadet sayılır. Velo böyle
+        kuruldu: yavaş açılış, kademeli build, ortada melodik patlama, sarmal kapanış.
+      </p>
+
+      <p>
+        2014’ten beri kimseye gösterilmeyen bir defter koleksiyonu var — setlerin
+        altındaki susturulmuş söz katmanı, her track seçiminin altında titreyen
+        mırıltı. <em>İğne Deliğinden Geçenler</em> bir gün bunların kitabı olacak:
+        küçük bir delikten geçip dönüşmüş olarak öbür tarafta belirmenin manifestosu.
+      </p>
+
+      <p class="lede mt-3">
+        Beden ile söz, klinik ile tören, ölçüm ile titreşim — aynı sorunun farklı
+        dilleri.
+      </p>
 
       <p class="small muted mt-4">
         Bu sayfa klinik içerikten ayrıdır. Randevu ve tıbbi konular için

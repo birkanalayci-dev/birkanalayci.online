@@ -27,7 +27,12 @@ export const LINKS = {
   // Kişisel / klinik dışı (ayrı "Kişisel" sayfasında toplanır):
   instagram: 'https://instagram.com/birkanalayci',
   soundcloud: 'https://soundcloud.com/birkanalayci',
+  spotifyArtist: 'https://open.spotify.com/intl-tr/artist/2aB0cuIhiT5cd4olC6VBQq',
+  spotifyUser: 'https://open.spotify.com/user/birkanalayci',
 };
+
+// Velo (sanatçı) Spotify gömülü oynatıcı kimliği.
+export const VELO_SPOTIFY_ARTIST_ID = '2aB0cuIhiT5cd4olC6VBQq';
 
 // Liv Hospital Vadistanbul iletişim — kamuya açık, doğrulanmış bilgiler.
 export const CLINIC = {

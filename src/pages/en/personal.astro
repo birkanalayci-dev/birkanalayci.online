@@ -1,26 +1,98 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { LINKS } from '../../data/site';
+import { LINKS, VELO_SPOTIFY_ARTIST_ID } from '../../data/site';
 
-const title = 'Personal — Birkan Alaycı';
+const title = 'Velo — Birkan Alaycı’s night identity';
 const description =
-  'Birkan Alaycı — personal, non-clinical links: music and social profiles.';
+  'Velo: the non-clinical night identity of Birkan Alaycı, MD. Dark/melodic techno and psytrance drawn from a vanitas aesthetic. Listen on Spotify.';
 ---
 
-<Base {title} {description} lang="en" trHref="/kisisel/" enHref="/en/personal/">
+<Base
+  {title}
+  {description}
+  lang="en"
+  trHref="/kisisel/"
+  enHref="/en/personal/"
+  bodyClass="theme-velo"
+>
   <section class="section">
     <div class="container prose">
-      <p class="eyebrow">Personal</p>
-      <h1>Personal &amp; other</h1>
-      <p class="lead mt-2">
-        Personal links outside my professional identity — music and social
-        profiles.
+      <p class="eyebrow">Personal · Night</p>
+      <h1>Velo</h1>
+      <p class="velo-tagline">
+        Physician by day, a vibration by night. <strong>Velo</strong> means veil —
+        the cloth that covers yet never stops showing.
       </p>
+      <p class="lead mt-3">
+        A night identity drawn from a vanitas aesthetic, stretched between
+        dark/melodic techno and psytrance. The intent isn’t to make people dance,
+        but to invite a vibration — to show the veil and not lift it. Monthly sets
+        at Cihangir Casius are this room’s openings.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="velo-embed" style="max-width:42rem;">
+        <iframe
+          src={`https://open.spotify.com/embed/artist/${VELO_SPOTIFY_ARTIST_ID}?utm_source=generator&theme=0`}
+          width="100%"
+          height="352"
+          loading="lazy"
+          title="Velo — Spotify"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
 
       <ul class="linklist mt-4">
-        <li><a href={LINKS.instagram} target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href={LINKS.spotifyArtist} target="_blank" rel="noopener">Velo · Spotify</a></li>
+        <li><a href={LINKS.spotifyUser} target="_blank" rel="noopener">Spotify · Playlists</a></li>
         <li><a href={LINKS.soundcloud} target="_blank" rel="noopener">SoundCloud</a></li>
+        <li><a href={LINKS.instagram} target="_blank" rel="noopener">Instagram</a></li>
       </ul>
+    </div>
+  </section>
+
+  <section class="section velo-bio" style="padding-top:0;">
+    <div class="container prose">
+      <p class="eyebrow">The Veil and the String — a short reckoning</p>
+      <h2>Working title: <em>Those Who Pass Through the Needle’s Eye</em></h2>
+
+      <p class="lede mt-3">
+        Not vanity, but a tally: tracing — once, in proper sentences — the line from
+        a child memorizing music channels to standing in a club’s booth today.
+      </p>
+
+      <p class="mt-3">
+        I grew up in Kırklareli in front of a screen that asked no names. The flute
+        was my first teacher; a guitar the school left behind was a signpost I’d
+        understand only years later. Art was offered to me not as an exception but
+        as a habit — something I’d later call generosity.
+      </p>
+
+      <p>
+        In high school, gothic metal, prog rock and pop-theatricality taught the
+        same thing: the costume is legitimate, the stage is not mere falsehood. Our
+        first band was <em>Krizantem</em> (chrysanthemum) — the flower of still
+        lifes, the one that surrounds death. At university I balanced chaos
+        (mathcore) with contemplation (atmospheric prog).
+      </p>
+
+      <p>
+        Istanbul was a decision to accelerate. The turn happened not in a club but
+        on a treadmill: melodic techno hit my ear, I went home and started producing
+        again — or rather, realized I had always been a producer. Psytrance’s triplet
+        bass carried the body into another consciousness; that, too, counts as a kind
+        of worship. Velo took shape this way: slow opening, gradual build, a melodic
+        burst in the middle, a spiralling close.
+      </p>
+
+      <p class="lede mt-3">
+        Body and word, clinic and rite, measurement and vibration — different
+        languages of the same question.
+      </p>
 
       <p class="small muted mt-4">
         This page is separate from clinical content. For appointments and medical
