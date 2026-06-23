@@ -16,6 +16,8 @@ interface Props {
   ogImage?: string;
   /** <body> üzerine eklenecek sınıf (ör. koyu "Velo" teması) */
   bodyClass?: string;
+  /** Arama motorlarından gizle (ör. klinik dışı Velo sayfası) */
+  noindex?: boolean;
 }
 
 const {
@@ -27,6 +29,7 @@ const {
   alts = {},
   ogImage = '/og-image.jpg',
   bodyClass,
+  noindex = false,
 } = Astro.props;
 
 const base = SITE.domain;
@@ -105,7 +108,7 @@ const physicianLd = {
     <meta name="twitter:image" content={ogImageAbs} />
 
     <meta name="theme-color" content="#1f6f78" />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow'} />
     <meta name="yandex-verification" content="2d34b6832a906a4b" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 

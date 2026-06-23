@@ -14,6 +14,9 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
+      // Klinik dışı Velo sayfası noindex; sitemap'ten de hariç tut.
+      filter: (page) =>
+        !/\/(kisisel|en\/personal)\/?$/.test(new URL(page).pathname),
       i18n: {
         defaultLocale: 'tr',
         locales: {

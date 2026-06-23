@@ -56,9 +56,9 @@ export const PLACEHOLDER_LINKS = {
 // Hero'da profesyonel portre gösterilsin mi? (public/portrait.webp)
 export const HAS_PORTRAIT = true;
 
-// Velo (kişisel) sayfası artık ana menüde yer aldığından, footer'daki ayrı
-// diskret link kapatıldı (çift görünmesini önlemek için).
-export const SHOW_PERSONAL_PAGE = false;
+// Velo (kişisel) sayfası klinik vitrin odağını dağıtmamak için ana menüde
+// değil; footer'dan diskret bir bağlantıyla erişilir.
+export const SHOW_PERSONAL_PAGE = true;
 
 // JSON-LD sameAs — yalnızca doğrulanmış gerçek URL'ler.
 export const SAME_AS = [
@@ -200,9 +200,5 @@ export const NAV: NavItem[] = [
   {
     tr: { label: 'Sağlık Notları', href: '/yazilar/' },
     en: { label: 'Health Notes', href: '/en/writing/' },
-  },
-  {
-    tr: { label: 'Velo', href: '/kisisel/' },
-    en: { label: 'Velo', href: '/en/personal/' },
   },
 ];
