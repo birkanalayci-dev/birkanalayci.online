@@ -35,9 +35,12 @@ const preview = FOCUS_AREAS.slice(0, 6);
           HAS_PORTRAIT ? (
             <img
               class="portrait"
-              src="/portrait.jpg"
-              width="640"
-              height="800"
+              src="/portrait.webp"
+              width="760"
+              height="912"
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
               alt="Uzm. Dr. Birkan Alaycı, İç Hastalıkları Uzmanı"
             />
           ) : (

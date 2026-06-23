@@ -48,9 +48,8 @@ export const PLACEHOLDER_LINKS = {
   livAppointment: '#', // [ONAY BEKLİYOR] Liv online randevu sayfası URL'si (boşsa Liv profili kullanılır)
 };
 
-// Hero'da profesyonel portre gösterilsin mi?
-// public/portrait.jpg eklenince true yapın.
-export const HAS_PORTRAIT = false;
+// Hero'da profesyonel portre gösterilsin mi? (public/portrait.webp)
+export const HAS_PORTRAIT = true;
 
 // Ayrı "Kişisel / Diğer" sayfası (Instagram, SoundCloud) — footer'dan diskret link.
 export const SHOW_PERSONAL_PAGE = true;
