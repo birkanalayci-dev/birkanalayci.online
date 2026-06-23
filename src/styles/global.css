@@ -140,8 +140,9 @@ main { flex: 1 0 auto; }
 }
 .brand span { color: var(--accent); }
 
-/* Mobil menüye taşınan CTA — masaüstünde gizli (header-actions'ta zaten var) */
-.nav-cta { display: none; }
+/* Mobil menüye taşınan CTA — masaüstünde gizli (header-actions'ta zaten var).
+   .nav ön eki özgüllüğü artırır; aksi halde .btn'in display'i bunu ezer. */
+.nav .nav-cta { display: none; }
 
 .nav { display: flex; align-items: center; gap: 0.1rem; }
 .nav a {
@@ -423,7 +424,7 @@ main { flex: 1 0 auto; }
   .header-actions { order: 2; gap: 0.5rem; }
   .menu-toggle { order: 3; }
   .site-header .cta-book { display: none; }
-  .nav-cta {
+  .nav .nav-cta {
     display: inline-flex;
     justify-content: center;
     margin-top: 0.6rem;
