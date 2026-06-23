@@ -1,24 +1,27 @@
 ---
 import Base from '../../layouts/Base.astro';
 import AppointmentBanner from '../../components/AppointmentBanner.astro';
+import KnowledgeFeed from '../../components/KnowledgeFeed.astro';
 
-const title = 'Writing — Birkan Alaycı, MD, Internal Medicine';
+const title = 'Health Notes — Birkan Alaycı, MD, Internal Medicine';
 const description =
-  'Patient-friendly, evidence-based writing on health and internal medicine by Birkan Alaycı, MD. Coming soon.';
+  'Instead of long articles: health cards readable at a glance and short videos on diabetes, thyroid, blood pressure, metabolic health and check-ups — evidence-based, patient-friendly notes.';
 ---
 
 <Base {title} {description} lang="en" trHref="/yazilar/" enHref="/en/writing/">
   <section class="section">
-    <div class="container prose">
-      <p class="eyebrow">Writing</p>
-      <h1>Writing</h1>
-      <p class="lead mt-2">
-        Patient-friendly, evidence-based articles on health and internal medicine
-        will be published here.
-      </p>
-      <div class="note mt-3">
-        The structure is ready; content will be added later.
-        <span class="pending">Pending</span>
+    <div class="container">
+      <div class="prose">
+        <p class="eyebrow">Health Notes</p>
+        <h1>Short, clear health notes</h1>
+        <p class="lead mt-2">
+          Instead of long, technical articles — cards you can read at a glance and
+          short videos with evidence-based information that’s useful in daily life.
+        </p>
+      </div>
+
+      <div class="mt-4">
+        <KnowledgeFeed lang="en" />
       </div>
     </div>
   </section>

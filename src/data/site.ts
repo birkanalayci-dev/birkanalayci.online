@@ -192,7 +192,7 @@ export const NAV: NavItem[] = [
     en: { label: 'Contact', href: '/en/contact/' },
   },
   {
-    tr: { label: 'Yazılar', href: '/yazilar/' },
-    en: { label: 'Writing', href: '/en/writing/' },
+    tr: { label: 'Sağlık Notları', href: '/yazilar/' },
+    en: { label: 'Health Notes', href: '/en/writing/' },
   },
 ];

@@ -1,33 +1,28 @@
 ---
 import Base from '../layouts/Base.astro';
 import AppointmentBanner from '../components/AppointmentBanner.astro';
+import KnowledgeFeed from '../components/KnowledgeFeed.astro';
 
-const title = 'Yazılar — Uzm. Dr. Birkan Alaycı, İç Hastalıkları';
+const title = 'Sağlık Notları — Uzm. Dr. Birkan Alaycı, İç Hastalıkları';
 const description =
-  'Uzm. Dr. Birkan Alaycı’nın sağlık ve iç hastalıkları üzerine yazıları. Hasta dostu, kanıta dayalı içerikler yakında.';
+  'Uzun makaleler yerine tek bakışta okunan sağlık kartları ve kısa videolar: diyabet, tiroid, tansiyon, metabolik sağlık ve check-up üzerine kanıta dayalı, hasta dostu notlar.';
 ---
 
 <Base {title} {description} lang="tr" trHref="/yazilar/" enHref="/en/writing/">
   <section class="section">
-    <div class="container prose">
-      <p class="eyebrow">Yazılar</p>
-      <h1>Yazılar</h1>
-      <p class="lead mt-2">
-        Sağlık ve iç hastalıkları üzerine hasta dostu, kanıta dayalı yazılar bu
-        bölümde yayımlanacaktır.
-      </p>
-      <div class="note mt-3">
-        Bu bölümün iskeleti hazırdır; içerikler sonra eklenecektir.
-        <span class="pending">İçerik Bekliyor</span>
+    <div class="container">
+      <div class="prose">
+        <p class="eyebrow">Sağlık Notları</p>
+        <h1>Kısa, net sağlık notları</h1>
+        <p class="lead mt-2">
+          Uzun ve teknik metinler yerine; tek bakışta okunan kartlar ve kısa
+          videolarla, günlük hayatta işe yarayan kanıta dayalı bilgiler.
+        </p>
       </div>
 
-      <!-- İçerik eklendikçe aşağıdaki yapı kullanılabilir:
-        <article class="card mt-3">
-          <h2><a href="/yazilar/yazi-slug/">Başlık</a></h2>
-          <p class="small muted">Tarih</p>
-          <p>Özet…</p>
-        </article>
-      -->
+      <div class="mt-4">
+        <KnowledgeFeed lang="tr" />
+      </div>
     </div>
   </section>
 

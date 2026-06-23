@@ -1,0 +1,154 @@
+---
+import { HEALTH_CARDS, VIDEOS } from '../data/notes';
+
+interface Props {
+  lang: 'tr' | 'en';
+}
+const { lang } = Astro.props;
+
+const t = {
+  tr: {
+    cardsTitle: 'Sağlık Kartları',
+    cardsLead: 'Tek bakışta okunan, kanıta dayalı kısa notlar.',
+    videosTitle: 'Mini Videolar',
+    videosSoon:
+      'Kısa, anlaşılır bilgilendirme videoları yakında bu bölümde yer alacak.',
+    soonBadge: 'Yakında',
+    disclaimer:
+      'Bu içerikler genel bilgilendirme amaçlıdır ve kişisel tıbbi tavsiye yerine geçmez. Şikâyetleriniz için lütfen hekiminize danışın.',
+  },
+  en: {
+    cardsTitle: 'Health Cards',
+    cardsLead: 'Evidence-based notes, readable at a glance.',
+    videosTitle: 'Mini Videos',
+    videosSoon: 'Short, clear explainer videos will appear here soon.',
+    soonBadge: 'Soon',
+    disclaimer:
+      'This content is for general information only and is not a substitute for personal medical advice. Please consult your physician for your concerns.',
+  },
+}[lang];
+---
+
+<h2>{t.cardsTitle}</h2>
+<p class="muted">{t.cardsLead}</p>
+
+<div class="kcard-grid mt-3">
+  {
+    HEALTH_CARDS.map((c) => (
+      <article class="kcard">
+        <span class="ktag">{c.tag[lang]}</span>
+        <h3>{c.title[lang]}</h3>
+        <p>{c.body[lang]}</p>
+      </article>
+    ))
+  }
+</div>
+
+<h2 class="mt-4">{t.videosTitle}</h2>
+{
+  VIDEOS.length === 0 ? (
+    <div class="note mt-2">
+      {t.videosSoon}
+      <span class="pending">{t.soonBadge}</span>
+    </div>
+  ) : (
+    <div class="video-grid mt-3">
+      {VIDEOS.map((v) => (
+        <figure class="vthumb">
+          <div class="vframe">
+            <iframe
+              src={`https://www.youtube-nocookie.com/embed/${v.youtube}`}
+              title={v.title[lang]}
+              loading="lazy"
+              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            />
+          </div>
+          <figcaption>{v.title[lang]}</figcaption>
+        </figure>
+      ))}
+    </div>
+  )
+}
+
+<p class="small muted mt-4">{t.disclaimer}</p>
+
+<style>
+  .kcard-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  .kcard {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 1.3rem 1.4rem;
+    box-shadow: var(--shadow);
+  }
+  .kcard h3 {
+    font-size: 1.1rem;
+    line-height: 1.3;
+    margin: 0.5rem 0 0.4rem;
+  }
+  .kcard p {
+    font-size: 0.95rem;
+    margin: 0;
+  }
+  .ktag {
+    display: inline-block;
+    font-family: var(--sans);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent-deep);
+    background: var(--accent-soft);
+    border: 1px solid #cfe3e4;
+    border-radius: 4px;
+    padding: 0.12rem 0.5rem;
+  }
+
+  /* Dikey (9:16) mini video ızgarası */
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.25rem;
+  }
+  .vthumb {
+    margin: 0;
+  }
+  .vframe {
+    position: relative;
+    aspect-ratio: 9 / 16;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--bg-soft);
+  }
+  .vframe iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+  .vthumb figcaption {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-soft);
+    line-height: 1.4;
+  }
+
+  [dir='rtl'] .kcard {
+    border-left: 1px solid var(--border);
+    border-right: 3px solid var(--accent);
+  }
+
+  @media (max-width: 640px) {
+    .kcard-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
