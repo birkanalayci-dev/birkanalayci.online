@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://birkanalayci.online/sitemap-index.xml

@@ -1,0 +1,65 @@
+---
+import Base from '../layouts/Base.astro';
+import AppointmentBanner from '../components/AppointmentBanner.astro';
+
+const title = 'Hakkımda — Uzm. Dr. Birkan Alaycı, İç Hastalıkları Uzmanı';
+const description =
+  'Uzm. Dr. Birkan Alaycı hakkında: iç hastalıkları uzmanı olarak klinik yaklaşımı, eğitim ve kariyer çizgisi, mesleki üyelikler.';
+---
+
+<Base {title} {description} lang="tr" trHref="/hakkimda/" enHref="/en/about/">
+  <section class="section">
+    <div class="container prose">
+      <p class="eyebrow">Hakkımda</p>
+      <h1>Uzm. Dr. Birkan Alaycı</h1>
+      <p class="lead mt-2">
+        İç hastalıkları (dahiliye) uzmanı olarak İstanbul, Liv Hospital
+        Vadistanbul’da görev yapıyorum.
+      </p>
+
+      <p class="mt-3">
+        Klinik pratiğim; obezite, metabolik sendrom, diyabet, tiroid hastalıkları
+        ve koruyucu hekimlik alanlarına odaklanıyor. Kanıta dayalı tanı
+        yaklaşımları, çok sayıda hastalığı bir arada olan (multimorbid) bireylerin
+        koordinasyonu ve her hastayla kurulan derin etkileşimden doğan örüntü
+        tanıma üzerine şekilleniyor. Günlük rutinimdeki temel odak, karmaşık
+        klinik tabloları net, düzenli ve yapılandırılmış bir biçimde yönetmektir.
+      </p>
+      <p>
+        Çalışmamın özü, klinik sezginin hesaplamalı titizlikle buluştuğu kesişim
+        noktasında yer alıyor: hem hasta başında hem de kanıtın sentezlenmesinde
+        aynı yapısal özeni gözetmek.
+      </p>
+
+      <h2 class="mt-4">Eğitim &amp; kariyer</h2>
+      <p class="muted">Bu bölüm Birkan tarafından doldurulacaktır.</p>
+      <ul class="timeline mt-2">
+        <li>
+          <strong>Tıp eğitimi</strong> — [BİRKAN DOLDURACAK: üniversite, yıl]
+          <span class="pending">Onay Bekliyor</span>
+        </li>
+        <li>
+          <strong>İç Hastalıkları uzmanlık eğitimi</strong> —
+          [BİRKAN DOLDURACAK: kurum, yıl]
+          <span class="pending">Onay Bekliyor</span>
+        </li>
+        <li>
+          <strong>Görev / deneyim</strong> — [BİRKAN DOLDURACAK]
+          <span class="pending">Onay Bekliyor</span>
+        </li>
+        <li>
+          <strong>Hâlen</strong> — Liv Hospital Vadistanbul, İç Hastalıkları Uzmanı
+        </li>
+      </ul>
+
+      <h2 class="mt-4">Mesleki üyelikler</h2>
+      <p class="muted">Dernek/üyelik bilgileri Birkan tarafından doldurulacaktır.</p>
+      <ul class="mt-2">
+        <li>[BİRKAN DOLDURACAK: dernek üyeliği] <span class="pending">Onay Bekliyor</span></li>
+        <li>[BİRKAN DOLDURACAK: dernek üyeliği] <span class="pending">Onay Bekliyor</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <AppointmentBanner lang="tr" />
+</Base>

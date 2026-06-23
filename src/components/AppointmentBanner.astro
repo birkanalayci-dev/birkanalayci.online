@@ -1,0 +1,40 @@
+---
+import { LINKS, PLACEHOLDER_LINKS } from '../data/site';
+
+interface Props {
+  lang: 'tr' | 'en';
+}
+const { lang } = Astro.props;
+
+const t = {
+  tr: {
+    title: 'Randevu ve değerlendirme',
+    body: 'Muayene ve randevu talepleri Liv Hospital Vadistanbul resmi kanalları üzerinden alınmaktadır.',
+    primary: 'Liv üzerinden randevu',
+    secondary: 'İletişim sayfası',
+  },
+  en: {
+    title: 'Appointments & evaluation',
+    body: 'Appointment requests are handled through the official Liv Hospital Vadistanbul channels.',
+    primary: 'Book via Liv',
+    secondary: 'Contact page',
+  },
+}[lang];
+
+const contactHref = lang === 'tr' ? '/iletisim/' : '/en/contact/';
+// [ONAY BEKLİYOR] Liv online randevu sayfası — onaylanınca PLACEHOLDER_LINKS.livAppointment doldurulacak.
+const livHref = PLACEHOLDER_LINKS.livAppointment !== '#' ? PLACEHOLDER_LINKS.livAppointment : LINKS.liv;
+---
+
+<section class="section">
+  <div class="container">
+    <div class="cta-banner">
+      <h2>{t.title}</h2>
+      <p class="mt-1" style="max-width:38rem;margin-inline:auto;">{t.body}</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href={livHref} target="_blank" rel="noopener">{t.primary}</a>
+        <a class="btn btn-secondary" href={contactHref}>{t.secondary}</a>
+      </div>
+    </div>
+  </div>
+</section>

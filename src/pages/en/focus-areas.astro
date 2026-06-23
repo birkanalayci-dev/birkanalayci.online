@@ -1,0 +1,45 @@
+---
+import Base from '../../layouts/Base.astro';
+import AppointmentBanner from '../../components/AppointmentBanner.astro';
+import { FOCUS_AREAS } from '../../data/focus';
+
+const title = 'Focus & Services — Birkan Alaycı, MD, Internal Medicine Istanbul';
+const description =
+  'General internal medicine, metabolic syndrome and obesity, diabetes, thyroid, vitamin/B12/iron deficiency, hypertension and lipid disorders — clinical focus areas in Istanbul.';
+---
+
+<Base {title} {description} lang="en" trHref="/ilgi-alanlari/" enHref="/en/focus-areas/">
+  <section class="section">
+    <div class="container">
+      <div class="prose">
+        <p class="eyebrow">Focus & services</p>
+        <h1>Clinical areas of interest</h1>
+        <p class="lead mt-2">
+          The topics below are internal-medicine areas I frequently address in
+          daily practice, explained from the patient’s perspective.
+        </p>
+        <div class="note mt-3">
+          Headings are being finalized (<span class="pending">Pending</span>).
+          This content is not a substitute for medical advice; diagnosis and
+          treatment are decided individually after examination.
+        </div>
+      </div>
+
+      <div class="grid grid-2 mt-4">
+        {
+          FOCUS_AREAS.map((area) => (
+            <article class="card" id={area.id}>
+              <h2 style="font-size:1.2rem;">
+                {area.titleEn}
+                <span class="pending">Pending</span>
+              </h2>
+              <p class="mt-1">{area.descEn}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <AppointmentBanner lang="en" />
+</Base>

@@ -1,0 +1,27 @@
+---
+import Base from '../../layouts/Base.astro';
+import AppointmentBanner from '../../components/AppointmentBanner.astro';
+
+const title = 'Writing — Birkan Alaycı, MD, Internal Medicine';
+const description =
+  'Patient-friendly, evidence-based writing on health and internal medicine by Birkan Alaycı, MD. Coming soon.';
+---
+
+<Base {title} {description} lang="en" trHref="/yazilar/" enHref="/en/writing/">
+  <section class="section">
+    <div class="container prose">
+      <p class="eyebrow">Writing</p>
+      <h1>Writing</h1>
+      <p class="lead mt-2">
+        Patient-friendly, evidence-based articles on health and internal medicine
+        will be published here.
+      </p>
+      <div class="note mt-3">
+        The structure is ready; content will be added later.
+        <span class="pending">Pending</span>
+      </div>
+    </div>
+  </section>
+
+  <AppointmentBanner lang="en" />
+</Base>

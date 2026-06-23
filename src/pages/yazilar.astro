@@ -1,0 +1,35 @@
+---
+import Base from '../layouts/Base.astro';
+import AppointmentBanner from '../components/AppointmentBanner.astro';
+
+const title = 'Yazılar — Uzm. Dr. Birkan Alaycı, İç Hastalıkları';
+const description =
+  'Uzm. Dr. Birkan Alaycı’nın sağlık ve iç hastalıkları üzerine yazıları. Hasta dostu, kanıta dayalı içerikler yakında.';
+---
+
+<Base {title} {description} lang="tr" trHref="/yazilar/" enHref="/en/writing/">
+  <section class="section">
+    <div class="container prose">
+      <p class="eyebrow">Yazılar</p>
+      <h1>Yazılar</h1>
+      <p class="lead mt-2">
+        Sağlık ve iç hastalıkları üzerine hasta dostu, kanıta dayalı yazılar bu
+        bölümde yayımlanacaktır.
+      </p>
+      <div class="note mt-3">
+        Bu bölümün iskeleti hazırdır; içerikler sonra eklenecektir.
+        <span class="pending">İçerik Bekliyor</span>
+      </div>
+
+      <!-- İçerik eklendikçe aşağıdaki yapı kullanılabilir:
+        <article class="card mt-3">
+          <h2><a href="/yazilar/yazi-slug/">Başlık</a></h2>
+          <p class="small muted">Tarih</p>
+          <p>Özet…</p>
+        </article>
+      -->
+    </div>
+  </section>
+
+  <AppointmentBanner lang="tr" />
+</Base>

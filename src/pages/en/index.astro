@@ -1,0 +1,76 @@
+---
+import Base from '../../layouts/Base.astro';
+import AppointmentBanner from '../../components/AppointmentBanner.astro';
+import { FOCUS_AREAS } from '../../data/focus';
+
+const title = 'Dr. Birkan Alaycı — Internal Medicine Specialist, Istanbul';
+const description =
+  'Birkan Alaycı, MD — Internal Medicine Specialist at Liv Hospital Vadistanbul, Istanbul. Evidence-based care with a focus on metabolic health, diabetes, thyroid and comprehensive check-ups.';
+
+const preview = FOCUS_AREAS.slice(0, 6);
+---
+
+<Base {title} {description} lang="en" trHref="/" enHref="/en/">
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <p class="eyebrow">Internal Medicine Specialist · Istanbul</p>
+        <h1>Birkan Alaycı, MD</h1>
+        <p class="affil">Liv Hospital Vadistanbul</p>
+        <p class="lead">
+          An evidence-based approach to internal medicine — complex presentations
+          handled clearly and methodically, with a focus on metabolic health,
+          diabetes, thyroid and comprehensive check-ups.
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="/en/contact/">Book Appointment</a>
+          <a class="btn btn-secondary" href="/en/focus-areas/">Focus areas</a>
+        </div>
+      </div>
+      <div class="portrait-wrap">
+        <!-- [BİRKAN DOLDURACAK] portrait → public/portrait.jpg -->
+        <div class="portrait portrait-placeholder" role="img"
+             aria-label="Portrait of Birkan Alaycı, MD (coming soon)">
+          Portrait image<br />[BİRKAN DOLDURACAK]
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <p class="eyebrow">Focus & services</p>
+      <h2>Main areas</h2>
+      <p class="muted mt-1">Headings are being finalized.</p>
+      <div class="grid grid-3 mt-3">
+        {
+          preview.map((area) => (
+            <div class="card">
+              <h3>
+                {area.titleEn}
+                <span class="pending">Pending</span>
+              </h3>
+              <p>{area.descEn}</p>
+            </div>
+          ))
+        }
+      </div>
+      <p class="mt-3"><a class="btn btn-secondary" href="/en/focus-areas/">See all areas</a></p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="note prose">
+        <p class="eyebrow">Research</p>
+        <p>
+          Alongside clinical practice, I work on the methodology of evidence
+          synthesis — reproducible workflows for systematic reviews and
+          meta-analyses. <a href="/en/research/">Research &amp; publications →</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <AppointmentBanner lang="en" />
+</Base>

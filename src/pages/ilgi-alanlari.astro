@@ -1,0 +1,46 @@
+---
+import Base from '../layouts/Base.astro';
+import AppointmentBanner from '../components/AppointmentBanner.astro';
+import { FOCUS_AREAS } from '../data/focus';
+
+const title = 'İlgi & Hizmet Alanları — Uzm. Dr. Birkan Alaycı, Dahiliye İstanbul';
+const description =
+  'Genel dahiliye, metabolik sendrom ve obezite, diyabet, tiroid, vitamin/B12/demir eksikliği, hipertansiyon ve lipid bozuklukları — İstanbul Vadistanbul’da iç hastalıkları ilgi alanları.';
+---
+
+<Base {title} {description} lang="tr" trHref="/ilgi-alanlari/" enHref="/en/focus-areas/">
+  <section class="section">
+    <div class="container">
+      <div class="prose">
+        <p class="eyebrow">İlgi & hizmet alanları</p>
+        <h1>İlgilendiğim klinik konular</h1>
+        <p class="lead mt-2">
+          Aşağıdaki başlıklar, günlük klinik pratiğimde sık ele aldığım iç
+          hastalıkları konularıdır. Her başlık hasta perspektifinden, anlaşılır
+          biçimde açıklanmıştır.
+        </p>
+        <div class="note mt-3">
+          Başlıklar kesinleştirme aşamasındadır (<span class="pending">Onay Bekliyor</span>).
+          Bu sayfadaki içerik tıbbi tavsiye yerine geçmez; tanı ve tedavi kararları
+          muayene sonrası bireysel olarak değerlendirilir.
+        </div>
+      </div>
+
+      <div class="grid grid-2 mt-4">
+        {
+          FOCUS_AREAS.map((area) => (
+            <article class="card" id={area.id}>
+              <h2 style="font-size:1.2rem;">
+                {area.titleTr}
+                <span class="pending">Onay Bekliyor</span>
+              </h2>
+              <p class="mt-1">{area.descTr}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <AppointmentBanner lang="tr" />
+</Base>

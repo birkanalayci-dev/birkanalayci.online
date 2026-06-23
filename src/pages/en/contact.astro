@@ -1,0 +1,50 @@
+---
+import Base from '../../layouts/Base.astro';
+import { LINKS, PLACEHOLDER_LINKS } from '../../data/site';
+
+const title = 'Contact & Appointments — Birkan Alaycı, MD, Liv Vadistanbul';
+const description =
+  'Contact and appointments for Birkan Alaycı, MD. Liv Hospital Vadistanbul, Istanbul. Appointments are handled through official Liv channels.';
+
+const livHref = PLACEHOLDER_LINKS.livAppointment !== '#' ? PLACEHOLDER_LINKS.livAppointment : LINKS.liv;
+---
+
+<Base {title} {description} lang="en" trHref="/iletisim/" enHref="/en/contact/">
+  <section class="section">
+    <div class="container">
+      <div class="prose">
+        <p class="eyebrow">Contact & appointments</p>
+        <h1>Appointments &amp; contact</h1>
+        <p class="lead mt-2">
+          Appointment requests are handled through the official channels of Liv
+          Hospital Vadistanbul.
+        </p>
+      </div>
+
+      <div class="grid grid-2 mt-4">
+        <div class="card">
+          <h2 style="font-size:1.25rem;">Appointments</h2>
+          <p class="mt-1">Please use Liv Hospital’s official channel to book.</p>
+          <p class="mt-2">
+            <a class="btn btn-primary" href={livHref} target="_blank" rel="noopener">Book via Liv</a>
+          </p>
+          <p class="small muted mt-2">Call center number: [ONAY BEKLİYOR]</p>
+        </div>
+        <div class="card">
+          <h2 style="font-size:1.25rem;">Contact</h2>
+          <ul class="mt-1" style="list-style:none;padding:0;">
+            <li class="mt-1"><strong>Email:</strong> <a href={LINKS.email}>birkanalayci@gmail.com</a></li>
+            <li class="mt-1"><strong>Hospital profile:</strong> <a href={LINKS.liv} target="_blank" rel="noopener">Liv Hospital Vadistanbul</a></li>
+            <li class="mt-1"><strong>Location:</strong> Liv Hospital Vadistanbul, Istanbul</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="note mt-4">
+        <strong>Privacy (KVKK):</strong> see
+        <a href={PLACEHOLDER_LINKS.kvkk}>privacy notice</a>
+        <span class="pending">Pending</span>
+      </div>
+    </div>
+  </section>
+</Base>

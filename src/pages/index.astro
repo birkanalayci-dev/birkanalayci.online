@@ -1,0 +1,109 @@
+---
+import Base from '../layouts/Base.astro';
+import AppointmentBanner from '../components/AppointmentBanner.astro';
+import { FOCUS_AREAS } from '../data/focus';
+
+const title = 'Uzm. Dr. Birkan Alaycı — İç Hastalıkları Uzmanı, İstanbul';
+const description =
+  'Uzm. Dr. Birkan Alaycı — İç Hastalıkları (Dahiliye) Uzmanı, Liv Hospital Vadistanbul. Metabolik sağlık, diyabet, tiroid ve kapsamlı check-up odağıyla kanıta dayalı değerlendirme.';
+
+const preview = FOCUS_AREAS.slice(0, 6);
+---
+
+<Base {title} {description} lang="tr" trHref="/" enHref="/en/">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <p class="eyebrow">İç Hastalıkları (Dahiliye) Uzmanı · İstanbul</p>
+        <h1>Uzm. Dr. Birkan Alaycı</h1>
+        <p class="affil">Liv Hospital Vadistanbul</p>
+        <p class="lead">
+          Karmaşık tabloların net ve düzenli ele alındığı, kanıta dayalı bir iç
+          hastalıkları yaklaşımı. Metabolik sağlık, diyabet, tiroid ve kapsamlı
+          check-up odağıyla.
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="/iletisim/">Randevu Al</a>
+          <a class="btn btn-secondary" href="/ilgi-alanlari/">İlgi alanlarım</a>
+        </div>
+      </div>
+
+      <div class="portrait-wrap">
+        <!--
+          [BİRKAN DOLDURACAK] Profesyonel portre.
+          Dosyayı public/portrait.jpg olarak ekleyin ve aşağıdaki placeholder
+          bloğunu şu satırla değiştirin:
+          <img class="portrait" src="/portrait.jpg" width="640" height="800"
+               alt="Uzm. Dr. Birkan Alaycı, İç Hastalıkları Uzmanı" />
+        -->
+        <div class="portrait portrait-placeholder" role="img"
+             aria-label="Uzm. Dr. Birkan Alaycı portresi (yakında eklenecek)">
+          Portre görseli<br />[BİRKAN DOLDURACAK]
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GÜVEN ŞERİDİ -->
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>Kanıta dayalı</h3>
+          <p>Güncel literatür ve sistematik değerlendirme temelinde klinik kararlar.</p>
+        </div>
+        <div class="card">
+          <h3>Bütüncül takip</h3>
+          <p>Birden fazla şikâyeti olan kişilerde tablonun tek çerçevede yönetimi.</p>
+        </div>
+        <div class="card">
+          <h3>Net ve düzenli</h3>
+          <p>Tahlil ve bulguların anlaşılır biçimde, yapılandırılmış şekilde aktarımı.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- İLGİ ALANLARI ÖNİZLEME -->
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <p class="eyebrow">İlgi & hizmet alanları</p>
+      <h2>Başlıca konular</h2>
+      <p class="muted mt-1">Başlıklar kesinleştirme aşamasındadır.</p>
+      <div class="grid grid-3 mt-3">
+        {
+          preview.map((area) => (
+            <div class="card">
+              <h3>
+                {area.titleTr}
+                <span class="pending">Onay Bekliyor</span>
+              </h3>
+              <p>{area.descTr}</p>
+            </div>
+          ))
+        }
+      </div>
+      <p class="mt-3">
+        <a class="btn btn-secondary" href="/ilgi-alanlari/">Tüm alanları gör</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ARAŞTIRMA TEASER -->
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="note prose">
+        <p class="eyebrow">Araştırma</p>
+        <p>
+          Klinik pratiğin yanında, tıbbi kanıtın daha şeffaf ve hataya dayanıklı
+          biçimde sentezlenmesine odaklanan bir metodoloji çalışması yürütüyorum:
+          sistematik derleme ve meta-analiz süreçlerinde yeniden üretilebilir iş
+          akışları. <a href="/arastirma/">Araştırma &amp; yayınlar →</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <AppointmentBanner lang="tr" />
+</Base>
