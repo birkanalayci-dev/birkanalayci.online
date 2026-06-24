@@ -1,10 +1,13 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
+import cloudflare from "@astrojs/cloudflare";
+
 // https://astro.build
 export default defineConfig({
   site: 'https://birkanalayci.online',
   trailingSlash: 'ignore',
+
   i18n: {
     defaultLocale: 'tr',
     locales: ['tr', 'en', 'ru', 'ar'],
@@ -12,6 +15,7 @@ export default defineConfig({
       prefixDefaultLocale: false,
     },
   },
+
   integrations: [
     sitemap({
       // Velo (klinik dışı) ve şimdilik gizli hekim kılavuz destesi noindex;
@@ -29,7 +33,10 @@ export default defineConfig({
       },
     }),
   ],
+
   build: {
     inlineStylesheets: 'always',
   },
+
+  adapter: cloudflare()
 });
