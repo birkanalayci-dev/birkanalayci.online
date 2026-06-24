@@ -1,0 +1,34 @@
+---
+import Base from '../layouts/Base.astro';
+import GuidelineDeck from '../components/GuidelineDeck.astro';
+import { ATA2026 } from '../data/guidelines';
+
+const title = 'Kılavuz Kartları — ATA 2026 Gebelik ve Tiroid | Uzm. Dr. Birkan Alaycı';
+const description =
+  'Sağlık profesyonelleri için kılavuz özet kartları: ATA 2026 prekonsepsiyon, gebelik ve postpartum tiroid hastalıkları kılavuzu — 34 çalışma kartı, kaynağıyla.';
+---
+
+<Base {title} {description} lang="tr" trHref="/kilavuz-kartlari/" enHref="/en/research/">
+  <section class="section">
+    <div class="container prose">
+      <p class="eyebrow">Kılavuz Kartları · Sağlık profesyonelleri için</p>
+      <h1>ATA 2026 — Gebelikte Tiroid</h1>
+      <p class="lead mt-2">
+        Prekonsepsiyon, gebelik ve postpartum dönemde tiroid hastalıklarına dair
+        ATA 2026 kılavuzunun çalışma kartları. Kartı çevirerek cevabı görün,
+        kategoriye göre filtreleyin.
+      </p>
+      <div class="note mt-3">
+        <strong>Not:</strong> Bu deste sağlık profesyonellerine yöneliktir ve hasta
+        bilgilendirmesi değildir. Hasta odaklı içerik için
+        <a href="/yazilar/">Sağlık kart kütüphanesine</a> bakınız.
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <GuidelineDeck deck={ATA2026} />
+    </div>
+  </section>
+</Base>

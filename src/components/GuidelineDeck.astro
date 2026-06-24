@@ -1,0 +1,196 @@
+---
+import type { GuidelineDeck } from '../data/guidelines';
+
+interface Props {
+  deck: GuidelineDeck;
+}
+const { deck } = Astro.props;
+
+const cards = deck.cards.map((c) => ({
+  cat: c.category,
+  front: c.front,
+  back: c.back,
+}));
+const total = cards.length;
+const first = cards[0];
+---
+
+<div class="gd-source note">
+  <p class="small" style="margin:0;">
+    <strong>Kaynak:</strong> {deck.source.citation}
+    <a href={deck.source.url} target="_blank" rel="noopener">doi:{deck.source.doi}</a>
+  </p>
+</div>
+
+<div class="gd-filters mt-3" id="gd-filters" role="group" aria-label="Kategori filtresi">
+  <button type="button" class="gd-filter is-active" data-cat="">Tümü</button>
+  {deck.categories.map((c) => (
+    <button type="button" class="gd-filter" data-cat={c}>{c}</button>
+  ))}
+</div>
+
+<div class="gd-card mt-3" id="gd-card" role="button" tabindex="0" aria-label="Kartı çevir / sonraki">
+  <span class="ktag" id="gd-cat">{first.cat}</span>
+  <p class="gd-front" id="gd-front">{first.front}</p>
+  <div class="gd-back" id="gd-back">
+    <p id="gd-back-text">{first.back}</p>
+  </div>
+  <span class="gd-hint" id="gd-hint">Cevabı göster →</span>
+</div>
+
+<div class="gd-controls mt-2">
+  <span class="small muted"><span id="gd-index">1</span> / <span id="gd-total">{total}</span></span>
+  <button type="button" class="btn btn-secondary btn-sm" id="gd-next">Sonraki kart</button>
+</div>
+
+<p class="small muted mt-3">{deck.disclaimer}</p>
+
+<script define:vars={{ cards }}>
+  const card = document.getElementById('gd-card');
+  if (card) {
+    const catEl = document.getElementById('gd-cat');
+    const frontEl = document.getElementById('gd-front');
+    const backEl = document.getElementById('gd-back');
+    const backText = document.getElementById('gd-back-text');
+    const hintEl = document.getElementById('gd-hint');
+    const idxEl = document.getElementById('gd-index');
+    const totalEl = document.getElementById('gd-total');
+    const nextBtn = document.getElementById('gd-next');
+    const filters = document.getElementById('gd-filters');
+
+    let pool = cards;
+    let current = 0;
+    let revealed = false;
+
+    const render = () => {
+      const c = pool[current];
+      catEl.textContent = c.cat;
+      frontEl.textContent = c.front;
+      backText.textContent = c.back;
+      idxEl.textContent = String(current + 1);
+      totalEl.textContent = String(pool.length);
+      backEl.hidden = !revealed;
+      hintEl.hidden = revealed;
+    };
+
+    const reveal = () => {
+      revealed = true;
+      render();
+    };
+
+    const next = () => {
+      revealed = false;
+      if (pool.length > 1) {
+        let i = current;
+        while (i === current) i = Math.floor(Math.random() * pool.length);
+        current = i;
+      }
+      render();
+    };
+
+    card.addEventListener('click', () => {
+      revealed ? next() : reveal();
+    });
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        revealed ? next() : reveal();
+      }
+    });
+    nextBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      next();
+    });
+
+    filters.addEventListener('click', (e) => {
+      const btn = e.target.closest('.gd-filter');
+      if (!btn) return;
+      const cat = btn.getAttribute('data-cat');
+      pool = cat ? cards.filter((c) => c.cat === cat) : cards;
+      filters
+        .querySelectorAll('.gd-filter')
+        .forEach((b) => b.classList.toggle('is-active', b === btn));
+      current = Math.floor(Math.random() * pool.length);
+      revealed = false;
+      render();
+    });
+
+    // İlk yüklemede rastgele bir kart, kapalı (front) hâlde başlat.
+    current = Math.floor(Math.random() * cards.length);
+    render();
+  }
+</script>
+
+<style>
+  .gd-source { font-size: 0.9rem; }
+  .gd-source a { white-space: nowrap; }
+
+  .gd-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .gd-filter {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--text-soft);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.3rem 0.8rem;
+    cursor: pointer;
+    transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+  }
+  .gd-filter:hover { border-color: var(--accent); color: var(--text); }
+  .gd-filter.is-active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+
+  .gd-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 1.6rem 1.7rem;
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    min-height: 11rem;
+    max-width: 42rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .gd-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 8px 28px rgba(28, 43, 51, 0.1);
+  }
+  .gd-front {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    line-height: 1.35;
+    color: var(--text);
+    margin: 0.6rem 0 0;
+  }
+  .gd-back {
+    margin-top: 1rem;
+    padding-top: 0.9rem;
+    border-top: 1px dashed var(--border);
+  }
+  .gd-back p { margin: 0; color: var(--text-soft); }
+  .gd-hint {
+    display: inline-block;
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .gd-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 42rem;
+    gap: 1rem;
+  }
+</style>
