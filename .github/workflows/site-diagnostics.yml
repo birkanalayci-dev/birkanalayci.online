@@ -9,12 +9,43 @@ on:
 
 permissions:
   contents: read
-  pages: read
+  pages: write
 
 jobs:
-  diag:
+  fix-domain:
     runs-on: ubuntu-latest
     steps:
+      - name: Restore custom domain if missing
+        run: |
+          set +e
+          CUR=$(curl -sS -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/${{ github.repository }}/pages \
+            | python3 -c 'import json,sys; print(json.load(sys.stdin).get("cname") or "")')
+          echo "mevcut cname: '$CUR'"
+          if [ -z "$CUR" ]; then
+            echo 'cname bos — birkanalayci.online geri yaziliyor'
+            curl -sS -o /tmp/put.out -w 'PUT status: %{http_code}\n' -X PUT \
+              -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+              -H "Accept: application/vnd.github+json" \
+              -d '{"cname":"birkanalayci.online","build_type":"workflow"}' \
+              https://api.github.com/repos/${{ github.repository }}/pages
+            cat /tmp/put.out
+          else
+            echo 'cname zaten ayarli, dokunulmadi'
+          fi
+          echo '--- dogrulama: guncel Pages yapilandirmasi ---'
+          curl -sS -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/${{ github.repository }}/pages
+          exit 0
+
+  diag:
+    needs: fix-domain
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for domain binding
+        run: sleep 45
       - name: DNS from runner
         run: |
           set +e
