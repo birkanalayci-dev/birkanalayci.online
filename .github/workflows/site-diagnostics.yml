@@ -45,7 +45,27 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Wait for domain binding
-        run: sleep 45
+        run: sleep 5
+
+      - name: Cache-bypass fetch via Cloudflare (decisive)
+        run: |
+          set +e
+          BUST="cfdiag$RANDOM$RANDOM"
+          echo "=== https://birkanalayci.online/hakkimda/?$BUST ==="
+          curl -sS -D /tmp/hb.txt -o /tmp/bust.html --max-time 30 "https://birkanalayci.online/hakkimda/?$BUST"
+          head -10 /tmp/hb.txt
+          echo "ardanuc_count=$(grep -c 'Ardanuç' /tmp/bust.html)"
+          grep -o '<title>[^<]*' /tmp/bust.html | head -1
+          grep -oiE 'always online|snapshot|error code' /tmp/bust.html | sort -u | head -3
+          wc -c /tmp/bust.html
+          exit 0
+
+      - name: Origin certificate state
+        run: |
+          set +e
+          echo | openssl s_client -servername birkanalayci.online -connect 185.199.108.153:443 2>/dev/null \
+            | openssl x509 -noout -subject -issuer -dates -ext subjectAltName 2>/dev/null
+          exit 0
       - name: DNS from runner
         run: |
           set +e
