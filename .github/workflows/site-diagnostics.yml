@@ -64,8 +64,8 @@ jobs:
         run: |
           set +e
           # Haziran sayfasinin isaretleri: "Tıp eğitimi" (eski satir) + ~19851 bayt
-          for base in birkanalayci birkanalayci-online birkanalaycionline birkan-alayci birkanalayci-dev drbirkanalayci birkanalayci-site uzmdrbirkanalayci; do
-            for suf in netlify.app vercel.app pages.dev; do
+          for base in birkanalayci birkanalayci-online birkanalaycionline birkan-alayci birkanalayci-dev drbirkanalayci birkanalayci-site uzmdrbirkanalayci birkanalayci-cv cv-birkanalayci birkanalayci-web velo-birkanalayci alayci birkanalayci-astro; do
+            for suf in netlify.app vercel.app pages.dev onrender.com web.app firebaseapp.com surge.sh gitlab.io; do
               url="https://$base.$suf/hakkimda/"
               out=$(curl -sSk -o /tmp/c.html -w '%{http_code}' --max-time 10 "$url" 2>/dev/null)
               if [ "$out" = "200" ]; then
@@ -84,8 +84,10 @@ jobs:
           set +e
           curl -sS -D /tmp/h404.txt -o /tmp/p404.html --max-time 30 "https://birkanalayci.online/cfprobe-yok-boyle-sayfa-$RANDOM/"
           head -6 /tmp/h404.txt
-          echo "--- 404 govdesindeki imzalar ---"
-          grep -oiE "github|cloudflare|pages|not found|404" /tmp/p404.html | sort | uniq -c | sort -rn | head -8
+          echo "--- 404 govdesi (tamami) ---"
+          cat /tmp/p404.html
+          echo ""
+          echo "--- 404 govde sonu ---"
           wc -c /tmp/p404.html
           exit 0
 
