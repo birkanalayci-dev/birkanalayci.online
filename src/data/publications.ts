@@ -11,9 +11,10 @@ export type Publication = {
   authors: Author[];
   venue: string;
   year: number;
-  type: 'preprint' | 'article';
-  url: string;
+  type: 'preprint' | 'article' | 'poster';
+  url?: string;
   doi?: string;
+  status?: { tr: string; en: string };
 };
 
 export const PUBLICATIONS: Publication[] = [
@@ -28,6 +29,57 @@ export const PUBLICATIONS: Publication[] = [
     year: 2026,
     type: 'preprint',
     url: 'https://www.researchsquare.com/article/rs-9973131/v1',
+  },
+  // COSTEM 2026 bildirileri. Kongre sonrası (Ekim 2026) status alanı
+  // { tr: 'Sunuldu', en: 'Presented' } olarak güncellenecek. Özet kitabı
+  // yayımlanırsa venue'ye künye ve varsa DOI eklenecek.
+  {
+    title:
+      'Outcomes and Prognostic Factors of Allogeneic Hematopoietic Stem Cell Transplantation in Patients Aged ≥65 Years with Acute Myeloid Leukemia: A Single-Center Retrospective Analysis',
+    authors: [
+      { name: 'Gülkan Özkan' },
+      { name: 'Deniz Gören' },
+      { name: 'Nurcan Özçelik' },
+      { name: 'Birkan Alaycı', self: true },
+      { name: 'Mutlu Arat' },
+    ],
+    venue:
+      '11th Congress on Controversies in Stem Cell Transplantation and Cellular Therapies (COSTEM 2026), Berlin, Germany · 1–4 October 2026',
+    year: 2026,
+    type: 'poster',
+    status: { tr: 'Kabul edildi', en: 'Accepted' },
+  },
+  {
+    title:
+      'Allogeneic Hematopoietic Stem Cell Transplantation in Myelofibrosis: Risk Stratification Using MTSS and EBMT Score — A Single-Center Experience',
+    authors: [
+      { name: 'Gülkan Özkan' },
+      { name: 'Birkan Alaycı', self: true },
+      { name: 'Nurcan Özçelik' },
+      { name: 'Deniz Gören' },
+      { name: 'Mutlu Arat' },
+    ],
+    venue:
+      '11th Congress on Controversies in Stem Cell Transplantation and Cellular Therapies (COSTEM 2026), Berlin, Germany · 1–4 October 2026',
+    year: 2026,
+    type: 'poster',
+    status: { tr: 'Kabul edildi', en: 'Accepted' },
+  },
+  {
+    title:
+      'Outcomes of Second Allogeneic Hematopoietic Stem Cell Transplantation in Patients with Acute Leukemia: A Single-Center Retrospective Analysis',
+    authors: [
+      { name: 'Gülkan Özkan' },
+      { name: 'Deniz Gören' },
+      { name: 'Nurcan Özçelik' },
+      { name: 'Birkan Alaycı', self: true },
+      { name: 'Mutlu Arat' },
+    ],
+    venue:
+      '11th Congress on Controversies in Stem Cell Transplantation and Cellular Therapies (COSTEM 2026), Berlin, Germany · 1–4 October 2026',
+    year: 2026,
+    type: 'poster',
+    status: { tr: 'Kabul edildi', en: 'Accepted' },
   },
   {
     title:

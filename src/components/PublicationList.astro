@@ -1,19 +1,16 @@
 ---
-import { PUBLICATIONS } from '../data/publications';
+import { PUBLICATIONS, type Publication } from '../data/publications';
 
 interface Props {
   lang: 'tr' | 'en';
 }
 const { lang } = Astro.props;
 
-const typeLabel = (t: 'preprint' | 'article') =>
-  t === 'preprint'
-    ? lang === 'tr'
-      ? 'Ön baskı'
-      : 'Preprint'
-    : lang === 'tr'
-      ? 'Makale'
-      : 'Article';
+const typeLabel = (t: Publication['type']) => {
+  if (t === 'preprint') return lang === 'tr' ? 'Ön baskı' : 'Preprint';
+  if (t === 'poster') return lang === 'tr' ? 'Bildiri' : 'Congress abstract';
+  return lang === 'tr' ? 'Makale' : 'Article';
+};
 ---
 
 <ol class="pub-list">
@@ -23,9 +20,12 @@ const typeLabel = (t: 'preprint' | 'article') =>
         <p class="pub-meta">
           <span class="pub-type">{typeLabel(p.type)}</span>
           <span class="pub-year">{p.year}</span>
+          {p.status && <span class="pub-status">{lang === 'tr' ? p.status.tr : p.status.en}</span>}
         </p>
         <h3 class="pub-title">
-          <a href={p.url} target="_blank" rel="noopener">{p.title}</a>
+          {p.url
+            ? <a href={p.url} target="_blank" rel="noopener">{p.title}</a>
+            : p.title}
         </h3>
         <p class="pub-authors">
           {p.authors.map((a, i) => (
@@ -64,6 +64,11 @@ const typeLabel = (t: 'preprint' | 'article') =>
     border: 1px solid #cfe3e4; border-radius: 4px; padding: 0.1rem 0.5rem;
   }
   .pub-year { font-size: 0.85rem; color: var(--text-muted); }
+  .pub-status {
+    font-size: 0.68rem; font-weight: 600; letter-spacing: 0.04em;
+    color: var(--text-muted); border: 1px solid var(--border);
+    border-radius: 4px; padding: 0.1rem 0.5rem;
+  }
   .pub-title { font-size: 1.08rem; line-height: 1.35; margin-bottom: 0.35rem; }
   .pub-title a { color: var(--text); text-decoration: none; }
   .pub-title a:hover { color: var(--accent-deep); text-decoration: underline; }
