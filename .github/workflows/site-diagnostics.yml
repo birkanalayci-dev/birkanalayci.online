@@ -60,6 +60,16 @@ jobs:
           wc -c /tmp/bust.html
           exit 0
 
+      - name: Who serves the 404 page (fingerprint)
+        run: |
+          set +e
+          curl -sS -D /tmp/h404.txt -o /tmp/p404.html --max-time 30 "https://birkanalayci.online/cfprobe-yok-boyle-sayfa-$RANDOM/"
+          head -6 /tmp/h404.txt
+          echo "--- 404 govdesindeki imzalar ---"
+          grep -oiE "github|cloudflare|pages|not found|404" /tmp/p404.html | sort | uniq -c | sort -rn | head -8
+          wc -c /tmp/p404.html
+          exit 0
+
       - name: Origin certificate state
         run: |
           set +e
