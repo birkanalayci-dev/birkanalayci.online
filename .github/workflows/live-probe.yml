@@ -34,16 +34,35 @@ jobs:
             -H "Accept: application/vnd.github+json" \
             https://api.github.com/repos/${{ github.repository }}/pages
 
-      - name: Cloudflare secret availability (lengths only)
+      - name: Cloudflare scan (runs only when CLOUDFLARE_API_TOKEN secret exists)
         env:
-          A: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          B: ${{ secrets.CF_API_TOKEN }}
-          C: ${{ secrets.CLOUDFLARE_API_KEY }}
-          D: ${{ secrets.CLOUDFLARE_ZONE_ID }}
-          E: ${{ secrets.CF_ZONE_ID }}
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: |
-          echo "CLOUDFLARE_API_TOKEN uzunluk: ${#A}"
-          echo "CF_API_TOKEN uzunluk: ${#B}"
-          echo "CLOUDFLARE_API_KEY uzunluk: ${#C}"
-          echo "CLOUDFLARE_ZONE_ID uzunluk: ${#D}"
-          echo "CF_ZONE_ID uzunluk: ${#E}"
+          set +e
+          if [ -z "$CF_TOKEN" ]; then
+            echo "CLOUDFLARE_API_TOKEN secret'ı tanımlı değil — tarama atlandı."
+            echo "Secret eklendiğinde bu adım zone'u, DNS kayıtlarını, Workers route'larını ve Pages projelerini otomatik listeler."
+            exit 0
+          fi
+          H="Authorization: Bearer $CF_TOKEN"
+          echo '=== token doğrulama ==='
+          curl -sS -H "$H" https://api.cloudflare.com/client/v4/user/tokens/verify
+          echo ''
+          echo '=== zone ==='
+          curl -sS -H "$H" "https://api.cloudflare.com/client/v4/zones?name=birkanalayci.online" | head -c 2000
+          echo ''
+          ZID=$(curl -sS -H "$H" "https://api.cloudflare.com/client/v4/zones?name=birkanalayci.online" | python3 -c 'import json,sys; r=json.load(sys.stdin)["result"]; print(r[0]["id"] if r else "")')
+          echo "zone_id=$ZID"
+          [ -z "$ZID" ] && exit 0
+          echo '=== DNS kayıtları ==='
+          curl -sS -H "$H" "https://api.cloudflare.com/client/v4/zones/$ZID/dns_records" | python3 -c 'import json,sys; [print(r["type"], r["name"], "->", r.get("content"), "proxied=" + str(r.get("proxied"))) for r in json.load(sys.stdin)["result"]]'
+          echo '=== Workers route listesi ==='
+          curl -sS -H "$H" "https://api.cloudflare.com/client/v4/zones/$ZID/workers/routes"
+          echo ''
+          echo '=== hesap ve Pages/Workers projeleri ==='
+          AID=$(curl -sS -H "$H" "https://api.cloudflare.com/client/v4/accounts" | python3 -c 'import json,sys; r=json.load(sys.stdin)["result"]; print(r[0]["id"] if r else "")')
+          echo "account_id=$AID"
+          [ -n "$AID" ] && curl -sS -H "$H" "https://api.cloudflare.com/client/v4/accounts/$AID/pages/projects" | head -c 3000
+          echo ''
+          [ -n "$AID" ] && curl -sS -H "$H" "https://api.cloudflare.com/client/v4/accounts/$AID/workers/scripts" | head -c 2000
+          echo ''
