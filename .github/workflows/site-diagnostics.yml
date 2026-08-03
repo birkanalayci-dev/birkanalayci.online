@@ -60,6 +60,25 @@ jobs:
           wc -c /tmp/bust.html
           exit 0
 
+      - name: Hunt the frozen deployment (candidate host sweep)
+        run: |
+          set +e
+          # Haziran sayfasinin isaretleri: "Tıp eğitimi" (eski satir) + ~19851 bayt
+          for base in birkanalayci birkanalayci-online birkanalaycionline birkan-alayci birkanalayci-dev drbirkanalayci birkanalayci-site uzmdrbirkanalayci; do
+            for suf in netlify.app vercel.app pages.dev; do
+              url="https://$base.$suf/hakkimda/"
+              out=$(curl -sSk -o /tmp/c.html -w '%{http_code}' --max-time 10 "$url" 2>/dev/null)
+              if [ "$out" = "200" ]; then
+                old=$(grep -c 'Tıp eğitimi' /tmp/c.html)
+                new=$(grep -c 'Ardanuç' /tmp/c.html)
+                size=$(wc -c < /tmp/c.html)
+                echo "MATCH-CANDIDATE $url http=$out size=$size eski_icerik=$old yeni_icerik=$new"
+              fi
+            done
+          done
+          echo "sweep bitti"
+          exit 0
+
       - name: Who serves the 404 page (fingerprint)
         run: |
           set +e
