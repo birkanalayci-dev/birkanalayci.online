@@ -75,10 +75,10 @@ jobs:
         run: |
           set +e
           for ip in 185.199.108.153 185.199.109.153; do
-            echo "=== via $ip ==="
-            curl -sS -D /tmp/h2.txt -o /tmp/direct.html --max-time 30 \
+            echo "=== via $ip (sertifika dogrulamasi kapali; icerik kontrolu) ==="
+            curl -sSk -D /tmp/h2.txt -o /tmp/direct.html --max-time 30 \
               --resolve birkanalayci.online:443:$ip https://birkanalayci.online/hakkimda/
-            head -12 /tmp/h2.txt
+            head -8 /tmp/h2.txt
             echo "ardanuc_count=$(grep -c 'Ardanuç' /tmp/direct.html)"
             grep -o '<title>[^<]*' /tmp/direct.html | head -1
           done
