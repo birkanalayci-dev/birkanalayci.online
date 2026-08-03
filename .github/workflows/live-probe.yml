@@ -1,0 +1,49 @@
+name: Live probe
+# Geçici: canlı alan adının şu an ne servis ettiğini ve Pages yapılandırmasını ölçer.
+
+on:
+  push:
+    branches: [claude/cv-update-birkan-e1pq9n]
+
+permissions:
+  contents: read
+  pages: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Live pages now
+        run: |
+          set +e
+          for path in "/" "/hakkimda/" "/arastirma/"; do
+            echo "=== https://birkanalayci.online$path ==="
+            code=$(curl -sS -D /tmp/h.txt -o /tmp/b.html -w '%{http_code}' --max-time 30 "https://birkanalayci.online$path")
+            echo "http=$code"
+            grep -iE '^(cf-cache-status|cache-control|content-type|server|last-modified|etag|x-github-request-id|via|age):' /tmp/h.txt
+            echo "ardanuc=$(grep -c 'Ardanuç' /tmp/b.html) style_blok=$(grep -c '<style' /tmp/b.html) boyut=$(wc -c < /tmp/b.html)"
+            grep -o '<title>[^<]*' /tmp/b.html | head -1
+            echo "--- govde ilk 300 karakter ---"
+            head -c 300 /tmp/b.html; echo ""
+          done
+          exit 0
+
+      - name: Pages API config
+        run: |
+          curl -sS -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/${{ github.repository }}/pages
+
+      - name: Cloudflare secret availability (lengths only)
+        env:
+          A: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          B: ${{ secrets.CF_API_TOKEN }}
+          C: ${{ secrets.CLOUDFLARE_API_KEY }}
+          D: ${{ secrets.CLOUDFLARE_ZONE_ID }}
+          E: ${{ secrets.CF_ZONE_ID }}
+        run: |
+          echo "CLOUDFLARE_API_TOKEN uzunluk: ${#A}"
+          echo "CF_API_TOKEN uzunluk: ${#B}"
+          echo "CLOUDFLARE_API_KEY uzunluk: ${#C}"
+          echo "CLOUDFLARE_ZONE_ID uzunluk: ${#D}"
+          echo "CF_ZONE_ID uzunluk: ${#E}"
