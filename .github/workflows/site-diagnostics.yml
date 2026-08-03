@@ -1,0 +1,70 @@
+name: Site diagnostics
+# Geçici teşhis görevi: canlı alan adının gerçekte ne servis ettiğini ve
+# GitHub Pages yapılandırmasını dışarıdan ölçer. Sorun çözülünce silinecek.
+
+on:
+  push:
+    branches: [claude/cv-update-birkan-e1pq9n]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: read
+
+jobs:
+  diag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: DNS from runner
+        run: |
+          set +e
+          echo '--- A/AAAA birkanalayci.online ---'
+          getent ahosts birkanalayci.online | sort -u
+          echo '--- www ---'
+          getent ahosts www.birkanalayci.online | sort -u
+          exit 0
+
+      - name: Live site via Cloudflare
+        run: |
+          set +e
+          echo '=== https://birkanalayci.online/hakkimda/ ==='
+          curl -sS -D /tmp/h.txt -o /tmp/live.html --max-time 30 https://birkanalayci.online/hakkimda/
+          echo '--- response headers ---'
+          cat /tmp/h.txt
+          echo '--- content signals ---'
+          echo "ardanuc_count=$(grep -c 'Ardanuç' /tmp/live.html)"
+          echo "istinye_count=$(grep -c 'İstinye' /tmp/live.html)"
+          grep -o '<title>[^<]*' /tmp/live.html | head -1
+          wc -c /tmp/live.html
+          echo '=== root https://birkanalayci.online/ ==='
+          curl -sS -o /dev/null -D - --max-time 30 https://birkanalayci.online/ | head -25
+          exit 0
+
+      - name: Direct GitHub Pages origin (bypass Cloudflare)
+        run: |
+          set +e
+          for ip in 185.199.108.153 185.199.109.153; do
+            echo "=== via $ip ==="
+            curl -sS -D /tmp/h2.txt -o /tmp/direct.html --max-time 30 \
+              --resolve birkanalayci.online:443:$ip https://birkanalayci.online/hakkimda/
+            head -12 /tmp/h2.txt
+            echo "ardanuc_count=$(grep -c 'Ardanuç' /tmp/direct.html)"
+            grep -o '<title>[^<]*' /tmp/direct.html | head -1
+          done
+          exit 0
+
+      - name: github.io origin behavior
+        run: |
+          set +e
+          echo '=== https://birkanalayci-dev.github.io/hakkimda/ (redirect takip edilmeden) ==='
+          curl -sS -D - -o /tmp/ghio.html --max-time 30 https://birkanalayci-dev.github.io/hakkimda/ | head -25
+          echo "ardanuc_count=$(grep -c 'Ardanuç' /tmp/ghio.html)"
+          exit 0
+
+      - name: Pages API configuration
+        run: |
+          set +e
+          curl -sS -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/${{ github.repository }}/pages
+          exit 0
