@@ -63,7 +63,10 @@ const physicianLd = {
   areaServed: { '@type': 'City', name: 'İstanbul' },
   affiliation: { '@type': 'Hospital', name: 'Liv Hospital Vadistanbul', url: 'https://www.livhospital.com/' },
   worksFor: { '@type': 'Hospital', name: 'Liv Hospital Vadistanbul' },
-  alumniOf: { '@type': 'CollegeOrUniversity', name: 'Dokuz Eylül Üniversitesi Tıp Fakültesi' },
+  alumniOf: [
+    { '@type': 'CollegeOrUniversity', name: 'Dokuz Eylül Üniversitesi Tıp Fakültesi' },
+    { '@type': 'CollegeOrUniversity', name: 'İstinye Üniversitesi' },
+  ],
   sameAs: SAME_AS,
 };
 ---
