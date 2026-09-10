@@ -1,79 +1,37 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { LINKS, PLACEHOLDER_LINKS, CLINIC } from '../../data/site';
+import { LINKS, SITE } from '../../data/site';
 
-const title = 'Contact & Appointments — Birkan Alaycı, MD, Liv Vadistanbul';
+const title = 'Contact — Birkan Alaycı, MD';
 const description =
-  'Contact and appointments for Birkan Alaycı, MD. Liv Hospital Vadistanbul, Sarıyer / Istanbul. Call center 444 45 48.';
-
-const livHref = PLACEHOLDER_LINKS.livAppointment !== '#' ? PLACEHOLDER_LINKS.livAppointment : LINKS.liv;
+  'Academic and professional contact for Birkan Alaycı, MD: LinkedIn, ORCID, Google Scholar, ResearchGate and GitHub profiles. Clinical Trials Unit, Koç University.';
 ---
 
 <Base {title} {description} lang="en" trHref="/iletisim/" enHref="/en/contact/">
   <section class="section">
-    <div class="container">
-      <div class="prose">
-        <p class="eyebrow">Contact & appointments</p>
-        <h1>Appointments &amp; contact</h1>
-        <p class="lead mt-2">
-          Appointment requests are handled through the official channels of Liv
-          Hospital Vadistanbul.
-        </p>
-      </div>
+    <div class="container prose">
+      <p class="eyebrow">Contact</p>
+      <h1>Academic &amp; professional contact</h1>
+      <p class="lead mt-2">
+        For research collaboration, publications and academic matters, please use
+        the channels below.
+      </p>
 
-      <div class="grid grid-2 mt-4">
-        <div class="card">
-          <h2 style="font-size:1.25rem;">Appointments &amp; visits</h2>
-          <p class="mt-1">Call the Liv Hospital call center or use the hospital’s official page.</p>
-          <p class="mt-2" style="font-size:1.15rem;">
-            <strong>Call center:</strong>
-            <a href={CLINIC.callCenterTel}>{CLINIC.callCenter}</a>
-          </p>
-          <p class="small muted">Switchboard: <a href={CLINIC.phoneTel}>{CLINIC.phone}</a></p>
-          <p class="mt-2">
-            <a class="btn btn-primary" href={livHref} target="_blank" rel="noopener">Liv hospital profile</a>
-          </p>
-        </div>
-        <div class="card">
-          <h2 style="font-size:1.25rem;">Academic &amp; professional contact</h2>
-          <ul class="mt-1" style="list-style:none;padding:0;">
-            <li class="mt-1"><strong>Email:</strong> <a href={LINKS.email}>birkan.alayci@livhospital.com.tr</a></li>
-            <li class="mt-1"><strong>LinkedIn:</strong> <a href={LINKS.linkedin} target="_blank" rel="noopener">Profile</a></li>
-            <li class="mt-1"><strong>Hospital:</strong> <a href={LINKS.liv} target="_blank" rel="noopener">Liv Hospital Vadistanbul</a></li>
-          </ul>
-          <p class="small muted mt-2">
-            Email is not for medical emergencies; it is for academic and
-            institutional correspondence. For appointments, use the channels above.
-          </p>
-        </div>
-      </div>
+      <ul class="linklist mt-4">
+        <li><a href={LINKS.linkedin} target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href={LINKS.orcid} target="_blank" rel="noopener">ORCID</a></li>
+        <li><a href={LINKS.scholar} target="_blank" rel="noopener">Google Scholar</a></li>
+        <li><a href={LINKS.researchgate} target="_blank" rel="noopener">ResearchGate</a></li>
+        <li><a href={LINKS.github} target="_blank" rel="noopener">GitHub</a></li>
+      </ul>
 
       <div class="note mt-4">
-        <strong>Before your visit:</strong> Bringing your previous test results, a
-        list of your current medications, any imaging reports and your chronic
-        disease history makes the assessment easier.
+        <strong>Affiliation:</strong> {SITE.affiliationEn}, {SITE.cityEn}.
       </div>
 
-      <div class="mt-4">
-        <h2>Location</h2>
-        <p class="muted mt-1">{CLINIC.addressEn}</p>
-        <div class="mt-2" style="border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);">
-          <iframe
-            src={CLINIC.mapEmbed}
-            title="Liv Hospital Vadistanbul map location"
-            width="100%"
-            height="360"
-            style="border:0;display:block;"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-          ></iframe>
-        </div>
-      </div>
-
-      <div class="note mt-4">
-        <strong>Privacy (KVKK):</strong> see the
-        <a href="/en/privacy/">privacy notice</a>.
-      </div>
+      <p class="small muted mt-4">
+        This website does not offer consultations, appointments or medical advice.
+      </p>
     </div>
   </section>
 </Base>

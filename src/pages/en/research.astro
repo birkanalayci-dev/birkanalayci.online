@@ -1,12 +1,11 @@
 ---
 import Base from '../../layouts/Base.astro';
-import AppointmentBanner from '../../components/AppointmentBanner.astro';
 import PublicationList from '../../components/PublicationList.astro';
-import { LINKS } from '../../data/site';
+import { LINKS, REPOS } from '../../data/site';
 
 const title = 'Research & Publications — Birkan Alaycı, MD';
 const description =
-  'Publications and academic profile of Birkan Alaycı, MD: evidence synthesis methodology (systematic reviews & meta-analyses), GLP-1 and body composition, ORCID, Google Scholar, ResearchGate.';
+  'Research areas, publications and open-source projects of Birkan Alaycı, MD: clinical trials, evidence synthesis (systematic reviews & meta-analysis) methodology, GLP-1 and body composition, ORCID, Google Scholar, ResearchGate.';
 ---
 
 <Base {title} {description} lang="en" trHref="/arastirma/" enHref="/en/research/">
@@ -15,22 +14,47 @@ const description =
       <p class="eyebrow">Research</p>
       <h1>Research &amp; publications</h1>
       <p class="lead mt-2">
-        Alongside clinical practice, I work on the methodology of how medical
-        evidence is synthesized.
+        I work on how medical evidence is produced and brought together: clinical
+        trials and the methodology of evidence synthesis.
       </p>
       <p class="mt-3">
         I develop reproducible workflows for systematic reviews and meta-analyses,
-        aiming to make existing literature aggregation more transparent, traceable
-        and resilient to error — adding structural due diligence to the scientific
-        process in metabolic medicine.
+        aiming to make the aggregation of existing literature more transparent,
+        traceable and resilient to error. I care about sharing data and analysis
+        code openly, and about keeping claims within what the data can support.
       </p>
 
       <p class="eyebrow mt-4">Focus areas</p>
       <ul class="tag-row mt-2">
-        <li class="tag-chip">Metabolic medicine</li>
+        <li class="tag-chip">Clinical trials</li>
         <li class="tag-chip">Evidence synthesis</li>
+        <li class="tag-chip">Meta-analysis methodology</li>
         <li class="tag-chip">Reproducible research</li>
+        <li class="tag-chip">Metabolic medicine &amp; body composition</li>
+        <li class="tag-chip">Molecular oncology</li>
       </ul>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <h2>Open-source projects</h2>
+      <p class="muted mt-1">Data, code and automation infrastructure are open on GitHub.</p>
+      <div class="grid grid-2 mt-3">
+        {
+          REPOS.map((r) => (
+            <article class="card">
+              <h3 style="font-size:1.05rem;">
+                <a href={r.url} target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">{r.name}</a>
+              </h3>
+              <p class="mt-1">{r.desc.en}</p>
+              <ul class="tag-row mt-2">
+                {r.tags.map((t) => <li class="tag-chip">{t}</li>)}
+              </ul>
+            </article>
+          ))
+        }
+      </div>
     </div>
   </section>
 
@@ -52,9 +76,8 @@ const description =
         <li><a href={LINKS.scholar} target="_blank" rel="noopener">Google Scholar</a></li>
         <li><a href={LINKS.researchgate} target="_blank" rel="noopener">ResearchGate</a></li>
         <li><a href={LINKS.github} target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href={LINKS.linkedin} target="_blank" rel="noopener">LinkedIn</a></li>
       </ul>
     </div>
   </section>
-
-  <AppointmentBanner lang="en" />
 </Base>
