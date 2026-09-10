@@ -1,34 +1,37 @@
 ---
 import Base from '../layouts/Base.astro';
-import AppointmentBanner from '../components/AppointmentBanner.astro';
+import { SITE } from '../data/site';
 
-const title = 'Hakkımda — Uzm. Dr. Birkan Alaycı, İç Hastalıkları Uzmanı';
+const title = 'Hakkımda — Dr. Birkan Alaycı';
 const description =
-  'Uzm. Dr. Birkan Alaycı hakkında: iç hastalıkları uzmanı olarak klinik yaklaşımı, eğitim ve kariyer çizgisi, moleküler onkoloji doktora programı, mesleki üyelikler.';
+  'Dr. Birkan Alaycı hakkında: iç hastalıkları uzmanlığı, Koç Üniversitesi Clinical Trials Unit’teki klinik araştırma görevi, moleküler onkoloji doktora programı, eğitim ve kariyer çizgisi.';
 ---
 
 <Base {title} {description} lang="tr" trHref="/hakkimda/" enHref="/en/about/">
   <section class="section">
     <div class="container prose">
       <p class="eyebrow">Hakkımda</p>
-      <h1>Uzm. Dr. Birkan Alaycı</h1>
+      <h1>{SITE.nameTr}</h1>
       <p class="lead mt-2">
-        İç hastalıkları (dahiliye) uzmanı olarak İstanbul, Liv Hospital
-        Vadistanbul’da görev yapıyorum.
+        İç hastalıkları uzmanıyım. Eylül 2026’dan itibaren Koç Üniversitesi
+        Clinical Trials Unit’te klinik araştırmalar üzerine çalışıyorum; aynı
+        zamanda İstinye Üniversitesi’nde Moleküler Onkoloji doktora öğrencisiyim.
       </p>
 
       <p class="mt-3">
-        Klinik pratiğim; obezite, metabolik sendrom, diyabet, tiroid hastalıkları
-        ve koruyucu hekimlik alanlarına odaklanıyor. Kanıta dayalı tanı
-        yaklaşımları, çok sayıda hastalığı bir arada olan (multimorbid) bireylerin
-        koordinasyonu ve her hastayla kurulan derin etkileşimden doğan örüntü
-        tanıma üzerine şekilleniyor. Günlük rutinimdeki temel odak, karmaşık
-        klinik tabloları net, düzenli ve yapılandırılmış bir biçimde yönetmektir.
+        Tıp eğitimimi Dokuz Eylül Üniversitesi’nde, iç hastalıkları uzmanlık
+        eğitimimi Şişli Hamidiye Etfal Eğitim ve Araştırma Hastanesi’nde
+        tamamladım. Sonrasında Artvin Ardanuç’ta ilçe devlet hastanesinde ve
+        İstanbul’da Liv Hospital Vadistanbul’da iç hastalıkları uzmanı olarak
+        çalıştım. Bugün odağım aktif klinik pratik değil; klinik araştırma ve
+        kanıt sentezi.
       </p>
       <p>
-        Hasta başında karar verirken de bilimsel veriyi değerlendirirken de aynı
-        ilkeye önem veriyorum: tabloyu parçalara ayırmak, bulguları düzenli biçimde
-        tartmak ve klinik kararı açık bir çerçeveye oturtmak.
+        Çalışma biçimimi üç şey tanımlıyor: klinik soruları analiz edilebilir
+        araştırma yapılarına çevirmek, yöntemdeki zayıf noktayı bulmak ve
+        sonuçları verinin taşıyabileceği sınırlar içinde yorumlamak. Sistematik
+        derleme ve meta-analiz süreçlerinde yeniden üretilebilir, denetlenebilir
+        iş akışları kuruyorum; veri ve kodu mümkün olduğunca açık paylaşıyorum.
       </p>
 
       <h2 class="mt-4">Eğitim &amp; kariyer</h2>
@@ -36,8 +39,9 @@ const description =
         <li><strong>Tıp Doktoru</strong> — Dokuz Eylül Üniversitesi Tıp Fakültesi, İzmir (2012–2018)</li>
         <li><strong>İç Hastalıkları uzmanlık eğitimi</strong> — SBÜ Şişli Hamidiye Etfal Eğitim ve Araştırma Hastanesi, İstanbul (2018–2023)</li>
         <li><strong>İç Hastalıkları Uzmanı</strong> — Ardanuç İlçe Devlet Hastanesi, Artvin (2023–2025)</li>
-        <li><strong>İç Hastalıkları Uzmanı</strong> — Liv Hospital Vadistanbul, İstanbul (Kasım 2025 – devam)</li>
+        <li><strong>İç Hastalıkları Uzmanı</strong> — Liv Hospital Vadistanbul, İstanbul (Kasım 2025 – Eylül 2026)</li>
         <li><strong>Moleküler Onkoloji Doktora Programı</strong> — İstinye Üniversitesi, Lisansüstü Eğitim Enstitüsü (2026 – devam)</li>
+        <li><strong>Clinical Trials Unit</strong> — Koç Üniversitesi, İstanbul (Eylül 2026 – devam)</li>
       </ul>
 
       <h2 class="mt-4">Mesleki üyelikler</h2>
@@ -48,6 +52,4 @@ const description =
       </ul>
     </div>
   </section>
-
-  <AppointmentBanner lang="tr" />
 </Base>
