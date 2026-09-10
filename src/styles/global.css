@@ -1,11 +1,11 @@
 /* ==========================================================================
    birkanalayci.online — global stiller
-   Sakin, klinik güven veren, minimalist. Açık tema. Sınırlı palet.
+   Sakin, akademik, minimalist. Açık tema. Sınırlı palet.
    Erişilebilirlik: AA kontrast, görünür focus, klavye navigasyonu.
    ========================================================================== */
 
 :root {
-  /* Renk paleti — ölçülü, klinik */
+  /* Renk paleti — ölçülü */
   --bg: #ffffff;
   --bg-soft: #f6f8f9;
   --bg-card: #ffffff;
@@ -13,7 +13,7 @@
   --text: #1c2b33;
   --text-soft: #4a5a64;
   --text-muted: #5a6973;
-  --accent: #1f6f78;        /* sakin teal — güven */
+  --accent: #1f6f78;        /* sakin teal */
   --accent-deep: #16545b;
   --accent-soft: #e8f1f2;
   --focus: #1f6f78;
@@ -140,10 +140,6 @@ main { flex: 1 0 auto; }
 }
 .brand span { color: var(--accent); }
 
-/* Mobil menüye taşınan CTA — masaüstünde gizli (header-actions'ta zaten var).
-   .nav ön eki özgüllüğü artırır; aksi halde .btn'in display'i bunu ezer. */
-.nav .nav-cta { display: none; }
-
 .nav { display: flex; align-items: center; gap: 0.1rem; }
 .nav a {
   font-size: 0.9rem;
@@ -162,33 +158,26 @@ main { flex: 1 0 auto; }
   border-radius: 2px; background: var(--accent);
 }
 
-.header-actions { display: flex; align-items: center; gap: 0.75rem; }
-
-/* Dil seçici — kompakt açılır menü (8 dil) */
-.lang-select-wrap { display: inline-flex; align-items: center; }
-.lang-select {
+/* Dil değiştirici — TR | EN */
+.lang-switch { display: inline-flex; align-items: center; gap: 0.15rem; }
+.lang-switch a {
   font-family: var(--sans);
-  font-size: 0.82rem;
-  color: var(--text-soft);
-  background: var(--bg-soft);
-  border: 1px solid var(--border);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 0.35rem 0.55rem;
   border-radius: var(--radius-sm);
-  padding: 0.4rem 1.6rem 0.4rem 0.6rem;
-  cursor: pointer;
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%235a6973' stroke-width='1.5'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 0.55rem center;
-  max-width: 9.5rem;
+  border: 1px solid transparent;
+  transition: color 0.18s ease, border-color 0.18s ease, background 0.18s ease;
 }
-.lang-select:hover { border-color: var(--accent); color: var(--text); }
-
-[dir='rtl'] .lang-select {
-  padding: 0.4rem 0.6rem 0.4rem 1.6rem;
-  background-position: left 0.55rem center;
+.lang-switch a:hover { color: var(--text); background: var(--bg-soft); }
+.lang-switch a[aria-current='true'] {
+  color: var(--accent-deep);
+  background: var(--accent-soft);
+  border-color: #cfe3e4;
 }
-
-.site-header .btn { white-space: nowrap; }
 
 /* Buttons */
 .btn {
@@ -232,8 +221,9 @@ main { flex: 1 0 auto; }
   align-items: center;
 }
 .hero h1 { margin-bottom: 0.5rem; }
-.hero .affil { color: var(--text-muted); font-size: 1rem; margin-bottom: 1.25rem; }
-.hero .cta-row { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.75rem; }
+.hero .affil { color: var(--text-soft); font-size: 1.05rem; font-weight: 500; margin-bottom: 1.25rem; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.hero .cta-row { margin-top: 1.75rem; }
 .portrait {
   border-radius: var(--radius);
   border: 1px solid var(--border);
@@ -242,44 +232,6 @@ main { flex: 1 0 auto; }
   width: 100%;
   object-fit: cover;
 }
-.portrait-placeholder {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: var(--text-muted);
-  font-size: 0.85rem;
-  padding: 1rem;
-}
-
-/* Portre yokken gösterilen özet kart */
-.profile-card {
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: linear-gradient(180deg, var(--accent-soft), var(--bg-card));
-  padding: 1.5rem;
-  box-shadow: var(--shadow);
-}
-.profile-mono {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 12px;
-  background: var(--accent);
-  color: #fff;
-  font-family: var(--serif);
-  font-weight: 600;
-  font-size: 1.25rem;
-  margin-bottom: 1rem;
-}
-.profile-card dl { display: grid; gap: 0.85rem; margin: 0; }
-.profile-card dt {
-  font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--text-muted); margin-bottom: 0.1rem;
-}
-.profile-card dd { margin: 0; font-size: 0.95rem; color: var(--text); font-weight: 500; }
 
 /* Kartlar / grid */
 .grid { display: grid; gap: 1rem; }
@@ -295,23 +247,6 @@ main { flex: 1 0 auto; }
 }
 .card h3 { margin-bottom: 0.4rem; }
 .card p { font-size: 0.97rem; }
-
-/* Onay/placeholder rozeti */
-.pending {
-  display: inline-block;
-  font-family: var(--sans);
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: #8a5a00;
-  background: #fff4e0;
-  border: 1px solid #f0d9a8;
-  border-radius: 4px;
-  padding: 0.1rem 0.45rem;
-  margin-left: 0.5rem;
-  vertical-align: middle;
-}
 
 /* Bağlantı listeleri */
 .linklist { display: flex; flex-wrap: wrap; gap: 0.5rem 0.75rem; list-style: none; padding: 0; }
@@ -356,17 +291,6 @@ main { flex: 1 0 auto; }
   border-radius: 50%;
 }
 
-/* Banner / alt CTA */
-.cta-banner {
-  background: var(--accent-soft);
-  border: 1px solid #cfe3e4;
-  border-radius: var(--radius);
-  padding: clamp(1.5rem, 4vw, 2.5rem);
-  text-align: center;
-}
-.cta-banner h2 { color: var(--accent-deep); }
-.cta-banner .cta-row { justify-content: center; margin-top: 1.25rem; display: flex; gap: 0.75rem; flex-wrap: wrap; }
-
 /* Bilgi kutusu / not */
 .note {
   background: var(--bg-soft);
@@ -391,7 +315,6 @@ main { flex: 1 0 auto; }
 .footer-links { display: flex; flex-wrap: wrap; gap: 0.4rem 1.25rem; list-style: none; padding: 0; }
 .footer-links a { color: var(--text-soft); text-decoration: none; font-size: 0.9rem; }
 .footer-links a:hover { color: var(--accent); }
-.footer-personal { display: flex; gap: 0.75rem; margin-top: 0.5rem; }
 
 .muted { color: var(--text-muted); }
 .small { font-size: 0.85rem; }
@@ -431,18 +354,11 @@ main { flex: 1 0 auto; }
   .nav a[aria-current="page"]::after { display: none; }
   .menu-toggle { display: inline-flex; }
 
-  /* Mobil header düzeni: marka | dil seçici | hamburger
-     CTA butonu menünün içine taşınır (yatay taşmayı önler). */
+  /* Mobil header düzeni: marka | dil değiştirici | hamburger */
   .header-inner { gap: 0.6rem; }
   .brand { flex: 1 1 auto; }
-  .header-actions { order: 2; gap: 0.5rem; }
+  .lang-switch { order: 2; }
   .menu-toggle { order: 3; }
-  .site-header .cta-book { display: none; }
-  .nav .nav-cta {
-    display: inline-flex;
-    justify-content: center;
-    margin-top: 0.6rem;
-  }
 }
 
 @media (max-width: 640px) {
@@ -450,31 +366,16 @@ main { flex: 1 0 auto; }
   .grid-2, .grid-3 { grid-template-columns: 1fr; }
 }
 
-/* Çok dar ekranlarda markadan uzmanlık etiketini gizle */
+/* Çok dar ekranlarda markadan birim etiketini gizle */
 @media (max-width: 560px) {
   .brand { font-size: 0.95rem; }
   .brand span { display: none; }
-  .lang-select { max-width: 7.5rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
 }
-
-/* ---- Arapça / Farsça font ve RTL ---- */
-html[lang='ar'] {
-  --serif: 'IBM Plex Sans Arabic', system-ui, sans-serif;
-  --sans: 'IBM Plex Sans Arabic', system-ui, sans-serif;
-}
-html[lang='fa'] {
-  --serif: 'Vazirmatn', system-ui, sans-serif;
-  --sans: 'Vazirmatn', system-ui, sans-serif;
-}
-[dir='rtl'] .note { border-left: 0; border-right: 3px solid var(--accent); }
-[dir='rtl'] .skip-link { left: auto; right: 0.5rem; }
-[dir='rtl'] .brand span { unicode-bidi: isolate; }
-[dir='rtl'] .pub-meta { direction: rtl; }
 
 /* ---- Velo / kişisel sayfa — koyu tema ----
    <body class="theme-velo"> ile etkinleşir; değişkenleri koyulaştırır. */
@@ -500,7 +401,6 @@ body.theme-velo .site-header {
 body.theme-velo .nav { background: var(--bg-card); }   /* mobil açılır menü */
 body.theme-velo .btn-primary { color: #062528; }       /* açık teal zemin → koyu metin */
 body.theme-velo .btn-primary:hover { color: #062528; }
-body.theme-velo .cta-banner { border-color: var(--border); }
 
 /* Velo girişi */
 .velo-tagline {

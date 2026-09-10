@@ -1,12 +1,11 @@
 ---
 import Base from '../layouts/Base.astro';
-import AppointmentBanner from '../components/AppointmentBanner.astro';
 import PublicationList from '../components/PublicationList.astro';
-import { LINKS } from '../data/site';
+import { LINKS, REPOS } from '../data/site';
 
-const title = 'Araştırma & Yayınlar — Uzm. Dr. Birkan Alaycı';
+const title = 'Araştırma & Yayınlar — Dr. Birkan Alaycı';
 const description =
-  'Uzm. Dr. Birkan Alaycı’nın yayınları ve akademik profili: evidence synthesis (sistematik derleme ve meta-analiz) metodolojisi, GLP-1 ve vücut kompozisyonu, ORCID, Google Scholar, ResearchGate.';
+  'Dr. Birkan Alaycı’nın araştırma alanları, yayınları ve açık kaynak projeleri: klinik araştırmalar, kanıt sentezi (sistematik derleme ve meta-analiz) metodolojisi, GLP-1 ve vücut kompozisyonu, ORCID, Google Scholar, ResearchGate.';
 ---
 
 <Base {title} {description} lang="tr" trHref="/arastirma/" enHref="/en/research/">
@@ -16,23 +15,48 @@ const description =
       <h1>Araştırma &amp; yayınlar</h1>
 
       <p class="lead mt-2">
-        Klinik pratiğin yanında, tıbbi kanıtın nasıl sentezlendiğine odaklanan bir
-        metodoloji çalışması yürütüyorum.
+        Tıbbi kanıtın nasıl üretildiği ve nasıl bir araya getirildiği üzerine
+        çalışıyorum: klinik araştırmalar ve kanıt sentezi metodolojisi.
       </p>
       <p class="mt-3">
         Sistematik derleme ve meta-analiz süreçlerinde yeniden üretilebilir iş
         akışları geliştiriyorum; amaç, literatürdeki mevcut verinin daha şeffaf,
-        izlenebilir ve hataya dayanıklı biçimde bir araya getirilmesi. Bu çalışma,
-        bilimsel sürece yapısal bir özen (due diligence) katmayı ve metabolik tıp
-        alanındaki kanıtı klinik için daha kullanışlı hâle getirmeyi hedefliyor.
+        izlenebilir ve hataya dayanıklı biçimde bir araya getirilmesi. Veri ve
+        analiz kodunu açık paylaşmayı, iddiaları verinin taşıyabileceği sınırlar
+        içinde tutmayı önemsiyorum.
       </p>
 
       <p class="eyebrow mt-4">Çalışma alanlarım</p>
       <ul class="tag-row mt-2">
-        <li class="tag-chip">Metabolik tıp</li>
+        <li class="tag-chip">Klinik araştırmalar</li>
         <li class="tag-chip">Kanıt sentezi</li>
+        <li class="tag-chip">Meta-analiz metodolojisi</li>
         <li class="tag-chip">Yeniden üretilebilir araştırma</li>
+        <li class="tag-chip">Metabolik tıp &amp; vücut kompozisyonu</li>
+        <li class="tag-chip">Moleküler onkoloji</li>
       </ul>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <h2>Açık kaynak projeler</h2>
+      <p class="muted mt-1">Veri, kod ve otomasyon altyapısı GitHub’da açık.</p>
+      <div class="grid grid-2 mt-3">
+        {
+          REPOS.map((r) => (
+            <article class="card">
+              <h3 style="font-size:1.05rem;">
+                <a href={r.url} target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">{r.name}</a>
+              </h3>
+              <p class="mt-1">{r.desc.tr}</p>
+              <ul class="tag-row mt-2">
+                {r.tags.map((t) => <li class="tag-chip">{t}</li>)}
+              </ul>
+            </article>
+          ))
+        }
+      </div>
     </div>
   </section>
 
@@ -54,9 +78,8 @@ const description =
         <li><a href={LINKS.scholar} target="_blank" rel="noopener">Google Scholar</a></li>
         <li><a href={LINKS.researchgate} target="_blank" rel="noopener">ResearchGate</a></li>
         <li><a href={LINKS.github} target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href={LINKS.linkedin} target="_blank" rel="noopener">LinkedIn</a></li>
       </ul>
     </div>
   </section>
-
-  <AppointmentBanner lang="tr" />
 </Base>

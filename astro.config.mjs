@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
-import cloudflare from "@astrojs/cloudflare";
+import cloudflare from '@astrojs/cloudflare';
 
 // https://astro.build
 export default defineConfig({
@@ -10,7 +10,7 @@ export default defineConfig({
 
   i18n: {
     defaultLocale: 'tr',
-    locales: ['tr', 'en', 'ru', 'ar'],
+    locales: ['tr', 'en'],
     routing: {
       prefixDefaultLocale: false,
     },
@@ -18,17 +18,13 @@ export default defineConfig({
 
   integrations: [
     sitemap({
-      // Velo (klinik dışı) ve şimdilik gizli hekim kılavuz destesi noindex;
-      // sitemap'ten de hariç tut.
-      filter: (page) =>
-        !/\/(kisisel|en\/personal|kilavuz-kartlari)\/?$/.test(new URL(page).pathname),
+      // Velo (akademik dışı) sayfası noindex; sitemap'ten de hariç tut.
+      filter: (page) => !/\/(kisisel|en\/personal)\/?$/.test(new URL(page).pathname),
       i18n: {
         defaultLocale: 'tr',
         locales: {
           tr: 'tr-TR',
           en: 'en',
-          ru: 'ru',
-          ar: 'ar',
         },
       },
     }),
@@ -38,5 +34,5 @@ export default defineConfig({
     inlineStylesheets: 'always',
   },
 
-  adapter: cloudflare()
+  adapter: cloudflare(),
 });

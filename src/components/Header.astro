@@ -1,5 +1,5 @@
 ---
-import { NAV, NAV_MIN, LANGS, UI, type Lang } from '../data/site';
+import { NAV, LANGS, SITE, UI, type Lang } from '../data/site';
 
 interface Props {
   lang: Lang;
@@ -9,23 +9,17 @@ const { lang, alts } = Astro.props;
 
 const current = Astro.url.pathname;
 const t = UI[lang];
-
-const items =
-  lang === 'tr' || lang === 'en'
-    ? NAV.map((n) => n[lang])
-    : NAV_MIN[lang];
-
+const items = NAV.map((n) => n[lang]);
 const homeHref = LANGS.find((l) => l.code === lang)!.home;
 
 const norm = (p: string) => (p !== '/' ? p.replace(/\/$/, '') : '/');
-const isCurrent = (href: string) =>
-  href.startsWith('#') ? false : norm(current) === norm(href);
+const isCurrent = (href: string) => norm(current) === norm(href);
 ---
 
 <header class="site-header">
   <div class="container header-inner">
     <a class="brand" href={homeHref}>
-      Uzm. Dr. Birkan Alaycı <span>· {t.specialty}</span>
+      {t.name} <span>· {SITE.unitShort}</span>
     </a>
 
     <button
@@ -46,24 +40,23 @@ const isCurrent = (href: string) =>
           </a>
         ))
       }
-      <a class="btn btn-primary nav-cta" href={t.contactHref}>{t.cta}</a>
     </nav>
 
-    <div class="header-actions">
-      <label class="lang-select-wrap">
-        <span class="sr-only">{t.langAria}</span>
-        <select class="lang-select" id="lang-select" aria-label={t.langAria}>
-          {
-            LANGS.map((l) => (
-              <option value={alts[l.code]} selected={lang === l.code}>
-                {l.label} · {l.native}
-              </option>
-            ))
-          }
-        </select>
-      </label>
-      <a class="btn btn-primary btn-sm cta-book" href={t.contactHref}>{t.cta}</a>
-    </div>
+    <nav class="lang-switch" aria-label={t.langAria}>
+      {
+        LANGS.map((l) => (
+          <a
+            href={alts[l.code]}
+            hreflang={l.code}
+            lang={l.code}
+            aria-current={lang === l.code ? 'true' : undefined}
+            title={l.native}
+          >
+            {l.label}
+          </a>
+        ))
+      }
+    </nav>
   </div>
 </header>
 
@@ -74,13 +67,6 @@ const isCurrent = (href: string) =>
     toggle.addEventListener('click', () => {
       const open = nav.classList.toggle('open');
       toggle.setAttribute('aria-expanded', String(open));
-    });
-  }
-  const sel = document.getElementById('lang-select');
-  if (sel) {
-    sel.addEventListener('change', (e) => {
-      const v = (e.target as HTMLSelectElement).value;
-      if (v) window.location.href = v;
     });
   }
 </script>

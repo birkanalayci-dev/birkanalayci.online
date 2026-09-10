@@ -1,29 +1,37 @@
 ---
 import Base from '../../layouts/Base.astro';
-import AppointmentBanner from '../../components/AppointmentBanner.astro';
+import { SITE } from '../../data/site';
 
-const title = 'About — Birkan Alaycı, MD, Internal Medicine Specialist';
+const title = 'About — Birkan Alaycı, MD';
 const description =
-  'About Birkan Alaycı, MD: clinical approach in internal medicine, education and career, PhD programme in molecular oncology, professional memberships.';
+  'About Birkan Alaycı, MD: internal medicine training, clinical research at the Clinical Trials Unit of Koç University, PhD programme in molecular oncology, education and career.';
 ---
 
 <Base {title} {description} lang="en" trHref="/hakkimda/" enHref="/en/about/">
   <section class="section">
     <div class="container prose">
       <p class="eyebrow">About</p>
-      <h1>Birkan Alaycı, MD</h1>
+      <h1>{SITE.nameEn}</h1>
       <p class="lead mt-2">
-        Internal medicine specialist practicing at Liv Hospital Vadistanbul,
-        Istanbul.
+        Internal medicine specialist. Since September 2026 I work on clinical
+        trials at the Clinical Trials Unit, Koç University, and I am a PhD student
+        in Molecular Oncology at İstinye University.
       </p>
+
       <p class="mt-3">
-        My clinical work focuses on obesity, metabolic syndrome, diabetes, thyroid
-        disorders and preventive health. It is shaped by evidence-based diagnostics,
-        coordination of multimorbid patients, and pattern recognition that emerges
-        from close engagement with each patient. Whether deciding at the bedside or
-        weighing scientific evidence, I follow the same principle: break the picture
-        into its parts, weigh the findings methodically, and place the clinical
-        decision within a clear framework.
+        I trained in medicine at Dokuz Eylül University and completed my internal
+        medicine residency at Şişli Hamidiye Etfal Training and Research Hospital.
+        I then worked as an internal medicine specialist at a district state
+        hospital in Ardanuç, Artvin, and at Liv Hospital Vadistanbul in Istanbul.
+        My focus today is not active clinical practice but clinical research and
+        evidence synthesis.
+      </p>
+      <p>
+        Three things define how I work: turning clinical questions into
+        analysable research designs, finding the weak point in a method, and
+        interpreting results within the limits the data can support. I build
+        reproducible, auditable workflows for systematic reviews and
+        meta-analyses, and share data and code openly wherever possible.
       </p>
 
       <h2 class="mt-4">Education &amp; career</h2>
@@ -31,8 +39,9 @@ const description =
         <li><strong>Doctor of Medicine</strong> — Dokuz Eylül University Faculty of Medicine, İzmir (2012–2018)</li>
         <li><strong>Internal Medicine residency</strong> — University of Health Sciences, Şişli Hamidiye Etfal Training and Research Hospital, Istanbul (2018–2023)</li>
         <li><strong>Internal Medicine Specialist</strong> — Ardanuç State Hospital, Artvin (2023–2025)</li>
-        <li><strong>Internal Medicine Specialist</strong> — Liv Hospital Vadistanbul, Istanbul (November 2025 – present)</li>
+        <li><strong>Internal Medicine Specialist</strong> — Liv Hospital Vadistanbul, Istanbul (November 2025 – September 2026)</li>
         <li><strong>PhD Programme in Molecular Oncology</strong> — İstinye University, Institute of Graduate Studies (2026 – present)</li>
+        <li><strong>Clinical Trials Unit</strong> — Koç University, Istanbul (September 2026 – present)</li>
       </ul>
 
       <h2 class="mt-4">Professional memberships</h2>
@@ -43,6 +52,4 @@ const description =
       </ul>
     </div>
   </section>
-
-  <AppointmentBanner lang="en" />
 </Base>

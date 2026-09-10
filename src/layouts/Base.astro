@@ -1,7 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { SITE, SAME_AS, LANGS, RTL_LANGS, type Lang } from '../data/site';
+import { SITE, SAME_AS, LANGS, type Lang } from '../data/site';
 import '../styles/global.css';
 
 interface Props {
@@ -11,12 +11,10 @@ interface Props {
   /** TR ve EN eşdeğer yolları (zorunlu) */
   trHref: string;
   enHref: string;
-  /** Diğer dillerin eşdeğer yolları; verilmezse o dilin ana sayfası kullanılır */
-  alts?: Partial<Record<Lang, string>>;
   ogImage?: string;
   /** <body> üzerine eklenecek sınıf (ör. koyu "Velo" teması) */
   bodyClass?: string;
-  /** Arama motorlarından gizle (ör. klinik dışı Velo sayfası) */
+  /** Arama motorlarından gizle (ör. akademik dışı Velo sayfası) */
   noindex?: boolean;
 }
 
@@ -26,8 +24,7 @@ const {
   lang = 'tr',
   trHref,
   enHref,
-  alts = {},
-  ogImage = '/og-image.jpg',
+  ogImage = '/portrait.jpg',
   bodyClass,
   noindex = false,
 } = Astro.props;
@@ -35,44 +32,51 @@ const {
 const base = SITE.domain;
 const canonical = new URL(Astro.url.pathname, base).href;
 const ogImageAbs = new URL(ogImage, base).href;
-const ogLocaleMap: Record<Lang, string> = {
-  tr: 'tr_TR', en: 'en_US', ar: 'ar_AR', ru: 'ru_RU', fa: 'fa_IR', de: 'de_DE', fr: 'fr_FR', es: 'es_ES',
-};
-const dir = RTL_LANGS.includes(lang) ? 'rtl' : 'ltr';
+const ogLocaleMap: Record<Lang, string> = { tr: 'tr_TR', en: 'en_US' };
 
 // Dil → eşdeğer yol haritası (hreflang + dil değiştirici).
-const altMap: Record<Lang, string> = Object.fromEntries(
-  LANGS.map((l) => [l.code, l.home]),
-) as Record<Lang, string>;
-altMap.tr = trHref;
-altMap.en = enHref;
-for (const [k, v] of Object.entries(alts)) altMap[k as Lang] = v as string;
+const altMap: Record<Lang, string> = { tr: trHref, en: enHref };
+const siteName = lang === 'tr' ? SITE.nameTr : SITE.nameEn;
 
-const physicianLd = {
+const personLd = {
   '@context': 'https://schema.org',
-  '@type': 'Physician',
-  name: SITE.name,
-  honorificPrefix: 'Uzm. Dr.',
+  '@type': 'Person',
+  name: 'Birkan Alaycı',
+  honorificPrefix: 'Dr.',
+  honorificSuffix: 'MD',
+  jobTitle: lang === 'tr' ? 'Klinik araştırmacı' : 'Clinical researcher',
   description:
     lang === 'tr'
-      ? 'İç hastalıkları uzmanı. İstanbul, Liv Hospital Vadistanbul.'
-      : 'Internal medicine specialist. Istanbul, Liv Hospital Vadistanbul.',
-  medicalSpecialty: 'InternalMedicine',
+      ? 'İç hastalıkları uzmanı; Koç Üniversitesi Clinical Trials Unit’te klinik araştırma ve kanıt sentezi üzerine çalışıyor.'
+      : 'Internal medicine specialist working on clinical research and evidence synthesis at the Clinical Trials Unit, Koç University.',
   url: base,
   image: ogImageAbs,
-  areaServed: { '@type': 'City', name: 'İstanbul' },
-  affiliation: { '@type': 'Hospital', name: 'Liv Hospital Vadistanbul', url: 'https://www.livhospital.com/' },
-  worksFor: { '@type': 'Hospital', name: 'Liv Hospital Vadistanbul' },
+  worksFor: {
+    '@type': 'Organization',
+    name: 'Koç University',
+    department: { '@type': 'Organization', name: 'Clinical Trials Unit' },
+  },
+  affiliation: [
+    { '@type': 'Organization', name: 'Koç University' },
+    { '@type': 'CollegeOrUniversity', name: 'İstinye University' },
+  ],
   alumniOf: [
     { '@type': 'CollegeOrUniversity', name: 'Dokuz Eylül Üniversitesi Tıp Fakültesi' },
     { '@type': 'CollegeOrUniversity', name: 'İstinye Üniversitesi' },
+  ],
+  knowsAbout: [
+    'Internal medicine',
+    'Clinical trials',
+    'Evidence synthesis',
+    'Systematic reviews and meta-analysis',
+    'Reproducible research',
   ],
   sameAs: SAME_AS,
 };
 ---
 
 <!DOCTYPE html>
-<html lang={lang} dir={dir}>
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -82,12 +86,6 @@ const physicianLd = {
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:wght@500;600;700&display=swap"
     />
-    {lang === 'ar' && (
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" />
-    )}
-    {lang === 'fa' && (
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600&display=swap" />
-    )}
     <title>{title}</title>
     <meta name="description" content={description} />
 
@@ -98,7 +96,7 @@ const physicianLd = {
     <link rel="alternate" hreflang="x-default" href={new URL(altMap.tr, base).href} />
 
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:site_name" content={siteName} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
@@ -115,10 +113,10 @@ const physicianLd = {
     <meta name="yandex-verification" content="2d34b6832a906a4b" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 
-    <script type="application/ld+json" set:html={JSON.stringify(physicianLd)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(personLd)} />
   </head>
   <body class={bodyClass}>
-    <a class="skip-link" href="#main">İçeriğe geç</a>
+    <a class="skip-link" href="#main">{lang === 'tr' ? 'İçeriğe geç' : 'Skip to content'}</a>
     <Header lang={lang} alts={altMap} />
     <main id="main">
       <slot />
