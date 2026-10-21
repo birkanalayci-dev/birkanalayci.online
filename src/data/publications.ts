@@ -18,17 +18,22 @@ export type Publication = {
 };
 
 export const PUBLICATIONS: Publication[] = [
+  // Research Square ön baskısının (rs-9973131) hakemli sürümü; ön baskı bu
+  // kayıtla değiştirildi. Article in Press, 21 Ekim 2026. Version of Record
+  // yayımlanınca status kaldırılacak, venue'ye cilt ve makale numarası eklenecek.
   {
     title:
-      'DXA-Measured Body Composition Effects of GLP-1 and Dual GIP/GLP-1 Receptor Agonists in Adults with Obesity or Type 2 Diabetes: A Systematic Review and Meta-Analysis of Phase 3 Randomized Trials',
+      'DXA-measured lean and fat mass differences with incretin-based therapy versus comparators: a meta-analysis of phase 3 trials',
     authors: [
       { name: 'Birkan Alaycı', self: true },
       { name: 'Öykü Zeynep Gerçek' },
     ],
-    venue: 'Research Square (preprint)',
+    venue: 'BMC Endocrine Disorders',
     year: 2026,
-    type: 'preprint',
-    url: 'https://www.researchsquare.com/article/rs-9973131/v1',
+    type: 'article',
+    url: 'https://doi.org/10.1186/s12902-026-02679-z',
+    doi: '10.1186/s12902-026-02679-z',
+    status: { tr: 'Erken erişim', en: 'Article in Press' },
   },
   // COSTEM 2026 bildirileri. Kongre sonrası (Ekim 2026) status alanı
   // { tr: 'Sunuldu', en: 'Presented' } olarak güncellenecek. Özet kitabı

@@ -47,8 +47,8 @@ export const REPOS: Repo[] = [
     name: 'glp1-lbm-dxa-meta-analysis',
     url: 'https://github.com/birkanalayci-dev/glp1-lbm-dxa-meta-analysis',
     desc: {
-      tr: 'GLP-1 ve ikili GIP/GLP-1 reseptör agonistlerinin DXA ile ölçülen yağsız ve yağ kütlesi üzerindeki etkilerine dair meta-analizin verisi ve R kodu (faz 3 RKÇ’ler; PROSPERO CRD420261323497).',
-      en: 'Data and R code for the meta-analysis of DXA-measured lean and fat mass with GLP-1 and dual GIP/GLP-1 receptor agonists (phase 3 RCTs; PROSPERO CRD420261323497).',
+      tr: 'GLP-1 ve ikili GIP/GLP-1 reseptör agonistlerinin DXA ile ölçülen yağsız ve yağ kütlesi üzerindeki etkilerine dair meta-analizin verisi ve R kodu (faz 3 RKÇ’ler; BMC Endocrine Disorders, 2026; PROSPERO CRD420261323497).',
+      en: 'Data and R code for the meta-analysis of DXA-measured lean and fat mass with GLP-1 and dual GIP/GLP-1 receptor agonists (phase 3 RCTs; BMC Endocrine Disorders, 2026; PROSPERO CRD420261323497).',
     },
     tags: ['meta-analysis', 'DXA', 'GLP-1', 'R'],
   },
