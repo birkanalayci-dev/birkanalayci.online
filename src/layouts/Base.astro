@@ -44,33 +44,26 @@ const personLd = {
   name: 'Birkan Alaycı',
   honorificPrefix: 'Dr.',
   honorificSuffix: 'MD',
-  jobTitle: lang === 'tr' ? 'Klinik araştırmacı' : 'Clinical researcher',
+  jobTitle: lang === 'tr' ? 'İç hastalıkları uzmanı' : 'Internal medicine specialist',
   description:
     lang === 'tr'
-      ? 'İç hastalıkları uzmanı; Koç Üniversitesi Clinical Trials Unit’te klinik araştırma ve kanıt sentezi üzerine çalışıyor.'
-      : 'Internal medicine specialist working on clinical research and evidence synthesis at the Clinical Trials Unit, Koç University.',
+      ? 'İç hastalıkları uzmanı; Koç Üniversitesi Hastanesi Klinik Araştırmalar Ünitesi’nde sub-investigator, İstinye Üniversitesi’nde moleküler onkoloji doktora öğrencisi.'
+      : 'Internal medicine specialist; sub-investigator at the Clinical Trials Unit, Koç University Hospital, and PhD student in molecular oncology at İstinye University.',
   url: base,
   image: ogImageAbs,
   worksFor: {
     '@type': 'Organization',
-    name: 'Koç University',
+    name: 'Koç University Hospital',
     department: { '@type': 'Organization', name: 'Clinical Trials Unit' },
   },
   affiliation: [
-    { '@type': 'Organization', name: 'Koç University' },
+    { '@type': 'Organization', name: 'Koç University Hospital' },
     { '@type': 'CollegeOrUniversity', name: 'İstinye University' },
   ],
   alumniOf: [
     { '@type': 'CollegeOrUniversity', name: 'Dokuz Eylül Üniversitesi Tıp Fakültesi' },
-    { '@type': 'CollegeOrUniversity', name: 'İstinye Üniversitesi' },
   ],
-  knowsAbout: [
-    'Internal medicine',
-    'Clinical trials',
-    'Evidence synthesis',
-    'Systematic reviews and meta-analysis',
-    'Reproducible research',
-  ],
+  knowsAbout: ['Internal medicine', 'Clinical trials'],
   sameAs: SAME_AS,
 };
 ---

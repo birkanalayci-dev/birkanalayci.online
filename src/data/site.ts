@@ -8,8 +8,8 @@ export const SITE = {
   nameTr: 'Dr. Birkan Alaycı',
   nameEn: 'Birkan Alaycı, MD',
   // İsim + kurum satırı (hero, footer, meta açıklamaları).
-  affiliationTr: 'Koç Üniversitesi, Clinical Trials Unit',
-  affiliationEn: 'Clinical Trials Unit, Koç University',
+  affiliationTr: 'Koç Üniversitesi Hastanesi, Clinical Trials Unit',
+  affiliationEn: 'Clinical Trials Unit, Koç University Hospital',
   unitShort: 'Clinical Trials Unit',
   phdTr: 'Moleküler Onkoloji Doktora Programı, İstinye Üniversitesi',
   phdEn: 'PhD Programme in Molecular Oncology, İstinye University',
@@ -51,15 +51,6 @@ export const REPOS: Repo[] = [
       en: 'Data and R code for the meta-analysis of DXA-measured lean and fat mass with GLP-1 and dual GIP/GLP-1 receptor agonists (phase 3 RCTs; BMC Endocrine Disorders, 2026; PROSPERO CRD420261323497).',
     },
     tags: ['meta-analysis', 'DXA', 'GLP-1', 'R'],
-  },
-  {
-    name: 'meta-analysis-automation-engine',
-    url: 'https://github.com/birkanalayci-dev/meta-analysis-automation-engine',
-    desc: {
-      tr: 'Bilimsel meta-analiz otomasyonu: PubMed API, NLP, PDF ayrıştırma, halüsinasyon kontrolü ve yeniden üretilebilir araştırma altyapısı.',
-      en: 'Automation for scientific meta-analysis: PubMed API, NLP, PDF parsing, hallucination checks and reproducible-research infrastructure.',
-    },
-    tags: ['automation', 'NLP', 'reproducible research'],
   },
 ];
 

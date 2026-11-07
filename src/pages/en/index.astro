@@ -3,9 +3,9 @@ import Base from '../../layouts/Base.astro';
 import { HAS_PORTRAIT, LINKS, REPOS, SITE } from '../../data/site';
 import { PUBLICATIONS } from '../../data/publications';
 
-const title = 'Birkan Alaycı, MD — Clinical Research, Clinical Trials Unit, Koç University';
+const title = 'Birkan Alaycı, MD — Clinical Research, Clinical Trials Unit, Koç University Hospital';
 const description =
-  'Birkan Alaycı, MD — internal medicine specialist working on clinical research, evidence synthesis and reproducible meta-analysis methodology at the Clinical Trials Unit, Koç University, Istanbul.';
+  'Birkan Alaycı, MD, internal medicine specialist at the Clinical Trials Unit, Koç University Hospital, Istanbul; PhD student in molecular oncology at İstinye University.';
 
 const featured = PUBLICATIONS.filter((p) => p.type === 'preprint' || p.type === 'article').slice(0, 2);
 ---
@@ -19,9 +19,9 @@ const featured = PUBLICATIONS.filter((p) => p.type === 'preprint' || p.type === 
         <h1>{SITE.nameEn}</h1>
         <p class="affil">{SITE.affiliationEn}</p>
         <p class="lead">
-          Internal medicine specialist. I work on turning clinical questions into
-          analysable research designs, synthesising evidence transparently and
-          reproducibly, and keeping conclusions within what the data can support.
+          I’m an internal medicine specialist. I work at the Clinical Trials Unit
+          of Koç University Hospital and I’m a PhD student in molecular oncology at
+          İstinye University.
         </p>
         <div class="cta-row">
           <a class="btn btn-primary" href="/en/research/">Research &amp; publications</a>
@@ -52,12 +52,12 @@ const featured = PUBLICATIONS.filter((p) => p.type === 'preprint' || p.type === 
   <section class="section" style="padding-top:0;">
     <div class="container">
       <p class="eyebrow">Currently</p>
-      <div class="grid grid-3 mt-2">
+      <div class="grid grid-2 mt-2">
         <div class="card">
           <h3>Clinical Trials Unit</h3>
           <p>
-            Working on clinical trials at the Clinical Trials Unit, Koç University
-            (September 2026 – ).
+            Sub-investigator since October 2026. I examine participants in the
+            trials I’m delegated to; most are early-phase oncology studies.
           </p>
         </div>
         <div class="card">
@@ -67,25 +67,16 @@ const featured = PUBLICATIONS.filter((p) => p.type === 'preprint' || p.type === 
             Molecular Oncology (2026 – ).
           </p>
         </div>
-        <div class="card">
-          <h3>Evidence synthesis methodology</h3>
-          <p>
-            Traceable, reproducible workflows for systematic reviews and
-            meta-analyses; open data and open code.
-          </p>
-        </div>
       </div>
     </div>
   </section>
 
-  <!-- RESEARCH AREAS -->
+  <!-- RESEARCH INTERESTS -->
   <section class="section" style="padding-top:0;">
     <div class="container">
-      <p class="eyebrow">Research areas</p>
+      <p class="eyebrow">Research interests</p>
       <ul class="tag-row mt-2">
         <li class="tag-chip">Clinical trials</li>
-        <li class="tag-chip">Evidence synthesis &amp; meta-analysis</li>
-        <li class="tag-chip">Reproducible research</li>
         <li class="tag-chip">Metabolic medicine &amp; body composition</li>
         <li class="tag-chip">Molecular oncology</li>
       </ul>
