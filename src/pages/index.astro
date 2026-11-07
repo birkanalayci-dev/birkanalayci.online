@@ -3,9 +3,9 @@ import Base from '../layouts/Base.astro';
 import { HAS_PORTRAIT, LINKS, REPOS, SITE } from '../data/site';
 import { PUBLICATIONS } from '../data/publications';
 
-const title = 'Dr. Birkan Alaycı — Klinik Araştırma, Koç Üniversitesi Clinical Trials Unit';
+const title = 'Dr. Birkan Alaycı — Klinik Araştırma, Koç Üniversitesi Hastanesi Clinical Trials Unit';
 const description =
-  'Dr. Birkan Alaycı — iç hastalıkları uzmanı; Koç Üniversitesi Clinical Trials Unit’te klinik araştırma, kanıt sentezi ve yeniden üretilebilir meta-analiz metodolojisi üzerine çalışıyor.';
+  'Dr. Birkan Alaycı, iç hastalıkları uzmanı. Koç Üniversitesi Hastanesi Klinik Araştırmalar Ünitesi’nde çalışıyor; İstinye Üniversitesi’nde moleküler onkoloji doktora öğrencisi.';
 
 const featured = PUBLICATIONS.filter((p) => p.type === 'preprint' || p.type === 'article').slice(0, 2);
 ---
@@ -19,10 +19,9 @@ const featured = PUBLICATIONS.filter((p) => p.type === 'preprint' || p.type === 
         <h1>{SITE.nameTr}</h1>
         <p class="affil">{SITE.affiliationTr}</p>
         <p class="lead">
-          İç hastalıkları uzmanıyım. Klinik soruları analiz edilebilir araştırma
-          yapılarına çevirmek, kanıtı şeffaf ve yeniden üretilebilir biçimde
-          sentezlemek ve sonuçları klinik olarak anlamlı sınırlar içinde yorumlamak
-          üzerine çalışıyorum.
+          İç hastalıkları uzmanıyım. Koç Üniversitesi Hastanesi Klinik Araştırmalar
+          Ünitesi’nde çalışıyorum ve İstinye Üniversitesi’nde moleküler onkoloji
+          doktora öğrencisiyim.
         </p>
         <div class="cta-row">
           <a class="btn btn-primary" href="/arastirma/">Araştırma &amp; yayınlar</a>
@@ -53,12 +52,13 @@ const featured = PUBLICATIONS.filter((p) => p.type === 'preprint' || p.type === 
   <section class="section" style="padding-top:0;">
     <div class="container">
       <p class="eyebrow">Şu anda</p>
-      <div class="grid grid-3 mt-2">
+      <div class="grid grid-2 mt-2">
         <div class="card">
           <h3>Clinical Trials Unit</h3>
           <p>
-            Koç Üniversitesi Clinical Trials Unit bünyesinde klinik araştırmalarda
-            görev alıyorum (Eylül 2026 – ).
+            Ekim 2026’dan beri sub-investigator olarak çalışıyorum.
+            Görevlendirildiğim araştırmalarda katılımcıları muayene ediyorum;
+            bunların çoğu erken faz onkoloji çalışması.
           </p>
         </div>
         <div class="card">
@@ -68,26 +68,17 @@ const featured = PUBLICATIONS.filter((p) => p.type === 'preprint' || p.type === 
             Doktora Programı (2026 – ).
           </p>
         </div>
-        <div class="card">
-          <h3>Kanıt sentezi metodolojisi</h3>
-          <p>
-            Sistematik derleme ve meta-analiz süreçleri için izlenebilir,
-            yeniden üretilebilir iş akışları; açık veri ve açık kod.
-          </p>
-        </div>
       </div>
     </div>
   </section>
 
-  <!-- ARAŞTIRMA ALANLARI -->
+  <!-- İLGİ ALANLARI -->
   <section class="section" style="padding-top:0;">
     <div class="container">
-      <p class="eyebrow">Araştırma alanları</p>
+      <p class="eyebrow">İlgi alanları</p>
       <ul class="tag-row mt-2">
         <li class="tag-chip">Klinik araştırmalar</li>
-        <li class="tag-chip">Kanıt sentezi &amp; meta-analiz</li>
-        <li class="tag-chip">Yeniden üretilebilir araştırma</li>
-        <li class="tag-chip">Metabolik tıp &amp; vücut kompozisyonu</li>
+        <li class="tag-chip">Metabolik tıp ve vücut kompozisyonu</li>
         <li class="tag-chip">Moleküler onkoloji</li>
       </ul>
     </div>
