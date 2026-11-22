@@ -92,6 +92,10 @@ export const NAV: NavItem[] = [
     en: { label: 'Research', href: '/en/research/' },
   },
   {
+    tr: { label: 'Üyelikler', href: '/uyelikler/' },
+    en: { label: 'Memberships', href: '/en/memberships/' },
+  },
+  {
     tr: { label: 'İletişim', href: '/iletisim/' },
     en: { label: 'Contact', href: '/en/contact/' },
   },

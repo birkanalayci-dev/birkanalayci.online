@@ -18,10 +18,11 @@ npm run preview  # build + wrangler dev (Cloudflare Workers önizleme)
 src/
   data/site.ts          → isim/kurum satırı, linkler, açık kaynak projeler, navigasyon, UI metinleri (TEK kaynak)
   data/publications.ts  → yayın listesi (yalnızca doğrulanmış künyeler)
+  data/credentials.ts   → mesleki üyelikler, yeterlilik ve sertifikalar (TEK kaynak)
   layouts/Base.astro    → <head>, SEO, hreflang (tr/en), OG, schema.org Person JSON-LD
-  components/           → Header (nav + TR|EN + mobil menü), Footer, PublicationList
-  pages/                → TR sayfalar (/, /hakkimda, /arastirma, /iletisim, /kisisel)
-  pages/en/             → EN karşılıkları (/en, /en/about, /en/research, /en/contact, /en/personal)
+  components/           → Header (nav + TR|EN + mobil menü), Footer, PublicationList, Ledger (üyelik/sertifika satırları)
+  pages/                → TR sayfalar (/, /hakkimda, /arastirma, /uyelikler, /iletisim, /kisisel)
+  pages/en/             → EN karşılıkları (/en, /en/about, /en/research, /en/memberships, /en/contact, /en/personal)
 public/                 → robots.txt, favicon.svg, portre, _redirects (eski rotalar)
 ```
 
