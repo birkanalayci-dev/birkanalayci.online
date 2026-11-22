@@ -1,0 +1,40 @@
+---
+import Base from '../layouts/Base.astro';
+import Ledger from '../components/Ledger.astro';
+import { CERTIFICATES, MEMBERSHIPS } from '../data/credentials';
+
+const title = 'Üyelikler & Sertifikalar — Dr. Birkan Alaycı';
+const description =
+  'Dr. Birkan Alaycı’nın mesleki dernek üyelikleri ile yeterlilik ve sertifikaları.';
+
+const memberRows = MEMBERSHIPS.map((m) => ({
+  mark: m.abbr,
+  logo: m.logo,
+  title: m.name,
+  sub: m.note?.tr,
+}));
+const certRows = CERTIFICATES.map((c) => ({
+  mark: c.abbr,
+  title: c.title.tr,
+  sub: `${c.issuer} · ${c.year}`,
+}));
+---
+
+<Base {title} {description} lang="tr" trHref="/uyelikler/" enHref="/en/memberships/">
+  <section class="section">
+    <div class="container prose">
+      <p class="eyebrow">Üyelikler</p>
+      <h1>Üyelikler &amp; sertifikalar</h1>
+
+      <h2 class="mt-4">Mesleki üyelikler</h2>
+      <div class="mt-2">
+        <Ledger rows={memberRows} />
+      </div>
+
+      <h2 class="mt-4">Yeterlilik ve sertifikalar</h2>
+      <div class="mt-2">
+        <Ledger rows={certRows} />
+      </div>
+    </div>
+  </section>
+</Base>

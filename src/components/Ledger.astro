@@ -1,0 +1,93 @@
+---
+// İşaret + metin satırları: üyelikler ve sertifikalar için ortak liste.
+// Solda kurum kısaltması (ya da varsa logosu), sağda ad ve alt satır.
+import type { Logo } from '../data/credentials';
+
+export type LedgerRow = {
+  mark: string;
+  logo?: Logo;
+  title: string;
+  sub?: string;
+};
+
+interface Props {
+  rows: LedgerRow[];
+}
+const { rows } = Astro.props;
+---
+
+<ul class="ledger">
+  {
+    rows.map((r) => (
+      <li class="ledger-row">
+        <div class="ledger-mark">
+          {r.logo ? (
+            <img
+              src={r.logo.src}
+              width={r.logo.width}
+              height={r.logo.height}
+              alt={r.mark}
+              loading="lazy"
+              decoding="async"
+            />
+          ) : (
+            r.mark
+          )}
+        </div>
+        <div class="ledger-body">
+          <div class="ledger-title">{r.title}</div>
+          {r.sub && <div class="ledger-sub">{r.sub}</div>}
+        </div>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .ledger {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid var(--border);
+  }
+  .ledger-row {
+    display: grid;
+    grid-template-columns: 8.5rem 1fr;
+    column-gap: 1.5rem;
+    align-items: baseline;
+    padding: 1.05rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .ledger-mark {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 1.4rem;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+    color: var(--accent-deep);
+  }
+  .ledger-mark img {
+    max-height: 2.75rem;
+    width: auto;
+  }
+  .ledger-title {
+    color: var(--text);
+    font-weight: 500;
+    line-height: 1.45;
+  }
+  .ledger-sub {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+    margin-top: 0.15rem;
+  }
+
+  @media (max-width: 560px) {
+    .ledger-row {
+      grid-template-columns: 1fr;
+      row-gap: 0.2rem;
+      padding: 0.95rem 0;
+    }
+    .ledger-mark { font-size: 1.15rem; }
+  }
+</style>
